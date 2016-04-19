@@ -14,7 +14,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
 trigger_map:
 
-  - pattern: *
+  - pattern: '*'
     is_pull_request_allowed: false
     workflow: default
 
