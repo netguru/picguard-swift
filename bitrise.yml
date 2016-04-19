@@ -1,0 +1,64 @@
+#
+# bitrise.yml
+#
+# Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+# Licensed under the MIT License.
+#
+
+# CLI metadata
+
+format_version: 1.1.0
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+# Workflow trigger map
+
+trigger_map:
+
+  - pattern: *
+    is_pull_request_allowed: false
+    workflow: default
+
+# Environment configuration
+
+app:
+  envs:
+    - BITRISE_APP_TITLE: picguard-swift
+    - BITRISE_PROJECT_PATH: ./Picguard.xcodeproj
+    - BITRISE_SCHEME_IOS: Picguard (iOS)
+
+# Workflow declarations
+
+workflows:
+
+  # The default workflow
+
+  default:
+    before_run:
+      - bootstrap
+      - test-ios
+      - deploy
+
+  # Bootstraps the project before building
+
+  bootstrap:
+    steps:
+      - carthage:
+          inputs:
+            - carthage_command: bootstrap
+
+  # Deploys the project
+
+  deploy:
+    steps:
+      - deploy-to-bitrise-io: {}
+
+  # Runs iOS tests
+
+  test-ios:
+    envs:
+      - BITRISE_SCHEME: $BITRISE_SCHEME_IOS
+    steps:
+      - xcode-test:
+          inputs:
+            - is_clean_build: 'yes'
+            - output_tool: xcpretty
