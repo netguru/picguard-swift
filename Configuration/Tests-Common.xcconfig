@@ -1,0 +1,15 @@
+//
+// Picguard-Tests-Common.xcconfig
+//
+// Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+// Licensed under the MIT License.
+//
+
+#include "Carthage/Checkouts/xcconfigs/iOS/iOS-Application.xcconfig"
+#include "Picguard-Common.xcconfig"
+
+PICGUARD_PRODUCT_NAME = Picguard Tests
+PICGUARD_BUNDLE_IDENTIFIER = co.netguru.lib.picguard.tests
+PICGUARD_INFOPLIST = $(SRCROOT)/Support/Picguard-Tests-Info.plist
+
+PICGUARD_LINKED_FRAMEWORKS = -framework Quick -framework Nimble
