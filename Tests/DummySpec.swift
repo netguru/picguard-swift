@@ -6,8 +6,9 @@
 //
 
 import Nimble
-import Picguard
 import Quick
+
+@testable import Picguard
 
 final class DummySpec: QuickSpec {
 	
