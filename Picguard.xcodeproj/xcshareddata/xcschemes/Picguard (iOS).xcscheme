@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A0CB7631CC55A8500A32F4E"
-               BuildableName = "Picguard (iOS).framework"
+               BuildableName = "Picguard.framework"
                BlueprintName = "Picguard (iOS)"
                ReferencedContainer = "container:Picguard.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A0CB77F1CC65E9000A32F4E"
-               BuildableName = "Picguard Tests (iOS).xctest"
+               BuildableName = "Picguard Tests.xctest"
                BlueprintName = "Picguard Tests (iOS)"
                ReferencedContainer = "container:Picguard.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A0CB77F1CC65E9000A32F4E"
-               BuildableName = "Picguard Tests (iOS).xctest"
+               BuildableName = "Picguard Tests.xctest"
                BlueprintName = "Picguard Tests (iOS)"
                ReferencedContainer = "container:Picguard.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A0CB7631CC55A8500A32F4E"
-            BuildableName = "Picguard (iOS).framework"
+            BuildableName = "Picguard.framework"
             BlueprintName = "Picguard (iOS)"
             ReferencedContainer = "container:Picguard.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A0CB7631CC55A8500A32F4E"
-            BuildableName = "Picguard (iOS).framework"
+            BuildableName = "Picguard.framework"
             BlueprintName = "Picguard (iOS)"
             ReferencedContainer = "container:Picguard.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A0CB7631CC55A8500A32F4E"
-            BuildableName = "Picguard (iOS).framework"
+            BuildableName = "Picguard.framework"
             BlueprintName = "Picguard (iOS)"
             ReferencedContainer = "container:Picguard.xcodeproj">
          </BuildableReference>
