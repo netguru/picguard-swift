@@ -41,7 +41,7 @@ final class PicguardSpec: QuickSpec {
     }
 }
 
-struct MockImageEncoder: ImageEncoder {
+private struct MockImageEncoder: ImageEncoder {
     func base64EncodedImageString(image: UIImage) -> String? {
         return "dummy base64 encoded image string"
     }
