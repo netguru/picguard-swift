@@ -10,13 +10,13 @@ import Picguard
 import Quick
 
 final class DummySpec: QuickSpec {
-	
+
 	override func spec() {
-		
+
 		it("should know the answer to the whole universe") {
 			expect(dummyAnswerToTheUniverse()).to(equal(42))
 		}
-		
+
 	}
-	
+
 }
