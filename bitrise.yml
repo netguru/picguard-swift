@@ -69,7 +69,7 @@ workflows:
 
   notify:
     steps:
-      - git::git@github.com:netguru/bitrise-step-slack.git:
+      - git::git@github.com:netguru/bitrise-step-slack.git@latest:
           title: slack
           inputs:
             - webhook_url: $SLACK_WEBHOOK_URL
