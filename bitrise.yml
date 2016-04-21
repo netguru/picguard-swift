@@ -68,11 +68,12 @@ workflows:
   # Notifies about the build
 
   notify:
-    - git::git@github.com:netguru/bitrise-step-slack.git:
-        title: slack
-        inputs:
-          - webhook_url: $SLACK_WEBHOOK_URL
-          - channel: $SLACK_CHANNEL
+    steps:
+      - git::git@github.com:netguru/bitrise-step-slack.git:
+          title: slack
+          inputs:
+            - webhook_url: $SLACK_WEBHOOK_URL
+            - channel: $SLACK_CHANNEL
 
   # Runs iOS tests
 
