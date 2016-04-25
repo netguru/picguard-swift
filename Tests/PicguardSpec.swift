@@ -10,7 +10,7 @@ import Nimble
 import Quick
 import Picguard
 
-final class PicguardSpec: QuickSpec {
+final class Base64ImageEncoderSpec: QuickSpec {
 
     override func spec() {
 
