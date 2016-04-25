@@ -161,7 +161,7 @@
 				3A0CB7601CC55A8500A32F4E /* Frameworks */,
 				3A0CB7611CC55A8500A32F4E /* Headers */,
 				3A0CB7621CC55A8500A32F4E /* Resources */,
-				5C8972431CC7D49100843EB8 /* Swiftlint */,
+				5C8972431CC7D49100843EB8 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -213,8 +213,6 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-			);
 			mainGroup = 3A0CB75A1CC55A8500A32F4E;
 			productRefGroup = 3A0CB7651CC55A8500A32F4E /* Products */;
 			projectDirPath = "";
@@ -260,14 +258,14 @@
 			shellPath = /bin/sh;
 			shellScript = "carthage copy-frameworks";
 		};
-		5C8972431CC7D49100843EB8 /* Swiftlint */ = {
+		5C8972431CC7D49100843EB8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Swiftlint;
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
