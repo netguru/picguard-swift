@@ -58,6 +58,7 @@ workflows:
       - carthage:
           inputs:
             - carthage_command: bootstrap
+            - workdir: $BITRISE_SOURCE_DIR
 
   # Deploys the project
 
