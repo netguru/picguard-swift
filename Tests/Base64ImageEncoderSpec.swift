@@ -1,9 +1,8 @@
 //
-//  Base64ImageEncoderSpec.swift
-//  Picguard
+// Base64ImageEncoderSpec.swift
 //
-//  Created by Lukasz Wolanczyk on 4/25/16.
-//  Copyright © 2016 Netguru Sp. z o.o. All rights reserved.
+// Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+// Licensed under the MIT License.
 //
 
 import Nimble
@@ -42,7 +41,7 @@ final class Base64ImageEncoderSpec: QuickSpec {
     }
 }
 
-// MARK: - Image from view
+// MARK: -
 
 private extension UIImage {
 

@@ -1,9 +1,8 @@
 //
-//  Base64ImageEncoder.swift
-//  Picguard
+// Base64ImageEncoder.swift
 //
-//  Created by Adrian Kashivskyy on 21.04.2016.
-//  Copyright © 2016 Netguru Sp. z o.o. All rights reserved.
+// Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+// Licensed under the MIT License.
 //
 
 import UIKit
