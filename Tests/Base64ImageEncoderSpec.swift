@@ -30,8 +30,7 @@ final class Base64ImageEncoderSpec: QuickSpec {
             var image: UIImage!
 
             beforeEach {
-                image = UIImage.solidColorImage(CGSize(width: 1, height: 1),
-                    color: .yellowColor())
+                image = UIImage(size: CGSize(width: 1, height: 1), color: .yellowColor())
                 encodedImage = try! sut.encode(image: image)
             }
 
@@ -47,7 +46,7 @@ final class Base64ImageEncoderSpec: QuickSpec {
 
 private extension UIImage {
 
-    class func solidColorImage(size: CGSize, color: UIColor) -> UIImage {
+    convenience init?(size: CGSize, color: UIColor) {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -55,6 +54,7 @@ private extension UIImage {
         CGContextFillRect(context, rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image.imageWithRenderingMode(.AlwaysOriginal)
+        let renderedImage = image.imageWithRenderingMode(.AlwaysOriginal)
+        self.init(data: UIImagePNGRepresentation(renderedImage)!)
     }
 }
