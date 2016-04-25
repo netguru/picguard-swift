@@ -10,7 +10,7 @@ import Nimble
 import Quick
 import Picguard
 
-final class Base64ImageEncoderSpec: QuickSpec {
+final class PicguardSpec: QuickSpec {
 
     override func spec() {
 
@@ -29,20 +29,21 @@ final class Base64ImageEncoderSpec: QuickSpec {
             var capturedResult: Any!
 
             beforeEach {
-                sut.analyze(UIImage()) { result in
+                try! sut.analyze(UIImage()) { result in
                     capturedResult = result
                 }
             }
 
-            it("should return base64 encoded image string for now") {
-                expect(capturedResult as? String).to(equal("dummy base64 encoded image string"))
+            it("should return encoded image") {
+                expect(capturedResult as? String).to(equal("fixture encoded image"))
             }
         }
     }
 }
 
-private struct MockImageEncoder: ImageEncoder {
-    func base64EncodedImageString(image: UIImage) -> String? {
-        return "dummy base64 encoded image string"
+private struct MockImageEncoder: ImageEncoding {
+
+    func encode(image image: UIImage) throws -> String {
+        return "fixture encoded image"
     }
 }
