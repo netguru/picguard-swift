@@ -11,9 +11,14 @@ public struct Base64ImageEncoder: ImageEncoding {
 
 	public init() {}
 
+	/// Describes errors which may occur during encoding.
+	public enum Error: ErrorType {
+		case UnsupportedBitmapData
+	}
+
 	public func encode(image image: UIImage) throws -> String {
 		guard let data = UIImagePNGRepresentation(image) else {
-			throw NSError(domain: "", code: 0, userInfo: [:])
+			throw Error.UnsupportedBitmapData
 		}
 		return data.base64EncodedStringWithOptions([])
 	}
