@@ -46,7 +46,7 @@ final class Base64ImageEncoderSpec: QuickSpec {
 
 private extension UIImage {
 
-    convenience init?(size: CGSize, color: UIColor) {
+    convenience init(size: CGSize, color: UIColor) {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -55,6 +55,6 @@ private extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         let renderedImage = image.imageWithRenderingMode(.AlwaysOriginal)
-        self.init(data: UIImagePNGRepresentation(renderedImage)!)
+        self.init(data: UIImagePNGRepresentation(renderedImage)!)!
     }
 }
