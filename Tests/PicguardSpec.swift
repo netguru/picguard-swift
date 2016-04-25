@@ -11,38 +11,38 @@ import Picguard
 
 final class PicguardSpec: QuickSpec {
 
-    override func spec() {
+	override func spec() {
 
-        var sut: Picguard!
+		var sut: Picguard!
 
-        beforeEach {
-            sut = Picguard(imageEncoder: MockImageEncoder())
-        }
+		beforeEach {
+			sut = Picguard(imageEncoder: MockImageEncoder())
+		}
 
-        afterEach {
-            sut = nil
-        }
+		afterEach {
+			sut = nil
+		}
 
-        describe("analyze") {
+		describe("analyze") {
 
-            var capturedResult: Any!
+			var capturedResult: Any!
 
-            beforeEach {
-                try! sut.analyze(UIImage()) { result in
-                    capturedResult = result
-                }
-            }
+			beforeEach {
+				try! sut.analyze(UIImage()) { result in
+					capturedResult = result
+				}
+			}
 
-            it("should return encoded image") {
-                expect(capturedResult as? String).to(equal("fixture encoded image"))
-            }
-        }
-    }
+			it("should return encoded image") {
+				expect(capturedResult as? String).to(equal("fixture encoded image"))
+			}
+		}
+	}
 }
 
 private struct MockImageEncoder: ImageEncoding {
 
-    func encode(image image: UIImage) throws -> String {
-        return "fixture encoded image"
-    }
+	func encode(image image: UIImage) throws -> String {
+		return "fixture encoded image"
+	}
 }

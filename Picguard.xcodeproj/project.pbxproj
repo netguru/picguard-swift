@@ -75,6 +75,7 @@
 				3A0CB7651CC55A8500A32F4E /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		3A0CB7651CC55A8500A32F4E /* Products */ = {
 			isa = PBXGroup;

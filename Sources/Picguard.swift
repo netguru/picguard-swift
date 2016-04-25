@@ -9,14 +9,14 @@ import UIKit
 
 public struct Picguard {
 
-    private let imageEncoder: ImageEncoding
+	private let imageEncoder: ImageEncoding
 
-    public init(imageEncoder: ImageEncoding = Base64ImageEncoder()) {
-        self.imageEncoder = imageEncoder
-    }
+	public init(imageEncoder: ImageEncoding = Base64ImageEncoder()) {
+		self.imageEncoder = imageEncoder
+	}
 
-    public func analyze(image: UIImage, completion: (result: Any) -> Void) throws {
-        let tempResult = try imageEncoder.encode(image: image)
-        completion(result: tempResult)
-    }
+	public func analyze(image: UIImage, completion: (result: Any) -> Void) throws {
+		let tempResult = try imageEncoder.encode(image: image)
+		completion(result: tempResult)
+	}
 }
