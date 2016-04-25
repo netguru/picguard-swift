@@ -27,17 +27,17 @@ final class Base64ImageEncoderSpec: QuickSpec {
         describe("analyze") {
 
             var encodedImage: String!
+            var image: UIImage!
 
             beforeEach {
-                let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-                let image = view.imageFromView()
+                image = UIImage.solidColorImage(CGSize(width: 1, height: 1),
+                    color: .yellowColor())
                 encodedImage = try! sut.encode(image: image)
             }
 
             it("should return base64 encoded image string") {
                 let decodedData = NSData(base64EncodedString: encodedImage, options: [])
-                let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-                expect(decodedData).to(equal(UIImagePNGRepresentation(view.imageFromView())))
+                expect(decodedData).to(equal(UIImagePNGRepresentation(image)))
             }
         }
     }
@@ -45,13 +45,16 @@ final class Base64ImageEncoderSpec: QuickSpec {
 
 // MARK: - Image from view
 
-private extension UIView {
+private extension UIImage {
 
-    func imageFromView() -> UIImage {
-        UIGraphicsBeginImageContext(self.bounds.size);
-        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return image
+    class func solidColorImage(size: CGSize, color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image.imageWithRenderingMode(.AlwaysOriginal)
     }
 }
