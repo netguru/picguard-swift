@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0CB7641CC55A8500A32F4E /* Picguard.framework */; };
 		3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0CB7921CC683D300A32F4E /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A0CB79B1CC694A900A32F4E /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0CB7991CC6920C00A32F4E /* DummySpec.swift */; };
-		3A0CB79D1CC6951600A32F4E /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0CB79C1CC6951600A32F4E /* Dummy.swift */; };
+		3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */; };
+		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
+		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
+		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
+		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +39,11 @@
 		3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7981CC68DB400A32F4E /* Picguard-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Tests-Info.plist"; sourceTree = "<group>"; };
-		3A0CB7991CC6920C00A32F4E /* DummySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySpec.swift; sourceTree = "<group>"; };
-		3A0CB79C1CC6951600A32F4E /* Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoder.swift; sourceTree = "<group>"; };
+		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
+		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
+		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
+		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 				3A0CB7651CC55A8500A32F4E /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		3A0CB7651CC55A8500A32F4E /* Products */ = {
 			isa = PBXGroup;
@@ -82,7 +89,8 @@
 		3A0CB7661CC55A8500A32F4E /* Picguard */ = {
 			isa = PBXGroup;
 			children = (
-				3A0CB79C1CC6951600A32F4E /* Dummy.swift */,
+				3A2E7C301CC8F54400277114 /* Image Encoding */,
+				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 			);
 			name = Picguard;
 			path = Sources;
@@ -91,7 +99,8 @@
 		3A0CB7811CC65E9000A32F4E /* Picguard Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3A0CB7991CC6920C00A32F4E /* DummySpec.swift */,
+				5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */,
+				5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */,
 			);
 			name = "Picguard Tests";
 			path = Tests;
@@ -122,6 +131,15 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		3A2E7C301CC8F54400277114 /* Image Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */,
+				3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */,
+			);
+			name = "Image Encoding";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -144,6 +162,7 @@
 				3A0CB7601CC55A8500A32F4E /* Frameworks */,
 				3A0CB7611CC55A8500A32F4E /* Headers */,
 				3A0CB7621CC55A8500A32F4E /* Resources */,
+				5C8972431CC7D49100843EB8 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -195,8 +214,6 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-			);
 			mainGroup = 3A0CB75A1CC55A8500A32F4E;
 			productRefGroup = 3A0CB7651CC55A8500A32F4E /* Products */;
 			projectDirPath = "";
@@ -242,6 +259,20 @@
 			shellPath = /bin/sh;
 			shellScript = "carthage copy-frameworks";
 		};
+		5C8972431CC7D49100843EB8 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -249,7 +280,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A0CB79D1CC6951600A32F4E /* Dummy.swift in Sources */,
+				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
+				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
+				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A0CB79B1CC694A900A32F4E /* DummySpec.swift in Sources */,
+				5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */,
+				5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
