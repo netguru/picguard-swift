@@ -28,7 +28,7 @@ final class PicguardSpec: QuickSpec {
 			var capturedResult: Any!
 
 			beforeEach {
-				try! sut.analyze(UIImage()) { result in
+				try! sut.analyze(image: UIImage()) { result in
 					capturedResult = result
 				}
 			}
