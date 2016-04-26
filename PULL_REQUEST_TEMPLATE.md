@@ -1,13 +1,11 @@
-### Ticket
+#### Description
 
-<!-- Link to specific ticket in your issue tracking system. -->
+<!-- Short description of the changeset -->
 
+#### JIRA Link
 
-### Task Description
+https://netguru.atlassian.net/browse/IOS-XXX
 
-<!-- What should and what actually happens. -->
+#### Additional Notes
 
-
-### Aditional Notes (optional)
-
-<!-- Provide any additional notes: related PRs, screenshots, et al.). -->
+<!-- Any additional notes: related pull requests, screenshots, et al. -->
