@@ -43,6 +43,7 @@
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
+		5CAA775E1CCF62A200D42B39 /* Picguard.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Picguard.playground; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +69,7 @@
 		3A0CB75A1CC55A8500A32F4E = {
 			isa = PBXGroup;
 			children = (
+				5CAA775E1CCF62A200D42B39 /* Picguard.playground */,
 				3A0CB7661CC55A8500A32F4E /* Picguard */,
 				3A0CB7811CC65E9000A32F4E /* Picguard Tests */,
 				3A0CB78B1CC6740C00A32F4E /* Configuration */,
@@ -214,6 +216,9 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 3A0CB75A1CC55A8500A32F4E;
 			productRefGroup = 3A0CB7651CC55A8500A32F4E /* Products */;
 			projectDirPath = "";
@@ -374,6 +379,7 @@
 				3A0CB78A1CC65E9000A32F4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
