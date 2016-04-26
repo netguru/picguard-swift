@@ -25,6 +25,8 @@ $ carthage bootstrap --platform 'iOS'
 
 Picguard follows standards described in [GitHub's Swift Style Guide](https://github.com/github/swift-style-guide).
 
+Please note that one of the points is to "**use tabs, not spaces**". Rationale? When using tabs, developers can configure the IDE to display them as 2, 3, 4 or any other number of spaces they like – thus there is no discussion on that topic.
+
 ### Organizational standards
 
 Keep **build settings** in the appropriate `xcconfig` files inside `Configuration` directory. Please do not include any build settings in `pbxproj`.
@@ -32,6 +34,10 @@ Keep **build settings** in the appropriate `xcconfig` files inside `Configuratio
 **Source files** and **spec files** should be placed inside `Sources` and `Tests` directories respectively, without additional subfolders. You may use groups to manage the files inside the Xcode project itself.
 
 **Bitrise CI** configuration should be described in `bitrise.yml` file and no workflows should be overwritten inside Bitrise.io UI.
+
+### Committing
+
+This repository uses [git-flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and protects `develop` and `master` branches from force pushes, and red builds, which means the whole development process is pull-request-driven.
 
 ## About
 
