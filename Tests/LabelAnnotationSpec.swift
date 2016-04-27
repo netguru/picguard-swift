@@ -1,5 +1,5 @@
 //
-// LabelDetectionResultSpec.swift
+// LabelAnnotationSpec.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -9,7 +9,7 @@ import Nimble
 import Quick
 import Picguard
 
-final class LabelDetectionResultSpec: QuickSpec {
+final class LabelAnnotationSpec: QuickSpec {
 
 	override func spec() {
 
@@ -17,20 +17,20 @@ final class LabelDetectionResultSpec: QuickSpec {
 
 			context("during initialization with raw values") {
 
-				let initialize: (score: Double) throws -> LabelDetectionResult = { score in
-					try LabelDetectionResult(entityIdentifier: "", description: "", score: score)
+				let initialize: (score: Double) throws -> LabelAnnotation = { score in
+					try LabelAnnotation(entityIdentifier: "", description: "", score: score)
 				}
 
 				it("should throw when trying to pass a score less than zero") {
 					expect {
 						try initialize(score: -0.25)
-					}.to(throwError(LabelDetectionResult.Error.InvalidScore))
+					}.to(throwError(LabelAnnotation.Error.InvalidScore))
 				}
 
 				it("should throw when trying to pass a score greater than one") {
 					expect {
 						try initialize(score: 1.1)
-					}.to(throwError(LabelDetectionResult.Error.InvalidScore))
+					}.to(throwError(LabelAnnotation.Error.InvalidScore))
 				}
 
 				it("should succeed when trying to pass a correct score") {
@@ -55,14 +55,14 @@ final class LabelDetectionResultSpec: QuickSpec {
 
 			context("during intialization with json representation") {
 
-				let initialize: (json: [String: Any]) throws -> LabelDetectionResult = { json in
-					try LabelDetectionResult(JSONRepresentation: json)
+				let initialize: (json: [String: Any]) throws -> LabelAnnotation = { json in
+					try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(json))
 				}
 
 				it("should throw when passing an empty json") {
 					expect {
 						try initialize(json: [:])
-					}.to(throwError(LabelDetectionResult.Error.InvalidJSONRepresentation))
+					}.to(throwError())
 				}
 
 				it("should throw when passing an invalid json") {
@@ -72,7 +72,7 @@ final class LabelDetectionResultSpec: QuickSpec {
 							"description": "foo",
 							"score": 0.5,
 						])
-					}.to(throwError(LabelDetectionResult.Error.InvalidJSONRepresentation))
+					}.to(throwError())
 				}
 
 				it("should throw when passing a valid json with invalid score") {
@@ -82,7 +82,7 @@ final class LabelDetectionResultSpec: QuickSpec {
 							"description": "bar",
 							"score": 2.0,
 						])
-					}.to(throwError(LabelDetectionResult.Error.InvalidScore))
+					}.to(throwError())
 				}
 
 				it("should succeed when passing a valid json") {
@@ -103,10 +103,10 @@ final class LabelDetectionResultSpec: QuickSpec {
 				let description = "bar"
 				let score = 0.987654321
 
-				var sut: LabelDetectionResult! = nil
+				var sut: LabelAnnotation! = nil
 
 				beforeEach {
-					sut = try! LabelDetectionResult(entityIdentifier: entityIdentifier, description: description, score: score)
+					sut = try! LabelAnnotation(entityIdentifier: entityIdentifier, description: description, score: score)
 				}
 
 				it("should contain correct fields") {
@@ -129,10 +129,10 @@ final class LabelDetectionResultSpec: QuickSpec {
 					"score": score
 				]
 
-				var sut: LabelDetectionResult! = nil
+				var sut: LabelAnnotation! = nil
 
 				beforeEach {
-					sut = try! LabelDetectionResult(JSONRepresentation: json)
+					sut = try! LabelAnnotation(APIRepresentationValue: APIRepresentationValue(json))
 				}
 
 				it("should contain correct fields") {
