@@ -21,10 +21,10 @@ public struct AnnotationRequest {
 		}
 	}
 
-	public let types: Set<Type>
+	public let types: Set<`Type`>
 	public let image: Image
 
-	public init(types: Set<Type>, image: Image) {
+	public init(types: Set<`Type`>, image: Image) {
 		self.types = types
 		self.image = image
 	}

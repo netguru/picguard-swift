@@ -7,7 +7,7 @@ let request = AnnotationRequest(types: set, image: image)
 let client = APIClient(key: "fixture api key")
 client.perform(request: request) { result in
 	switch result {
-	case .Success(let response): print("success, response: \(response)")
-	case .Error(let error): print("error, response: \(error)")
+	case let .Success(response): print("success, response: \(response)")
+	case let .Error(error): print("error, response: \(error)")
 	}
 }
