@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0CB7641CC55A8500A32F4E /* Picguard.framework */; };
 		3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0CB7921CC683D300A32F4E /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A22BA9D1CCF65990033E807 /* LabelDetectionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9C1CCF65990033E807 /* LabelDetectionResult.swift */; };
+		3A22BAA21CCFA6A90033E807 /* LabelDetectionResultSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9E1CCFA6560033E807 /* LabelDetectionResultSpec.swift */; };
 		3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
@@ -40,6 +42,8 @@
 		3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7981CC68DB400A32F4E /* Picguard-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Tests-Info.plist"; sourceTree = "<group>"; };
+		3A22BA9C1CCF65990033E807 /* LabelDetectionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelDetectionResult.swift; sourceTree = "<group>"; };
+		3A22BA9E1CCFA6560033E807 /* LabelDetectionResultSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelDetectionResultSpec.swift; sourceTree = "<group>"; };
 		3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoder.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		3A0CB7661CC55A8500A32F4E /* Picguard */ = {
 			isa = PBXGroup;
 			children = (
+				3A22BA9B1CCF65800033E807 /* Result Models */,
 				3A2E7C301CC8F54400277114 /* Image Encoding */,
 				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 				5CFE7C391CCFA099006818D3 /* RequestsProvider.swift */,
@@ -104,6 +109,7 @@
 		3A0CB7811CC65E9000A32F4E /* Picguard Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3A22BAA01CCFA6590033E807 /* Result Models */,
 				5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */,
 				5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */,
 			);
@@ -134,6 +140,22 @@
 			);
 			name = "Supporting Files";
 			path = Support;
+			sourceTree = "<group>";
+		};
+		3A22BA9B1CCF65800033E807 /* Result Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A22BA9C1CCF65990033E807 /* LabelDetectionResult.swift */,
+			);
+			name = "Result Models";
+			sourceTree = "<group>";
+		};
+		3A22BAA01CCFA6590033E807 /* Result Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A22BA9E1CCFA6560033E807 /* LabelDetectionResultSpec.swift */,
+			);
+			name = "Result Models";
 			sourceTree = "<group>";
 		};
 		3A2E7C301CC8F54400277114 /* Image Encoding */ = {
@@ -292,6 +314,7 @@
 				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
+				3A22BA9D1CCF65990033E807 /* LabelDetectionResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +324,7 @@
 			files = (
 				5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */,
 				5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */,
+				3A22BAA21CCFA6A90033E807 /* LabelDetectionResultSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
