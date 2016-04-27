@@ -1,4 +1,28 @@
+#
+# .swiftlint.yml
+#
+# Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+# Licensed under the MIT License.
+#
+
+# Excluded folders
+
 excluded:
   - Carthage
   - Pods
   - Tests
+
+# Disabled rules:
+
+disabled_rules:
+  - valid_docs
+
+# Variable name rule configuration
+
+variable_name:
+  min_length:
+    warning: 3
+  excluded:
+    - x
+    - y
+    - z
