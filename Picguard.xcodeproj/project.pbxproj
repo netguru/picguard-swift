@@ -15,6 +15,7 @@
 		3AD8FE2A1CD13FFE008557F3 /* APIRepresentationValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE291CD13FFE008557F3 /* APIRepresentationValue.swift */; };
 		3AD8FE2C1CD14FB4008557F3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE2B1CD14FB4008557F3 /* Dictionary.swift */; };
 		3AD8FE301CD15485008557F3 /* APIRepresentationConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE2F1CD15485008557F3 /* APIRepresentationConvertible.swift */; };
+		3AD8FE331CD172C5008557F3 /* AnnotationGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE321CD172C5008557F3 /* AnnotationGeometry.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
 		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
@@ -50,6 +51,7 @@
 		3AD8FE291CD13FFE008557F3 /* APIRepresentationValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationValue.swift; sourceTree = "<group>"; };
 		3AD8FE2B1CD14FB4008557F3 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		3AD8FE2F1CD15485008557F3 /* APIRepresentationConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationConvertible.swift; sourceTree = "<group>"; };
+		3AD8FE321CD172C5008557F3 /* AnnotationGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationGeometry.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		3A22BA9B1CCF65800033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
+				3AD8FE321CD172C5008557F3 /* AnnotationGeometry.swift */,
 				3A22BA9C1CCF65990033E807 /* LabelDetectionResult.swift */,
 			);
 			name = "Result Models";
@@ -334,6 +337,7 @@
 			files = (
 				3AD8FE301CD15485008557F3 /* APIRepresentationConvertible.swift in Sources */,
 				3AD8FE2C1CD14FB4008557F3 /* Dictionary.swift in Sources */,
+				3AD8FE331CD172C5008557F3 /* AnnotationGeometry.swift in Sources */,
 				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
