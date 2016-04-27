@@ -1,3 +1,13 @@
 import Picguard
+import UIKit
 
-var str = "Hello, Picguard"
+let set = Set<AnnotationRequest.`Type`>([.Face(maxResults: 1)])
+let image = AnnotationRequest.Image.Image(UIImage())
+let request = AnnotationRequest(types: set, image: image)
+let client = APIClient(key: "fixture api key")
+client.perform(request: request) { result in
+	switch result {
+	case .Success(let response): print("success, response: \(response)")
+	case .Error(let error): print("error, response: \(error)")
+	}
+}

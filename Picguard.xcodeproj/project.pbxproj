@@ -15,8 +15,11 @@
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
 		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
+		5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */; };
+		5CB005011CD1095400481A51 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005001CD1095400481A51 /* APIClient.swift */; };
+		5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005021CD1098700481A51 /* AnnotationResult.swift */; };
+		5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005041CD1099A00481A51 /* AnnotationResponse.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
-		5CFE7C3A1CCFA099006818D3 /* RequestsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFE7C391CCFA099006818D3 /* RequestsProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +52,11 @@
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
 		5CAA775E1CCF62A200D42B39 /* Picguard.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Picguard.playground; sourceTree = "<group>"; };
+		5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationRequest.swift; sourceTree = "<group>"; };
+		5CB005001CD1095400481A51 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		5CB005021CD1098700481A51 /* AnnotationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResult.swift; sourceTree = "<group>"; };
+		5CB005041CD1099A00481A51 /* AnnotationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResponse.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
-		5CFE7C391CCFA099006818D3 /* RequestsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +106,10 @@
 				3A22BA9B1CCF65800033E807 /* Result Models */,
 				3A2E7C301CC8F54400277114 /* Image Encoding */,
 				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
-				5CFE7C391CCFA099006818D3 /* RequestsProvider.swift */,
+				5CB005001CD1095400481A51 /* APIClient.swift */,
+				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
+				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
+				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
 			);
 			name = Picguard;
 			path = Sources;
@@ -310,8 +319,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CFE7C3A1CCFA099006818D3 /* RequestsProvider.swift in Sources */,
+				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
+				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
+				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
 				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
+				5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
 				3A22BA9D1CCF65990033E807 /* LabelDetectionResult.swift in Sources */,
