@@ -10,6 +10,12 @@ import UIKit
 /// Describes type which creates Google Cloud Vision API request body in JSON.
 public struct AnnotationRequest {
 
+	public enum Error: ErrorType {
+
+		/// Thrown if the features set is empty.
+		case EmptyFeaturesSet
+	}
+
 	/// Detection operations which are run against image.
 	///
 	/// - Parameter maxResults: Indicates the maximum number of results
@@ -83,7 +89,7 @@ public struct AnnotationRequest {
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Errors from `Base64ImageEncoder.Error` 
+		/// - Throws: Errors from `Base64ImageEncoder.Error`
 		/// if encoder fails to encode UIImage of NSData.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
@@ -107,10 +113,15 @@ public struct AnnotationRequest {
 
 	/// Initializes the AnnotationRequest with image and a set of features
 	///
+	/// - Throws: EmptyFeaturesSet if provided features set is empty.
+	///
 	/// - Parameter features: Set of features to initialize the request with.
 	///
 	/// - Parameter image: Image to initialize the request with.
-	public init(features: Set<Feature>, image: Image) {
+	public init(features: Set<Feature>, image: Image) throws {
+		if features.isEmpty {
+			throw Error.EmptyFeaturesSet
+		}
 		self.features = features
 		self.image = image
 	}
@@ -121,7 +132,7 @@ public struct AnnotationRequest {
 	/// if encoder fails to encode UIImage of NSData.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
-	func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
+	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
 		return ["image": try image.JSONDictionaryRepresentation(encoder),
 		        "features":features.map { $0.JSONDictionaryRepresentation }]
 	}
@@ -130,7 +141,7 @@ public struct AnnotationRequest {
 // MARK: - Hashable
 
 extension AnnotationRequest.Feature: Hashable {
-	
+
 	public var hashValue: Int {
 		switch self {
 		case .Label: return 1
