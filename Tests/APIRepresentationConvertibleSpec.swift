@@ -13,7 +13,7 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 
 	override func spec() {
 
-		func itShouldBeSuccessfullyInitialized<T: protocol<Equatable, APIRepresentationConvertible>>(value value: AnyObject, expected: T) {
+		func initShouldSucceed<T: protocol<Equatable, APIRepresentationConvertible>>(value value: AnyObject, expected: T) {
 			it("should successfully initialize") {
 				expect {
 					try T(APIRepresentationValue: APIRepresentationValue(value: value))
@@ -21,7 +21,7 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 			}
 		}
 
-		func itShouldFailToInitialize<T: APIRepresentationConvertible>(value value: AnyObject, type: T.Type) {
+		func initShouldFail<T: APIRepresentationConvertible>(value value: AnyObject, type: T.Type) {
 			it("should fail to initalize") {
 				expect {
 					try T(APIRepresentationValue: APIRepresentationValue(value: value))
@@ -32,31 +32,31 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 		describe("Int") {
 
 			context("when initialized with integer API representation") {
-				itShouldBeSuccessfullyInitialized(value: 1, expected: 1)
+				initShouldSucceed(value: 1, expected: 1)
 			}
 
 			context("when initialized with double API representation") {
-				itShouldBeSuccessfullyInitialized(value: 2.3, expected: Int(2.3))
+				initShouldSucceed(value: 2.3, expected: Int(2.3))
 			}
 
 			context("when initialized with null API representation") {
-				itShouldFailToInitialize(value: NSNull(), type: Int.self)
+				initShouldFail(value: NSNull(), type: Int.self)
 			}
 
 			context("when initialized with bool API representation") {
-				itShouldFailToInitialize(value: true, type: Int.self)
+				initShouldFail(value: true, type: Int.self)
 			}
 
 			context("when initialized with string API representation") {
-				itShouldFailToInitialize(value: "foo", type: Int.self)
+				initShouldFail(value: "foo", type: Int.self)
 			}
 
 			context("when initialized with array API representation") {
-				itShouldFailToInitialize(value: [AnyObject](), type: Int.self)
+				initShouldFail(value: [AnyObject](), type: Int.self)
 			}
 
 			context("when initialized with dictionary API representation") {
-				itShouldFailToInitialize(value: [String: AnyObject](), type: Int.self)
+				initShouldFail(value: [String: AnyObject](), type: Int.self)
 			}
 
 		}
@@ -64,31 +64,31 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 		describe("Double") {
 
 			context("when initialized with integer API representation") {
-				itShouldBeSuccessfullyInitialized(value: 1.2, expected: 1.2)
+				initShouldSucceed(value: 1.2, expected: 1.2)
 			}
 
 			context("when initialized with double API representation") {
-				itShouldBeSuccessfullyInitialized(value: 3, expected: Double(3))
+				initShouldSucceed(value: 3, expected: Double(3))
 			}
 
 			context("when initialized with null API representation") {
-				itShouldFailToInitialize(value: NSNull(), type: Double.self)
+				initShouldFail(value: NSNull(), type: Double.self)
 			}
 
 			context("when initialized with bool API representation") {
-				itShouldFailToInitialize(value: true, type: Double.self)
+				initShouldFail(value: true, type: Double.self)
 			}
 
 			context("when initialized with string API representation") {
-				itShouldFailToInitialize(value: "foo", type: Double.self)
+				initShouldFail(value: "foo", type: Double.self)
 			}
 
 			context("when initialized with array API representation") {
-				itShouldFailToInitialize(value: [AnyObject](), type: Double.self)
+				initShouldFail(value: [AnyObject](), type: Double.self)
 			}
 
 			context("when initialized with dictionary API representation") {
-				itShouldFailToInitialize(value: [String: AnyObject](), type: Double.self)
+				initShouldFail(value: [String: AnyObject](), type: Double.self)
 			}
 
 		}
@@ -96,31 +96,31 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 		describe("Bool") {
 
 			context("when initialized with bool API representation") {
-				itShouldBeSuccessfullyInitialized(value: false, expected: false)
+				initShouldSucceed(value: false, expected: false)
 			}
 
 			context("when initialized with integer API representation") {
-				itShouldFailToInitialize(value: 1.2, type: Bool.self)
+				initShouldFail(value: 1.2, type: Bool.self)
 			}
 
 			context("when initialized with double API representation") {
-				itShouldFailToInitialize(value: 3, type: Bool.self)
+				initShouldFail(value: 3, type: Bool.self)
 			}
 
 			context("when initialized with null API representation") {
-				itShouldFailToInitialize(value: NSNull(), type: Bool.self)
+				initShouldFail(value: NSNull(), type: Bool.self)
 			}
 
 			context("when initialized with string API representation") {
-				itShouldFailToInitialize(value: "foo", type: Bool.self)
+				initShouldFail(value: "foo", type: Bool.self)
 			}
 
 			context("when initialized with array API representation") {
-				itShouldFailToInitialize(value: [AnyObject](), type: Bool.self)
+				initShouldFail(value: [AnyObject](), type: Bool.self)
 			}
 
 			context("when initialized with dictionary API representation") {
-				itShouldFailToInitialize(value: [String: AnyObject](), type: Bool.self)
+				initShouldFail(value: [String: AnyObject](), type: Bool.self)
 			}
 
 		}
@@ -128,31 +128,31 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 		describe("String") {
 
 			context("when initialized with string API representation") {
-				itShouldBeSuccessfullyInitialized(value: "bar", expected: "bar")
+				initShouldSucceed(value: "bar", expected: "bar")
 			}
 
 			context("when initialized with integer API representation") {
-				itShouldFailToInitialize(value: 1.2, type: String.self)
+				initShouldFail(value: 1.2, type: String.self)
 			}
 
 			context("when initialized with double API representation") {
-				itShouldFailToInitialize(value: 3, type: String.self)
+				initShouldFail(value: 3, type: String.self)
 			}
 			
 			context("when initialized with bool API representation") {
-				itShouldFailToInitialize(value: true, type: String.self)
+				initShouldFail(value: true, type: String.self)
 			}
 
 			context("when initialized with null API representation") {
-				itShouldFailToInitialize(value: NSNull(), type: String.self)
+				initShouldFail(value: NSNull(), type: String.self)
 			}
 
 			context("when initialized with array API representation") {
-				itShouldFailToInitialize(value: [AnyObject](), type: String.self)
+				initShouldFail(value: [AnyObject](), type: String.self)
 			}
 
 			context("when initialized with dictionary API representation") {
-				itShouldFailToInitialize(value: [String: AnyObject](), type: String.self)
+				initShouldFail(value: [String: AnyObject](), type: String.self)
 			}
 
 		}
