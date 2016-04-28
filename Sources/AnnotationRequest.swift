@@ -7,18 +7,42 @@
 
 import UIKit
 
+/// Describes type which creates Google Cloud Vision API request body in JSON.
 public struct AnnotationRequest {
 
+	/// Detection operations which are run against image.
+	///
+	/// - Parameter maxResults: Indicates the maximum number of results
+	/// to return for this feature type.
+	///
+	/// - Note: The API can return fewer results.
 	public enum Feature {
+
+		/// Execute Image Content Analysis on the entire image and return.
 		case Label(maxResults: Int)
+
+		/// Perform Optical Character Recognition (OCR) on text within the image.
 		case Text(maxResults: Int)
+
+		/// Detect faces within the image.
 		case Face(maxResults: Int)
+
+		/// Detect geographic landmarks within the image.
 		case Landmark(maxResults: Int)
+
+		/// Detect company logos within the image.
 		case Logo(maxResults: Int)
+
+		/// Determine image safe search properties on the image.
 		case SafeSearch(maxResults: Int)
+
+		/// Compute a set of properties about the image (such as the image's dominant colors).
 		case ImageProperties(maxResults: Int)
 
-		var JSONRepresentation: [String: AnyObject] {
+		/// JSON dictionary representation of `Feature`.
+		///
+		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
+		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
 			case .Label(maxResults: let maxResults):
 				return ["type":"LABEL_DETECTION",
@@ -45,12 +69,25 @@ public struct AnnotationRequest {
 		}
 	}
 
+	/// Image representation which is used for detection operations.
 	public enum Image {
+
+		/// The Google Cloud Storage URI to the image.
 		case URL(String)
+
+		/// UIImage representation of image.
 		case Image(UIImage)
+
+		/// Data representation of image.
 		case Data(NSData)
 
-		func JSONRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
+		/// JSON dictionary representation of `Image`.
+		///
+		/// - Throws: Errors from `Base64ImageEncoder.Error` 
+		/// if encoder fails to encode UIImage of NSData.
+		///
+		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
+		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
 			switch self {
 			case .URL(let URL):
 				return ["source": ["gcs_image_uri": URL]]
@@ -62,22 +99,38 @@ public struct AnnotationRequest {
 		}
 	}
 
+	/// Set of features which are run against the image.
 	public let features: Set<Feature>
+
+	/// Image on detection operations are performed.
 	public let image: Image
 
+	/// Initializes the AnnotationRequest with image and a set of features
+	///
+	/// - Parameter features: Set of features to initialize the request with.
+	///
+	/// - Parameter image: Image to initialize the request with.
 	public init(features: Set<Feature>, image: Image) {
 		self.features = features
 		self.image = image
 	}
 
-	var JSONRepresentation: [String: AnyObject] {
-		return [:]
+	/// JSON dictionary representation of `AnnotationRequest`.
+	///
+	/// - Throws: Errors from `Base64ImageEncoder.Error`
+	/// if encoder fails to encode UIImage of NSData.
+	///
+	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
+	func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
+		return ["image": try image.JSONDictionaryRepresentation(encoder),
+		        "features":features.map { $0.JSONDictionaryRepresentation }]
 	}
 }
 
 // MARK: - Hashable
 
 extension AnnotationRequest.Feature: Hashable {
+	
 	public var hashValue: Int {
 		switch self {
 		case .Label: return 1
