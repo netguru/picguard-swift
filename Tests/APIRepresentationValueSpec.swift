@@ -18,7 +18,7 @@ final class APIRepresentationValueSpec: QuickSpec {
 			describe("init with value") {
 
 				func itShouldSuccessfullyInitialize(value value: AnyObject, expected: APIRepresentationValue) {
-					it("should not throw and represent correct value") {
+					it("should successfully initialize") {
 						expect {
 							try APIRepresentationValue(value: value)
 						}.to(equal(expected))

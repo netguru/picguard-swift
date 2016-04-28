@@ -14,7 +14,7 @@ final class APIRepresentationConvertibleSpec: QuickSpec {
 	override func spec() {
 
 		func itShouldBeSuccessfullyInitialized<T: protocol<Equatable, APIRepresentationConvertible>>(value value: AnyObject, expected: T) {
-			it("should not throw and represent correct value") {
+			it("should successfully initialize") {
 				expect {
 					try T(APIRepresentationValue: APIRepresentationValue(value: value))
 				}.to(equal(expected))
