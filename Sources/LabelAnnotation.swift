@@ -25,7 +25,7 @@ public struct LabelAnnotation: APIRepresentationConvertible {
 
 		/// Thrown if the score is not in the correct range.
 		case InvalidScore
-		
+
 	}
 
 	// MARK: Initializers
