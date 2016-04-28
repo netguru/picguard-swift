@@ -9,7 +9,7 @@ import UIKit
 
 public struct AnnotationRequest {
 
-	public enum `Type` {
+	public enum Feature {
 		case Label(maxResults: Int)
 		case Text(maxResults: Int)
 		case Face(maxResults: Int)
@@ -50,15 +50,15 @@ public struct AnnotationRequest {
 			case .Image(_):
 				return ["content": "encoded image"]
 			case .Data(let data):
-				return ["source": data]
+				return ["source": data.base64EncodedStringWithOptions([])]
 			}
 		}
 	}
 
-	public let types: Set<`Type`>
+	public let types: Set<Feature>
 	public let image: Image
 
-	public init(types: Set<`Type`>, image: Image) {
+	public init(types: Set<Feature>, image: Image) {
 		self.types = types
 		self.image = image
 	}
@@ -68,7 +68,7 @@ public struct AnnotationRequest {
 	}
 }
 
-extension AnnotationRequest.`Type`: Hashable {
+extension AnnotationRequest.Feature: Hashable {
 	public var hashValue: Int {
 		switch self {
 		case .Label: return 1
@@ -82,7 +82,7 @@ extension AnnotationRequest.`Type`: Hashable {
 	}
 }
 
-public func == (lhs: AnnotationRequest.`Type`, rhs: AnnotationRequest.`Type`) -> Bool {
+public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
 	switch (lhs, rhs) {
 	case (.Label, .Label): return true
 	case (.Text, .Text): return true
