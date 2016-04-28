@@ -15,130 +15,108 @@ final class LabelAnnotationSpec: QuickSpec {
 
 		describe("LabelDetectionResult") {
 
-			context("during initialization with raw values") {
-
-				let initialize: (score: Double) throws -> LabelAnnotation = { score in
-					try LabelAnnotation(entityIdentifier: "", description: "", score: score)
-				}
-
-				it("should throw when trying to pass a score less than zero") {
+			func initWithScoreShouldSucceed(score score: Double) {
+				it("should succeed to initialize") {
 					expect {
-						try initialize(score: -0.25)
+						try LabelAnnotation(entityIdentifier: "foo", description: "bar", score: score)
+					}.to(NonNilMatcherFunc { expression, _ in
+						guard let actual = try expression.evaluate() else {
+							return false
+						}
+						return actual.score == score
+					})
+				}
+			}
+
+			func initWithScoreShouldFail(score score: Double) {
+				it("should fail to initialize") {
+					expect {
+						try LabelAnnotation(entityIdentifier: "foo", description: "bar", score: score)
 					}.to(throwError(LabelAnnotation.Error.InvalidScore))
 				}
+			}
 
-				it("should throw when trying to pass a score greater than one") {
+			func initWithAPIRepresentationShouldSucceed(dictionary dictionary: [String: AnyObject], expected: LabelAnnotation) {
+				it("should succeed to initialize") {
 					expect {
-						try initialize(score: 1.1)
-					}.to(throwError(LabelAnnotation.Error.InvalidScore))
+						try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(data: NSJSONSerialization.dataWithJSONObject(dictionary, options: [])))
+					}.to(NonNilMatcherFunc<LabelAnnotation> { expression, _ in
+						guard let actual = try expression.evaluate() else {
+							return false
+						}
+						return (
+							actual.entityIdentifier == expected.entityIdentifier &&
+							actual.description == expected.description &&
+							actual.score == expected.score
+						)
+					})
+				}
+			}
+
+			func initWithAPIRepresentationShouldFail<E: ErrorType>(dictionary dictionary: [String: AnyObject], error: E) {
+				it("should fail to initialize") {
+					expect {
+						try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(data: NSJSONSerialization.dataWithJSONObject(dictionary, options: [])))
+					}.to(throwError(error))
+				}
+			}
+
+			describe("init with score") {
+
+				context("with correct medium score") {
+					initWithScoreShouldSucceed(score: 0.6969)
 				}
 
-				it("should succeed when trying to pass a correct score") {
-					expect {
-						try initialize(score: 0.666666)
-					}.toNot(throwError())
+				context("with minimal score") {
+					initWithScoreShouldSucceed(score: 0)
 				}
 
-				it("should succeed when trying to pass a minimal score") {
-					expect {
-						try initialize(score: 0.0)
-					}.toNot(throwError())
+				context("with maximal score") {
+					initWithScoreShouldSucceed(score: 1)
 				}
 
-				it("should succeed when trying to pass a maximal score") {
-					expect {
-						try initialize(score: 1.0)
-					}.toNot(throwError())
+				context("with less than zero score") {
+					initWithScoreShouldFail(score: -0.25)
+				}
+
+				context("with greater than one score") {
+					initWithScoreShouldFail(score: 1.2)
 				}
 
 			}
 
-			context("during intialization with json representation") {
+			describe("init with api representation") {
 
-				let initialize: (json: [String: Any]) throws -> LabelAnnotation = { json in
-					try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(json))
+				context("with valid dictionary") {
+					initWithAPIRepresentationShouldSucceed(dictionary: [
+						"mid": "foo",
+						"description": "bar",
+						"score": 0.123456789,
+					], expected: try! LabelAnnotation(
+						entityIdentifier: "foo",
+						description: "bar",
+						score: 0.123456789
+					))
 				}
 
-				it("should throw when passing an empty json") {
-					expect {
-						try initialize(json: [:])
-					}.to(throwError())
+				context("with empty dictionary") {
+					initWithAPIRepresentationShouldFail(dictionary: [:], error: APIRepresentationError.MissingDictionaryKey)
 				}
 
-				it("should throw when passing an invalid json") {
-					expect {
-						try initialize(json: [
-							"mid": true,
-							"description": "foo",
-							"score": 0.5,
-						])
-					}.to(throwError())
+				context("with dictionawy with invalid types") {
+					initWithAPIRepresentationShouldFail(dictionary: [
+						"mid": 123,
+						"description": 123,
+						"score": true,
+					], error: APIRepresentationError.UnexpectedValueType)
 				}
 
-				it("should throw when passing a valid json with invalid score") {
-					expect {
-						try initialize(json: [
-							"mid": "foo",
-							"description": "bar",
-							"score": 2.0,
-						])
-					}.to(throwError())
-				}
-
-				it("should succeed when passing a valid json") {
-					expect {
-						try initialize(json: [
-							"mid": "foo",
-							"description": "bar",
-							"score": 0.123456789,
-						])
-					}.toNot(throwError())
-				}
-
-			}
-
-			context("after being initialized with raw values") {
-
-				let entityIdentifier = "foo"
-				let description = "bar"
-				let score = 0.987654321
-
-				var sut: LabelAnnotation! = nil
-
-				beforeEach {
-					sut = try! LabelAnnotation(entityIdentifier: entityIdentifier, description: description, score: score)
-				}
-
-				it("should contain correct fields") {
-					expect(sut.entityIdentifier).to(equal(entityIdentifier))
-					expect(sut.description).to(equal(description))
-					expect(sut.score).to(equal(score))
-				}
-
-			}
-
-			context("after being initialized with json representation") {
-
-				let entityIdentifier = "foo"
-				let description = "bar"
-				let score = 0.987654321
-
-				let json: [String: Any] = [
-					"mid": entityIdentifier,
-					"description": description,
-					"score": score
-				]
-
-				var sut: LabelAnnotation! = nil
-
-				beforeEach {
-					sut = try! LabelAnnotation(APIRepresentationValue: APIRepresentationValue(json))
-				}
-
-				it("should contain correct fields") {
-					expect(sut.entityIdentifier).to(equal(entityIdentifier))
-					expect(sut.description).to(equal(description))
-					expect(sut.score).to(equal(score))
+				context("with dictionary with invalid score") {
+					initWithAPIRepresentationShouldFail(dictionary: [
+						"mid": "foo",
+						"description": "bar",
+						"score": 2.345678,
+					], error: LabelAnnotation.Error.InvalidScore)
 				}
 
 			}
