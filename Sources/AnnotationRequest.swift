@@ -21,19 +21,26 @@ public struct AnnotationRequest {
 		var JSONRepresentation: [String: Any] {
 			switch self {
 			case .Label(maxResults: let maxResults):
-				return ["type":"LABEL_DETECTION", "maxResults":maxResults]
+				return ["type":"LABEL_DETECTION",
+				        "maxResults":maxResults]
 			case .Text(maxResults: let maxResults):
-				return ["type":"TEXT_DETECTION", "maxResults":maxResults]
+				return ["type":"TEXT_DETECTION",
+				        "maxResults":maxResults]
 			case .Face(maxResults: let maxResults):
-				return ["type":"FACE_DETECTION", "maxResults":maxResults]
+				return ["type":"FACE_DETECTION",
+				        "maxResults":maxResults]
 			case .Landmark(maxResults: let maxResults):
-				return ["type":"LANDMARK_DETECTION", "maxResults":maxResults]
+				return ["type":"LANDMARK_DETECTION",
+				        "maxResults":maxResults]
 			case .Logo(maxResults: let maxResults):
-				return ["type":"LOGO_DETECTION", "maxResults":maxResults]
+				return ["type":"LOGO_DETECTION",
+				        "maxResults":maxResults]
 			case .SafeSearch(maxResults: let maxResults):
-				return ["type":"SAFE_SEARCH_DETECTION", "maxResults":maxResults]
+				return ["type":"SAFE_SEARCH_DETECTION",
+				        "maxResults":maxResults]
 			case .ImageProperties(maxResults: let maxResults):
-				return ["type":"IMAGE_PROPERTIES", "maxResults":maxResults]
+				return ["type":"IMAGE_PROPERTIES",
+				        "maxResults":maxResults]
 			}
 		}
 	}
@@ -49,8 +56,8 @@ public struct AnnotationRequest {
 				return ["source": ["gcs_image_uri": URL]]
 			case .Image(_):
 				return ["content": "encoded image"]
-			case .Data(let data):
-				return ["source": data.base64EncodedStringWithOptions([])]
+			case .Data(_):
+				return ["content": "encoded image data"]
 			}
 		}
 	}
@@ -64,9 +71,12 @@ public struct AnnotationRequest {
 	}
 
 	var JSONRepresentation: [String: Any] {
-		return [:]
+		return ["image": image,
+		        "features": Array(types)]
 	}
 }
+
+// MARK: - Hashable
 
 extension AnnotationRequest.Feature: Hashable {
 	public var hashValue: Int {
@@ -81,6 +91,8 @@ extension AnnotationRequest.Feature: Hashable {
 		}
 	}
 }
+
+// MARK: - Equatable
 
 public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
 	switch (lhs, rhs) {
