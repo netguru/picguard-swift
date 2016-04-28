@@ -20,9 +20,6 @@ public enum APIRepresentationError: ErrorType {
 	/// Thrown if trying to access a nonexistent dictionary key.
 	case MissingDictionaryKey
 
-	/// Thrown if trying to access a nonexistent array index.
-	case MissingArrayIndex
-
 }
 
 // MARK: -
@@ -56,24 +53,40 @@ public extension APIRepresentationValue {
 
 	/// Initializes the representation value with a value.
 	///
+	/// - Throws: `UnsupportedInitType` if the value given is of an unsupported
+	/// type.
+	///
 	/// - Parameter value: The value to initialize the representation with.
-	init(_ value: Any) throws {
+	init(value: AnyObject) throws {
 		switch value {
 			case is NSNull:
 				self = .Null
-			case let value as Double:
-				self = .Number(value)
-			case let value as Swift.Bool:
-				self = .Bool(value)
+			case let value as NSNumber:
+				if CFGetTypeID(value) == CFBooleanGetTypeID() {
+					self = .Bool(value.boolValue)
+				} else {
+					self = .Number(value.doubleValue)
+				}
 			case let value as Swift.String:
 				self = .String(value)
-			case let value as [Any]:
-				self = try .Array(value.map(APIRepresentationValue.init(_:)))
-			case let value as [Swift.String: Any]:
-				self = try .Dictionary(value.map(APIRepresentationValue.init(_:)))
+			case let value as [AnyObject]:
+				self = try .Array(value.map(APIRepresentationValue.init(value:)))
+			case let value as [Swift.String: AnyObject]:
+				self = try .Dictionary(value.map(APIRepresentationValue.init(value:)))
 			default:
 				throw APIRepresentationError.UnsupportedInitType
 		}
+	}
+
+	/// Initializes the representation with JSON data.
+	///
+	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` and
+	/// `self.init(value:)`.
+	///
+	/// - Parameter data: The serialized JSON data.
+	init(data: NSData) throws {
+		let value = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+		try self.init(value: value)
 	}
 
 }
@@ -110,14 +123,16 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped optional represented value.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> T? {
-		switch self {
-			case .Null:
-				return nil
-			case .Dictionary(let dictionary):
-				return try dictionary[key].map(T.init(APIRepresentationValue:))
-			default:
-				throw APIRepresentationError.UnexpectedValueType
+		guard case .Dictionary(let dictionary) = self else {
+			throw APIRepresentationError.UnexpectedValueType
 		}
+		guard let value = dictionary[key] else {
+			return nil
+		}
+		if case .Null = value {
+			return nil
+		}
+		return try T(APIRepresentationValue: value)
 	}
 
 	/// Unwraps an array under the given key from the representation.
@@ -129,7 +144,13 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped represented array.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T] {
-		guard case .Array(let array) = self else {
+		guard case .Dictionary(let dictionary) = self else {
+			throw APIRepresentationError.UnexpectedValueType
+		}
+		guard let value = dictionary[key] else {
+			throw APIRepresentationError.MissingDictionaryKey
+		}
+		guard case .Array(let array) = value else {
 			throw APIRepresentationError.UnexpectedValueType
 		}
 		return try array.map(T.init(APIRepresentationValue:))
@@ -147,7 +168,37 @@ public extension APIRepresentationValue {
 		guard case .Dictionary(let dictionary) = self else {
 			throw APIRepresentationError.UnexpectedValueType
 		}
-		return try dictionary.map(T.init(APIRepresentationValue:))
+		guard let value = dictionary[key] else {
+			throw APIRepresentationError.MissingDictionaryKey
+		}
+		guard case .Dictionary(let wrappedDictionary) = value else {
+			throw APIRepresentationError.UnexpectedValueType
+		}
+		return try wrappedDictionary.map(T.init(APIRepresentationValue:))
 	}
 
+}
+
+// MARK: -
+
+extension APIRepresentationValue: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: APIRepresentationValue, rhs: APIRepresentationValue) -> Bool {
+	switch (lhs, rhs) {
+		case (.Null, .Null):
+			return true
+		case (.Number(let lhs), .Number(let rhs)):
+			return lhs == rhs
+		case (.Bool(let lhs), .Bool(let rhs)):
+			return lhs == rhs
+		case (.String(let lhs), .String(let rhs)):
+			return lhs == rhs
+		case (.Array(let lhs), .Array(let rhs)):
+			return lhs == rhs
+		case (.Dictionary(let lhs), .Dictionary(let rhs)):
+			return lhs == rhs
+		default:
+			return false
+	}
 }
