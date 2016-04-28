@@ -18,7 +18,7 @@ public struct AnnotationRequest {
 		case SafeSearch(maxResults: Int)
 		case ImageProperties(maxResults: Int)
 
-		var JSONRepresentation: [String: Any] {
+		var JSONRepresentation: [String: AnyObject] {
 			switch self {
 			case .Label(maxResults: let maxResults):
 				return ["type":"LABEL_DETECTION",
@@ -50,29 +50,28 @@ public struct AnnotationRequest {
 		case Image(UIImage)
 		case Data(NSData)
 
-		var JSONRepresentation: [String: Any] {
+		func JSONRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
 			switch self {
 			case .URL(let URL):
 				return ["source": ["gcs_image_uri": URL]]
-			case .Image(_):
-				return ["content": "encoded image"]
-			case .Data(_):
-				return ["content": "encoded image data"]
+			case .Image(let image):
+				return try ["content": encoder.encode(image: image)]
+			case .Data(let data):
+				return try ["content": encoder.encode(imageData: data)]
 			}
 		}
 	}
 
-	public let types: Set<Feature>
+	public let features: Set<Feature>
 	public let image: Image
 
-	public init(types: Set<Feature>, image: Image) {
-		self.types = types
+	public init(features: Set<Feature>, image: Image) {
+		self.features = features
 		self.image = image
 	}
 
-	var JSONRepresentation: [String: Any] {
-		return ["image": image,
-		        "features": Array(types)]
+	var JSONRepresentation: [String: AnyObject] {
+		return [:]
 	}
 }
 
