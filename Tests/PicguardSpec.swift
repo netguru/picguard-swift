@@ -45,4 +45,8 @@ private struct MockImageEncoder: ImageEncoding {
 	func encode(image image: UIImage) throws -> String {
 		return "fixture encoded image"
 	}
+
+	func encode(imageData imageData: NSData) throws -> String {
+		return "fixture encoded image data"
+	}
 }
