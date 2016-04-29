@@ -51,40 +51,19 @@ public struct AnnotationRequest {
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
 			case .Label(maxResults: let maxResults):
-				return [
-					"type":"LABEL_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "LABEL_DETECTION", "maxResults": maxResults]
 			case .Text(maxResults: let maxResults):
-				return [
-					"type":"TEXT_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "TEXT_DETECTION", "maxResults": maxResults]
 			case .Face(maxResults: let maxResults):
-				return [
-					"type":"FACE_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "FACE_DETECTION", "maxResults": maxResults]
 			case .Landmark(maxResults: let maxResults):
-				return [
-					"type":"LANDMARK_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
 			case .Logo(maxResults: let maxResults):
-				return [
-					"type":"LOGO_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "LOGO_DETECTION", "maxResults": maxResults]
 			case .SafeSearch(maxResults: let maxResults):
-				return [
-					"type":"SAFE_SEARCH_DETECTION",
-					"maxResults":maxResults
-				]
+				return ["type": "SAFE_SEARCH_DETECTION", "maxResults": maxResults]
 			case .ImageProperties(maxResults: let maxResults):
-				return [
-					"type":"IMAGE_PROPERTIES",
-					"maxResults":maxResults
-				]
+				return ["type": "IMAGE_PROPERTIES", "maxResults": maxResults]
 			}
 		}
 	}
@@ -110,19 +89,11 @@ public struct AnnotationRequest {
 		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
 			switch self {
 			case .URL(let URL):
-				return [
-					"source": [
-						"gcs_image_uri": URL
-					]
-				]
+				return ["source": ["gcs_image_uri": URL]]
 			case .Image(let image):
-				return try [
-					"content": encoder.encode(image: image)
-				]
+				return try ["content": encoder.encode(image: image)]
 			case .Data(let data):
-				return try [
-					"content": encoder.encode(imageData: data)
-				]
+				return try ["content": encoder.encode(imageData: data)]
 			}
 		}
 	}
