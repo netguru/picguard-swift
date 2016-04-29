@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Describes a type that is capable of endoding an image to be used with
+/// Describes a type that is capable of endoding an image or image data to be used with
 /// Google Cloud Vision API.
 public protocol ImageEncoding {
 
@@ -19,4 +19,11 @@ public protocol ImageEncoding {
 	/// image.
 	func encode(image image: UIImage) throws -> String
 
+	/// Encodes an image data.
+	///
+	/// - Parameter image data: An image data to be encoded.
+	///
+	/// - Returns: A string which contains encoded representation of the given
+	/// image data.
+	func encode(imageData imageData: NSData) throws -> String
 }

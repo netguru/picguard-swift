@@ -23,19 +23,68 @@ final class Base64ImageEncoderSpec: QuickSpec {
 			sut = nil
 		}
 
-		describe("analyze") {
+		describe("encode image") {
 
 			var encodedImage: String!
 			var image: UIImage!
 
-			beforeEach {
-				image = UIImage(size: CGSize(width: 1, height: 1), color: .yellowColor())
-				encodedImage = try! sut.encode(image: image)
+			context("when image can be encoded to valid data") {
+
+				beforeEach {
+					image = UIImage(size: CGSize(width: 1, height: 1), color: .yellowColor())
+					encodedImage = try! sut.encode(image: image)
+				}
+
+				it("should return base64 encoded image string") {
+					let decodedData = NSData(base64EncodedString: encodedImage, options: [])
+					expect(decodedData).to(equal(UIImagePNGRepresentation(image)))
+				}
 			}
 
-			it("should return base64 encoded image string") {
-				let decodedData = NSData(base64EncodedString: encodedImage, options: [])
-				expect(decodedData).to(equal(UIImagePNGRepresentation(image)))
+			context("when image cannot be encoded to valid data") {
+
+				beforeEach {
+					image = UIImage()
+				}
+
+				it("should throw unsupported bitmap data error") {
+					expect {
+						try sut.encode(image: image)
+					}.to(throwError(Base64ImageEncoder.Error.UnsupportedBitmapData))
+				}
+			}
+		}
+
+		describe("encode image data") {
+
+			var encodedImage: String!
+			var imageData: NSData!
+
+			context("when image data can be converted to valid image") {
+				
+				beforeEach {
+					let image = UIImage(size: CGSize(width: 1, height: 1), color: .yellowColor())
+					imageData = UIImagePNGRepresentation(image)
+					encodedImage = try! sut.encode(imageData: imageData)
+				}
+
+				it("should return base64 encoded image data string") {
+					let decodedData = NSData(base64EncodedString: encodedImage, options: [])
+					expect(decodedData).to(equal(imageData))
+				}
+			}
+
+			context("when image data cannot be converted to valid image") {
+
+				beforeEach {
+					imageData = NSData()
+				}
+
+				it("should throw invalid image data error") {
+					expect {
+						try sut.encode(imageData: imageData)
+					}.to(throwError(Base64ImageEncoder.Error.InvalidImageData))
+				}
 			}
 		}
 	}
