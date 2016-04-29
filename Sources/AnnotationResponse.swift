@@ -5,4 +5,9 @@
 // Licensed under the MIT License.
 //
 
-public struct AnnotationResponse {}
+import Foundation
+
+public struct AnnotationResponse {
+
+	let data: NSData
+}
