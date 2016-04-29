@@ -157,7 +157,7 @@ public struct AnnotationRequest {
 	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
 		return [
 			"image": try image.JSONDictionaryRepresentation(encoder),
-			"features":features.map { $0.JSONDictionaryRepresentation }
+			"features": features.map { $0.JSONDictionaryRepresentation }
 		]
 	}
 }
