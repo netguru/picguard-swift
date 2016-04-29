@@ -103,7 +103,6 @@ final class AnnotationRequestSpec: QuickSpec {
 					let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
 					let image = AnnotationRequest.Image.Image(UIImage())
 					sut = try! AnnotationRequest.init(features: features, image: image)
-
 				}
 
 				describe("JSON dictionary representation") {
@@ -275,7 +274,7 @@ final class AnnotationRequestSpec: QuickSpec {
 				it("should thorw EmptyFeaturesSet error") {
 					expect {
 						try AnnotationRequest.init(features: Set(), image: .URL("fixture url"))
-						}.to(throwError(AnnotationRequest.Error.EmptyFeaturesSet))
+					}.to(throwError(AnnotationRequest.Error.EmptyFeaturesSet))
 				}
 			}
 		}
