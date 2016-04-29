@@ -119,7 +119,7 @@ public struct AnnotationRequest {
 	///
 	/// - Parameter image: Image to initialize the request with.
 	public init(features: Set<Feature>, image: Image) throws {
-		if features.isEmpty {
+		guard !features.isEmpty else {
 			throw Error.EmptyFeaturesSet
 		}
 		self.features = features
