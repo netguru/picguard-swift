@@ -14,19 +14,22 @@ public protocol APIClientType {
 
 public final class APIClient: APIClientType {
 
-	enum Error: ErrorType {
+	public enum Error: ErrorType {
 		case InvalidRequestParameters
 		case BadServerResponse
 	}
 
 	let key: String
 	let encoder: ImageEncoding
-	let session: NSURLSession = NSURLSession(configuration:
-		NSURLSessionConfiguration.defaultSessionConfiguration())
+	let session: NSURLSession
 
-	public init(key: String, encoder: ImageEncoding) {
+	public init(key: String,
+	            encoder: ImageEncoding,
+	            session: NSURLSession = NSURLSession(configuration:
+		NSURLSessionConfiguration.defaultSessionConfiguration())) {
 		self.key = key
 		self.encoder = encoder
+		self.session = session
 	}
 
 	public func perform(request request: AnnotationRequest,

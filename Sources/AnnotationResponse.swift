@@ -15,7 +15,7 @@ public struct AnnotationResponse {
 	}
 
 	/// The data returned by Google Cloud Vision API.
-	let data: NSData
+	public let data: NSData
 
 	public init(data: NSData) {
 		self.data = data
