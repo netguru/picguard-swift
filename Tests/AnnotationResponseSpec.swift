@@ -28,7 +28,7 @@ final class AnnotationResponseSpec: QuickSpec {
 			}
 
 			it("should have 3 label annotations") {
-				expect(sut.labelAnnotations?.count).to(equal(3))
+				expect(try! sut.labelAnnotations().count).to(equal(3))
 			}
 		}
 
@@ -38,8 +38,10 @@ final class AnnotationResponseSpec: QuickSpec {
 				sut = AnnotationResponse(data: NSData())
 			}
 
-			it("should not initialize AnnotationResponse") {
-				expect(sut).to(beNil())
+			it("should throw error when trying to parse annotations") {
+				expect {
+					try sut.labelAnnotations()
+				}.to(throwError(AnnotationResponse.Error.ErrorParsingResponse))
 			}
 		}
 	}

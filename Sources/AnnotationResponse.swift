@@ -10,53 +10,46 @@ import Foundation
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse {
 
-	/// Optional array of `LabelAnnotations`, returns nil if empty
-	public let labelAnnotations: [LabelAnnotation]?
+	public enum Error: ErrorType {
+		case ErrorParsingResponse
+	}
 
-	/// Optional array of `TextAnnotations`, returns nil if empty
-	public let textAnnotations: [Any]?
+	/// The data returned by Google Cloud Vision API.
+	let data: NSData
 
-	/// Optional array of `FaceAnnotations`, returns nil if empty
-	public let faceAnnotations: [Any]?
+	public init(data: NSData) {
+		self.data = data
+	}
 
-	/// Optional array of `LandmarkAnnotations`, returns nil if empty
-	public let landmarkAnnotations: [Any]?
-
-	/// Optional array of `LogoAnnotations`, returns nil if empty
-	public let logoAnnotations: [Any]?
-
-	/// Optional `SafeSearchAnnotation`
-	public let safeSearchAnnotation: Any?
-
-	/// Optional `ImagePropertiesAnnotation`
-	public let imagePropertiesAnnotation: Any?
-
-	/// Initializes the receiver with data from response.
-	/// Returns nil if fails to parse response data.
+	/// `LabelAnnotations` parsed from response data.
 	///
-	/// - Parameter data: The data returned by Google Cloud Vision API
+	/// - Throws: `ErrorParsingResponse` if fails to parse the given data.
+	///
+	/// - Returns: Array of `LabelAnnotations`.
+	public func labelAnnotations() throws -> [LabelAnnotation] {
+		let response = try firstResponse(fromData: data)
+		guard let labelAnnotationsDictionaries = response["labelAnnotations"] else {
+			throw Error.ErrorParsingResponse
+		}
+		return try labelAnnotationsDictionaries.map {
+			try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(value: $0))
+		}
+	}
+}
 
-	public init?(data: NSData) {
+// MARK: - Private methods
+
+private extension AnnotationResponse {
+
+	func firstResponse(fromData data: NSData) throws -> Dictionary<String, Array<AnyObject>> {
 		guard
 			let JSONDictionary = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
 				as? Dictionary<String, AnyObject>,
 			let responses = JSONDictionary?["responses"]
 				as? Array<Dictionary<String, Array<AnyObject>>>,
 			let response = responses.first else {
-				return nil
+			throw Error.ErrorParsingResponse
 		}
-
-		labelAnnotations = response["labelAnnotations"].flatMap {
-			try? $0.map {
-				try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(value: $0))
-			}
-		}
-
-		textAnnotations = nil
-		faceAnnotations = nil
-		landmarkAnnotations = nil
-		logoAnnotations = nil
-		safeSearchAnnotation = nil
-		imagePropertiesAnnotation = nil
+		return response
 	}
 }

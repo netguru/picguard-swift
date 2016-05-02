@@ -9,7 +9,7 @@
 public enum AnnotationResult {
 
 	/// Type indicating successful Google Cloud Vision API respone.
-	case Success(AnnotationResponse?)
+	case Success(AnnotationResponse)
 
 	/// Type indicating error when getting response from Google Cloud Vision API.
 	case Error(ErrorType)

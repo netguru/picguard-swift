@@ -16,6 +16,7 @@ public final class APIClient: APIClientType {
 
 	enum Error: ErrorType {
 		case InvalidRequestParameters
+		case BadServerResponse
 	}
 
 	let key: String
@@ -33,6 +34,12 @@ public final class APIClient: APIClientType {
 
 		let URLRequest = try composeURLRequest(request)
 		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, error) in
+			guard
+			let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
+			where HTTPURLResponse.statusCode == 200 else {
+				completion(AnnotationResult.Error(Error.BadServerResponse))
+				return
+			}
 			if let error = error {
 				completion(AnnotationResult.Error(error))
 			} else if let data = data {
