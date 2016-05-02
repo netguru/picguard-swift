@@ -36,8 +36,7 @@ public final class APIClient: APIClientType {
 			if let error = error {
 				completion(AnnotationResult.Error(error))
 			} else if let data = data {
-				let response = AnnotationResponse(data: data)
-				completion(AnnotationResult.Success(response))
+				completion(AnnotationResult.Success(AnnotationResponse(data: data)))
 			}
 		}.resume()
 	}

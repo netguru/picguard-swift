@@ -17,7 +17,7 @@ public struct AnnotationResponse {
 	public let safeSearchAnnotation: Any?
 	public let imagePropertiesAnnotation: Any?
 
-	init?(data: NSData) {
+	public init?(data: NSData) {
 		guard
 			let JSONDictionary = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
 				as? Dictionary<String, AnyObject>,

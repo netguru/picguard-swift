@@ -1,0 +1,23 @@
+{
+  "responses": [
+    {
+      "labelAnnotations": [
+        {
+          "mid": "/m/068hy",
+          "description": "pet",
+          "score": 0.98194784
+        },
+        {
+          "mid": "/m/0bt9lr",
+          "description": "dog",
+          "score": 0.95976317
+        },
+        {
+          "mid": "/m/04rky",
+          "description": "mammal",
+          "score": 0.95963168
+        }
+      ]
+    }
+  ]
+}
