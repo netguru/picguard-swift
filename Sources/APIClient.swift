@@ -49,9 +49,9 @@ public final class APIClient: APIClientType {
 	///     - session: URL session used to create data task.
 	/// By default creates session with default configuration.
 	public init(
-	APIKey: String,
-	encoder: ImageEncoding,
-	session: NSURLSession = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration())
+		APIKey: String,
+		encoder: ImageEncoding,
+		session: NSURLSession = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration())
 	) {
 		self.APIKey = APIKey
 		self.encoder = encoder
