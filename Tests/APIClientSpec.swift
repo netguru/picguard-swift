@@ -91,12 +91,12 @@ final class APIClientSpec: QuickSpec {
 						guard let annotationResult = annotationResult else {
 							return
 						}
-						var apiClientError: APIClient.Error!
+						var apiClientError: APIClientError!
 						switch annotationResult {
-						case .Error(let error): apiClientError = error as! APIClient.Error
+						case .Error(let error): apiClientError = error as! APIClientError
 						default: break
 						}
-						expect(apiClientError).to(equal(APIClient.Error.BadServerResponse))
+						expect(apiClientError).to(equal(APIClientError.BadServerResponse))
 					}
 				}
 
@@ -142,7 +142,7 @@ final class APIClientSpec: QuickSpec {
 						case .Success(let response): annotationResponse = response
 						default: break
 						}
-						expect(annotationResponse.data).to(equal(data))
+						expect(annotationResponse).toNot(beNil())
 					}
 				}
 			}
