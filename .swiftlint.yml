@@ -16,6 +16,8 @@ excluded:
 
 disabled_rules:
   - valid_docs
+  - function_parameter_count
+  - cyclomatic_complexity
 
 # Variable name rule configuration
 
