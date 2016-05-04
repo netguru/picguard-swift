@@ -24,24 +24,15 @@ final class AnnotationResponseSpec: QuickSpec {
 			beforeEach {
 				let bundle = NSBundle(forClass: AnnotationResponseSpec.self)
 				let dataURL = bundle.URLForResource("label_response", withExtension: ".json")
-				sut = AnnotationResponse(data: NSData(contentsOfURL: dataURL!)!)
+				let data = NSData(contentsOfURL: dataURL!)
+				let JSONDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String: [AnyObject]]
+				let response = JSONDictionary["responses"]!.first
+				let value = try! APIRepresentationValue(value: response!)
+				sut = try! AnnotationResponse(APIRepresentationValue: value)
 			}
 
 			it("should have 3 label annotations") {
-				expect(try! sut.labelAnnotations().count).to(equal(3))
-			}
-		}
-
-		context("when initialized with invalid data") {
-
-			beforeEach {
-				sut = AnnotationResponse(data: NSData())
-			}
-
-			it("should throw error when trying to parse annotations") {
-				expect {
-					try sut.labelAnnotations()
-				}.to(throwError(AnnotationResponse.Error.ErrorParsingResponse))
+				expect(sut.labelAnnotations?.count).to(equal(3))
 			}
 		}
 	}

@@ -89,19 +89,15 @@ final class APIClientSpec: QuickSpec {
 						dataTaskCompletionHandler(nil, response, nil)
 					}
 
-					it("should return result with error BadServerResponse") {
-						guard let annotationResult = annotationResult else {
-							return
-						}
+					it("should return result with error BadResponse") {
 						var returnedResponse: NSHTTPURLResponse!
-						switch annotationResult {
+						switch annotationResult! {
 						case .Error(let error): let returnedError = error as! APIClientError
 							switch returnedError {
-							case .BadServerResponse(let response): returnedResponse = response as! NSHTTPURLResponse
+							case .BadResponse(let response): returnedResponse = response
 							}
 						default: break
 						}
-
 						expect(returnedResponse).to(equal(response))
 					}
 				}
@@ -116,39 +112,59 @@ final class APIClientSpec: QuickSpec {
 						dataTaskCompletionHandler(nil, response, error)
 					}
 
-					it("should return result with given error") {
-						guard let annotationResult = annotationResult else {
-							return
-						}
-						var errorType: ErrorType!
-						switch annotationResult {
-						case .Error(let error): errorType = error
+					it("should return error result with given error") {
+						var returnedError: NSError!
+						switch annotationResult! {
+						case .Error(let error): returnedError = error as! NSError
 						default: break
 						}
-						expect(errorType as? NSError).to(equal(error))
+						expect(returnedError).to(equal(error))
 					}
 				}
 
 				context("when there is no error") {
 
 					var data: NSData!
+					var response: NSHTTPURLResponse!
 
 					beforeEach {
-						let response = NSHTTPURLResponse(URL: NSURL(), statusCode: 200, HTTPVersion: nil, headerFields: nil)
-						data = NSData()
-						dataTaskCompletionHandler(data, response, nil)
+						response = NSHTTPURLResponse(URL: NSURL(), statusCode: 200, HTTPVersion: nil, headerFields: nil)
 					}
 
-					it("should return result annotation response") {
-						guard let annotationResult = annotationResult else {
-							return
+					context("when data cannot be parsed") {
+
+						beforeEach {
+							data = NSData()
+							dataTaskCompletionHandler(data, response, nil)
 						}
-						var annotationResponse: AnnotationResponse!
-						switch annotationResult {
-						case .Success(let response): annotationResponse = response
-						default: break
+
+						it("should return error result containing thrown error") {
+							var returnedError: ErrorType!
+							switch annotationResult! {
+							case .Error(let error): returnedError = error
+							default: break
+							}
+							expect(returnedError).toNot(beNil())
 						}
-						expect(annotationResponse.data).to(equal(data))
+					}
+
+					context("when data can be parsed") {
+
+						beforeEach {
+							let bundle = NSBundle(forClass: AnnotationResponseSpec.self)
+							let dataURL = bundle.URLForResource("label_response", withExtension: ".json")
+							let data = NSData(contentsOfURL: dataURL!)
+							dataTaskCompletionHandler(data, response, nil)
+						}
+
+						it("should return success result containing response") {
+							var returnedResponse: AnnotationResponse!
+							switch annotationResult! {
+							case .Success(let response): returnedResponse = response
+							default: break
+							}
+							expect(returnedResponse).toNot(beNil())
+						}
 					}
 				}
 			}

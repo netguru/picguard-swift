@@ -8,53 +8,12 @@
 import Foundation
 
 /// Response containing annotations returned by Google Cloud Vision API.
-public struct AnnotationResponse {
-
-	/// Describes an annotation response error.
-	public enum Error: ErrorType {
-
-		/// Thrown if fails to parse response.
-		case ErrorParsingResponse
-	}
-
-	/// The data returned by Google Cloud Vision API.
-	public let data: NSData
-
-	/// Initializes the receiver with response data.
-	///
-	/// - Parameter data: The data received from Google Cloud Vision API response.
-	public init(data: NSData) {
-		self.data = data
-	}
+public struct AnnotationResponse: APIRepresentationConvertible {
 
 	/// `LabelAnnotations` parsed from response data.
-	///
-	/// - Throws: `ErrorParsingResponse` if fails to parse the given data.
-	///
-	/// - Returns: Array of `LabelAnnotations`.
-	public func labelAnnotations() throws -> [LabelAnnotation] {
-		let response = try firstResponse(fromData: data)
-		guard let labelAnnotationsDictionaries = response["labelAnnotations"] else {
-			throw Error.ErrorParsingResponse
-		}
-		return try labelAnnotationsDictionaries.map {
-			try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(value: $0))
-		}
-	}
-}
+	public let labelAnnotations: [LabelAnnotation]?
 
-// MARK: - Private methods
-
-private extension AnnotationResponse {
-
-	func firstResponse(fromData data: NSData) throws -> [String: [AnyObject]] {
-		guard
-			let JSONDictionary = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject],
-			let responses = JSONDictionary?["responses"] as? [[String: [AnyObject]]],
-			let response = responses.first
-		else {
-			throw Error.ErrorParsingResponse
-		}
-		return response
+	public init(APIRepresentationValue value: APIRepresentationValue) throws {
+		labelAnnotations = try? value.get("labelAnnotations")
 	}
 }

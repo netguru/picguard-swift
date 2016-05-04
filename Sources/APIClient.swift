@@ -26,7 +26,7 @@ public protocol APIClientType {
 public enum APIClientError: ErrorType {
 
 	/// Thrown if Google Cloud Vision API reponse status code is not OK.
-	case BadServerResponse(NSURLResponse?)
+	case BadResponse(NSHTTPURLResponse)
 }
 
 /// A default Google Cloud Vision API client.
@@ -58,21 +58,26 @@ public final class APIClient: APIClientType {
 		self.session = session
 	}
 
-	public func perform(request request: (AnnotationRequest), completion: AnnotationResult -> Void) throws {
+	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws {
 
 		let URLRequest = try composeURLRequest(request)
 		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, error) in
-			guard
-				let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
-				where HTTPURLResponse.statusCode == 200
-			else {
-				completion(AnnotationResult.Error(APIClientError.BadServerResponse(URLResponse)))
+			let HTTPURLResponse = URLResponse as! NSHTTPURLResponse
+			guard HTTPURLResponse.statusCode == 200 else {
+				completion(AnnotationResult.Error(APIClientError.BadResponse(HTTPURLResponse)))
 				return
 			}
 			if let error = error {
 				completion(AnnotationResult.Error(error))
 			} else if let data = data {
-				completion(AnnotationResult.Success(AnnotationResponse(data: data)))
+				do {
+					let value = try APIRepresentationValue(data: data)
+					let responses: [AnnotationResponse] = try value.get("responses")
+					let response = responses[0]
+					completion(AnnotationResult.Success(response))
+				} catch {
+					completion(AnnotationResult.Error(error))
+				}
 			}
 		}.resume()
 	}
