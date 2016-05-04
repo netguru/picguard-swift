@@ -17,7 +17,8 @@ public struct AnnotationResponse {
 		case ErrorParsingResponse
 	}
 
-	let data: NSData
+	/// The data returned by Google Cloud Vision API.
+	public let data: NSData
 
 	/// Initializes the receiver with response data.
 	///

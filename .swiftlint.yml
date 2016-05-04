@@ -17,6 +17,7 @@ excluded:
 disabled_rules:
   - valid_docs
   - force_cast
+  - line_length
 
 # Variable name rule configuration
 

@@ -60,7 +60,7 @@ final class APIClientSpec: QuickSpec {
 				}
 
 				it("should have proper URL") {
-					expect(dataTaskRequest.URL).to(equal(NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=fixture%20key")))
+					expect(dataTaskRequest.URL).to(equal(NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=fixtureAPIKey")))
 				}
 
 				it("should have POST HTTP method") {
@@ -142,7 +142,7 @@ final class APIClientSpec: QuickSpec {
 						case .Success(let response): annotationResponse = response
 						default: break
 						}
-						expect(annotationResponse).toNot(beNil())
+						expect(annotationResponse.data).to(equal(data))
 					}
 				}
 			}

@@ -50,21 +50,18 @@ public final class APIClient: APIClientType {
 	///     - APIKey: Google Cloud Vision API key.
 	///     - encoder: Image encoder which converts image to data.
 	///     - session: URL session used to create data task.
-	///		By default creates session with default configuration.
+	/// By default creates session with default configuration.
 	public init(
 		APIKey: String,
 		encoder: ImageEncoding,
-		session: NSURLSession = NSURLSession(
-			configuration:NSURLSessionConfiguration.defaultSessionConfiguration()
-			)
+		session: NSURLSession = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration())
 		) {
 		self.APIKey = APIKey
 		self.encoder = encoder
 		self.session = session
 	}
 
-	public func perform(request request: (AnnotationRequest),
-	                            completion: AnnotationResult -> Void) throws {
+	public func perform(request request: (AnnotationRequest), completion: AnnotationResult -> Void) throws {
 
 		let URLRequest = try composeURLRequest(request)
 		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, error) in
@@ -91,10 +88,7 @@ private extension APIClient {
 	func composeURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
 		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
 		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
-		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(
-			requestsJSONDictioanry,
-			options: []
-		)
+		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(requestsJSONDictioanry, options: [])
 		let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "POST"
