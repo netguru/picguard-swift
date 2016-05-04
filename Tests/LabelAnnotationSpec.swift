@@ -13,7 +13,7 @@ final class LabelAnnotationSpec: QuickSpec {
 
 	override func spec() {
 
-		describe("LabelDetectionResult") {
+		describe("LabelAnnotation") {
 
 			func initWithScoreShouldSucceed(score score: Double) {
 				it("should succeed to initialize") {
