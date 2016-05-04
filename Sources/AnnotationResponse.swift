@@ -10,7 +10,7 @@ import Foundation
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse: APIRepresentationConvertible {
 
-	/// `LabelAnnotations` parsed from response data.
+	/// Optional array of `LabelAnnotations` parsed from response data.
 	public let labelAnnotations: [LabelAnnotation]?
 
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
