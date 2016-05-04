@@ -115,7 +115,7 @@ final class APIClientSpec: QuickSpec {
 					it("should return error result with given error") {
 						var returnedError: NSError!
 						switch annotationResult! {
-						case .Error(let error): returnedError = error as! NSError
+						case .Error(let error): returnedError = error as NSError
 						default: break
 						}
 						expect(returnedError).to(equal(error))
