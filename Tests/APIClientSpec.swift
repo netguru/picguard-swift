@@ -92,11 +92,11 @@ final class APIClientSpec: QuickSpec {
 					it("should return result with error BadResponse") {
 						var returnedResponse: NSHTTPURLResponse!
 						switch annotationResult! {
-						case .Error(let error): let returnedError = error as! APIClientError
-							switch returnedError {
-							case .BadResponse(let response): returnedResponse = response
+							case .Error(let error): let returnedError = error as! APIClientError
+								switch returnedError {
+									case .BadResponse(let response): returnedResponse = response
 							}
-						default: break
+							default: break
 						}
 						expect(returnedResponse).to(equal(response))
 					}
@@ -115,8 +115,8 @@ final class APIClientSpec: QuickSpec {
 					it("should return result with given response error") {
 						var returnedError: NSError!
 						switch annotationResult! {
-						case .Error(let error): returnedError = error as NSError
-						default: break
+							case .Error(let error): returnedError = error as NSError
+							default: break
 						}
 						expect(returnedError).to(equal(responseError))
 					}
@@ -141,8 +141,8 @@ final class APIClientSpec: QuickSpec {
 						it("should return result containing thrown error") {
 							var returnedError: ErrorType!
 							switch annotationResult! {
-							case .Error(let error): returnedError = error
-							default: break
+								case .Error(let error): returnedError = error
+								default: break
 							}
 							expect(returnedError).toNot(beNil())
 						}
@@ -160,8 +160,8 @@ final class APIClientSpec: QuickSpec {
 						it("should return result containing response") {
 							var returnedResponse: AnnotationResponse!
 							switch annotationResult! {
-							case .Success(let response): returnedResponse = response
-							default: break
+								case .Success(let response): returnedResponse = response
+								default: break
 							}
 							expect(returnedResponse).toNot(beNil())
 						}
