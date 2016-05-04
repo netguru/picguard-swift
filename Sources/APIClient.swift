@@ -61,21 +61,21 @@ public final class APIClient: APIClientType {
 	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws {
 
 		let URLRequest = try composeURLRequest(request)
-		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, error) in
+		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, responseError) in
 			let HTTPURLResponse = URLResponse as! NSHTTPURLResponse
 			guard HTTPURLResponse.statusCode == 200 else {
 				completion(AnnotationResult.Error(APIClientError.BadResponse(HTTPURLResponse)))
 				return
 			}
-			if let error = error {
-				completion(AnnotationResult.Error(error))
+			if let responseError = responseError {
+				completion(AnnotationResult.Error(responseError))
 			} else if let data = data {
 				do {
 					let value = try APIRepresentationValue(data: data)
 					let responses: [AnnotationResponse] = try value.get("responses")
 					let response = responses[0]
 					completion(AnnotationResult.Success(response))
-				} catch {
+				} catch let error {
 					completion(AnnotationResult.Error(error))
 				}
 			}

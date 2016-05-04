@@ -102,23 +102,23 @@ final class APIClientSpec: QuickSpec {
 					}
 				}
 
-				context("when there is an error") {
+				context("when there is a response error") {
 
-					var error: NSError!
+					var responseError: NSError!
 
 					beforeEach {
 						let response = NSHTTPURLResponse(URL: NSURL(), statusCode: 200, HTTPVersion: nil, headerFields: nil)
-						error = NSError(domain: "", code: 1, userInfo: nil)
-						dataTaskCompletionHandler(nil, response, error)
+						responseError = NSError(domain: "", code: 1, userInfo: nil)
+						dataTaskCompletionHandler(nil, response, responseError)
 					}
 
-					it("should return result with given error") {
+					it("should return result with given response error") {
 						var returnedError: NSError!
 						switch annotationResult! {
 						case .Error(let error): returnedError = error as NSError
 						default: break
 						}
-						expect(returnedError).to(equal(error))
+						expect(returnedError).to(equal(responseError))
 					}
 				}
 

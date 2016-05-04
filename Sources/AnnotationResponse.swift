@@ -14,6 +14,6 @@ public struct AnnotationResponse: APIRepresentationConvertible {
 	public let labelAnnotations: [LabelAnnotation]?
 
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		labelAnnotations = try? value.get("labelAnnotations")
+		labelAnnotations = try value.get("labelAnnotations")
 	}
 }
