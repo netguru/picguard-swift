@@ -47,13 +47,12 @@ public struct AnnotationResponse {
 
 private extension AnnotationResponse {
 
-	func firstResponse(fromData data: NSData) throws -> Dictionary<String, Array<AnyObject>> {
+	func firstResponse(fromData data: NSData) throws -> [String: [AnyObject]] {
 		guard
-			let JSONDictionary = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
-				as? Dictionary<String, AnyObject>,
-			let responses = JSONDictionary?["responses"]
-				as? Array<Dictionary<String, Array<AnyObject>>>,
-			let response = responses.first else {
+			let JSONDictionary = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String: AnyObject],
+			let responses = JSONDictionary?["responses"] as? [[String: [AnyObject]]],
+			let response = responses.first
+		else {
 			throw Error.ErrorParsingResponse
 		}
 		return response
