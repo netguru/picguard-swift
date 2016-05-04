@@ -112,7 +112,7 @@ final class APIClientSpec: QuickSpec {
 						dataTaskCompletionHandler(nil, response, error)
 					}
 
-					it("should return error result with given error") {
+					it("should return result with given error") {
 						var returnedError: NSError!
 						switch annotationResult! {
 						case .Error(let error): returnedError = error as NSError
@@ -138,7 +138,7 @@ final class APIClientSpec: QuickSpec {
 							dataTaskCompletionHandler(data, response, nil)
 						}
 
-						it("should return error result containing thrown error") {
+						it("should return result containing thrown error") {
 							var returnedError: ErrorType!
 							switch annotationResult! {
 							case .Error(let error): returnedError = error
@@ -157,7 +157,7 @@ final class APIClientSpec: QuickSpec {
 							dataTaskCompletionHandler(data, response, nil)
 						}
 
-						it("should return success result containing response") {
+						it("should return result containing response") {
 							var returnedResponse: AnnotationResponse!
 							switch annotationResult! {
 							case .Success(let response): returnedResponse = response
