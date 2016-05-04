@@ -19,7 +19,7 @@ public protocol APIClientType {
 	/// called when response comes from Google Cloud Vision API.
 	///
 	/// - Throws: Errors from `APIClientError` domain or other errors while composing URL request.
-	func perform(request request: AnnotationRequest, completion: AnnotationResult -> Void) throws
+	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws
 }
 
 /// Describes an API client error.
@@ -35,22 +35,30 @@ public enum APIClientError: ErrorType {
 /// A default Google Cloud Vision API client.
 public final class APIClient: APIClientType {
 
-	let key: String
-	let encoder: ImageEncoding
-	let session: NSURLSession
+	/// The key to Google Cloud Vision API.
+	public let APIKey: String
+
+	/// Image encoder which converts image to data.
+	public let encoder: ImageEncoding
+
+	/// An URL session used to create data task.
+	private let session: NSURLSession
 
 	/// Initializes the receiver with Google Cloud Vision API key, image encoder and URL session.
 	///
 	/// - Parameters:
-	///     - key: Google Cloud Vision API key.
+	///     - APIKey: Google Cloud Vision API key.
 	///     - encoder: Image encoder which converts image to data.
 	///     - session: URL session used to create data task.
 	///		By default creates session with default configuration.
-	public init(key: String,
-	            encoder: ImageEncoding,
-	            session: NSURLSession = NSURLSession(configuration:
-		NSURLSessionConfiguration.defaultSessionConfiguration())) {
-		self.key = key
+	public init(
+		APIKey: String,
+		encoder: ImageEncoding,
+		session: NSURLSession = NSURLSession(
+			configuration:NSURLSessionConfiguration.defaultSessionConfiguration()
+			)
+		) {
+		self.APIKey = APIKey
 		self.encoder = encoder
 		self.session = session
 	}
@@ -88,7 +96,7 @@ private extension APIClient {
 		components.scheme = "https"
 		components.host = "vision.googleapis.com"
 		components.path = "/v1/images:annotate"
-		components.queryItems = [NSURLQueryItem(name: "key", value: key)]
+		components.queryItems = [NSURLQueryItem(name: "key", value: APIKey)]
 		guard let URL = components.URL else {
 			throw APIClientError.InvalidRequestParameters
 		}
