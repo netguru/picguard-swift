@@ -63,14 +63,15 @@ public final class APIClient: APIClientType {
 		self.session = session
 	}
 
-	public func perform(request request: AnnotationRequest,
+	public func perform(request request: (AnnotationRequest),
 	                            completion: AnnotationResult -> Void) throws {
 
 		let URLRequest = try composeURLRequest(request)
 		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, error) in
 			guard
-			let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
-			where HTTPURLResponse.statusCode == 200 else {
+				let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
+				where HTTPURLResponse.statusCode == 200
+			else {
 				completion(AnnotationResult.Error(APIClientError.BadServerResponse))
 				return
 			}
@@ -90,23 +91,15 @@ private extension APIClient {
 	func composeURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
 		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
 		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
-		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(requestsJSONDictioanry,
-		                                                        options: [])
-		let components = NSURLComponents()
-		components.scheme = "https"
-		components.host = "vision.googleapis.com"
-		components.path = "/v1/images:annotate"
-		components.queryItems = [NSURLQueryItem(name: "key", value: APIKey)]
-		guard let URL = components.URL else {
-			throw APIClientError.InvalidRequestParameters
-		}
-		let mutableRequest = NSMutableURLRequest(URL: URL)
-		mutableRequest.HTTPMethod = "POST"
-		mutableRequest.HTTPBody = requestsJSONData
-		mutableRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		guard let request = mutableRequest.copy() as? NSURLRequest else {
-			throw APIClientError.InvalidRequestParameters
-		}
-		return request
+		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(
+			requestsJSONDictioanry,
+			options: []
+		)
+		let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")
+		let request = NSMutableURLRequest(URL: URL!)
+		request.HTTPMethod = "POST"
+		request.HTTPBody = requestsJSONData
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		return request.copy() as! NSURLRequest
 	}
 }

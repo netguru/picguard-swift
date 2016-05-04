@@ -18,7 +18,7 @@ final class APIClientSpec: QuickSpec {
 
 		beforeEach {
 			mockSession = MockURLSession()
-			sut = APIClient(APIKey: "fixture key", encoder: MockImageEncoder(), session: mockSession)
+			sut = APIClient(APIKey: "fixtureAPIKey", encoder: MockImageEncoder(), session: mockSession)
 		}
 
 		afterEach {
