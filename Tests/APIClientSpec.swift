@@ -82,8 +82,10 @@ final class APIClientSpec: QuickSpec {
 
 				context("when response status code is not 200") {
 
+					var response: NSHTTPURLResponse!
+
 					beforeEach {
-						let response = NSHTTPURLResponse(URL: NSURL(), statusCode: 500, HTTPVersion: nil, headerFields: nil)
+						response = NSHTTPURLResponse(URL: NSURL(), statusCode: 500, HTTPVersion: nil, headerFields: nil)
 						dataTaskCompletionHandler(nil, response, nil)
 					}
 
@@ -91,12 +93,16 @@ final class APIClientSpec: QuickSpec {
 						guard let annotationResult = annotationResult else {
 							return
 						}
-						var apiClientError: APIClientError!
+						var returnedResponse: NSHTTPURLResponse!
 						switch annotationResult {
-						case .Error(let error): apiClientError = error as! APIClientError
+						case .Error(let error): let returnedError = error as! APIClientError
+							switch returnedError {
+							case .BadServerResponse(let response): returnedResponse = response as! NSHTTPURLResponse
+							}
 						default: break
 						}
-						expect(apiClientError).to(equal(APIClientError.BadServerResponse))
+
+						expect(returnedResponse).to(equal(response))
 					}
 				}
 
@@ -156,9 +162,7 @@ private final class MockURLSession: NSURLSession {
 	var dataTaskRequest: NSURLRequest!
 	var dataTaskCompletionHandler: ((NSData?, NSURLResponse?, NSError?) -> Void)!
 
-	override func dataTaskWithRequest(request: NSURLRequest,
-	                                  completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void)
-		-> NSURLSessionDataTask {
+	override func dataTaskWithRequest(request: NSURLRequest, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) -> NSURLSessionDataTask {
 			dataTaskRequest = request
 			dataTaskCompletionHandler = completionHandler
 			lastCreatedDataTask = MockURLSessionDataTask()

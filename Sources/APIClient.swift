@@ -25,11 +25,8 @@ public protocol APIClientType {
 /// Describes an API client error.
 public enum APIClientError: ErrorType {
 
-	/// Thrown if could not compose valid URL request.
-	case InvalidRequestParameters
-
 	/// Thrown if Google Cloud Vision API reponse status code is not OK.
-	case BadServerResponse
+	case BadServerResponse(NSURLResponse?)
 }
 
 /// A default Google Cloud Vision API client.
@@ -69,7 +66,7 @@ public final class APIClient: APIClientType {
 				let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
 				where HTTPURLResponse.statusCode == 200
 			else {
-				completion(AnnotationResult.Error(APIClientError.BadServerResponse))
+				completion(AnnotationResult.Error(APIClientError.BadServerResponse(URLResponse)))
 				return
 			}
 			if let error = error {
