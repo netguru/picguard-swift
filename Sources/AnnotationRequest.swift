@@ -83,7 +83,7 @@ public struct AnnotationRequest {
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Errors from `Base64ImageEncoder.Error`
+		/// - Throws: Errors from `Base64ImageEncoder.Error` domain
 		/// if encoder fails to encode UIImage of NSData.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
@@ -122,7 +122,7 @@ public struct AnnotationRequest {
 
 	/// JSON dictionary representation of `AnnotationRequest`.
 	///
-	/// - Throws: Errors from `Base64ImageEncoder.Error`
+	/// - Throws: Errors from `Base64ImageEncoder.Error` domain
 	/// if encoder fails to encode UIImage of NSData.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.

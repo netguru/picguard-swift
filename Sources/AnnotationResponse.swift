@@ -10,13 +10,18 @@ import Foundation
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse {
 
+	/// Describes an annotation response error.
 	public enum Error: ErrorType {
+
+		/// Thrown if fails to parse response.
 		case ErrorParsingResponse
 	}
 
-	/// The data returned by Google Cloud Vision API.
-	public let data: NSData
+	let data: NSData
 
+	/// Initializes the receiver with response data.
+	///
+	/// - Parameter data: The data received from Google Cloud Vision API response.
 	public init(data: NSData) {
 		self.data = data
 	}

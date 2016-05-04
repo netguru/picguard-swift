@@ -7,22 +7,45 @@
 
 import Foundation
 
+/// Describes a type that is capable of sending image analysis requests
+/// to Google Cloud Vision API.
 public protocol APIClientType {
 
+	/// Sends request to Google Cloud Vision API.
+	///
+	/// - Parameter request: An `AnnotationRequest` describing image type and detection features.
+	///
+	/// - Parameter completion: The closure with `AnnotationResult`,
+	/// called when response comes from Google Cloud Vision API.
+	///
+	/// - Throws: Errors from `APIClientError` domain or other errors while composing URL request.
 	func perform(request request: AnnotationRequest, completion: AnnotationResult -> Void) throws
 }
 
-public final class APIClient: APIClientType {
+/// Describes an API client error.
+public enum APIClientError: ErrorType {
 
-	public enum Error: ErrorType {
-		case InvalidRequestParameters
-		case BadServerResponse
-	}
+	/// Thrown if could not compose valid URL request.
+	case InvalidRequestParameters
+
+	/// Thrown if Google Cloud Vision API reponse status code is not OK.
+	case BadServerResponse
+}
+
+/// A default Google Cloud Vision API client.
+public final class APIClient: APIClientType {
 
 	let key: String
 	let encoder: ImageEncoding
 	let session: NSURLSession
 
+	/// Initializes the receiver with Google Cloud Vision API key, image encoder and URL session.
+	///
+	/// - Parameters:
+	///     - key: Google Cloud Vision API key.
+	///     - encoder: Image encoder which converts image to data.
+	///     - session: URL session used to create data task.
+	///		By default creates session with default configuration.
 	public init(key: String,
 	            encoder: ImageEncoding,
 	            session: NSURLSession = NSURLSession(configuration:
@@ -40,7 +63,7 @@ public final class APIClient: APIClientType {
 			guard
 			let HTTPURLResponse = URLResponse as? NSHTTPURLResponse
 			where HTTPURLResponse.statusCode == 200 else {
-				completion(AnnotationResult.Error(Error.BadServerResponse))
+				completion(AnnotationResult.Error(APIClientError.BadServerResponse))
 				return
 			}
 			if let error = error {
@@ -67,14 +90,14 @@ private extension APIClient {
 		components.path = "/v1/images:annotate"
 		components.queryItems = [NSURLQueryItem(name: "key", value: key)]
 		guard let URL = components.URL else {
-			throw Error.InvalidRequestParameters
+			throw APIClientError.InvalidRequestParameters
 		}
 		let mutableRequest = NSMutableURLRequest(URL: URL)
 		mutableRequest.HTTPMethod = "POST"
 		mutableRequest.HTTPBody = requestsJSONData
 		mutableRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		guard let request = mutableRequest.copy() as? NSURLRequest else {
-			throw Error.InvalidRequestParameters
+			throw APIClientError.InvalidRequestParameters
 		}
 		return request
 	}
