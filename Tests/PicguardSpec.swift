@@ -28,7 +28,7 @@ final class PicguardSpec: QuickSpec {
 			var capturedResult: Any!
 
 			beforeEach {
-				try! sut.analyze(UIImage()) { result in
+				try! sut.analyze(image: UIImage()) { result in
 					capturedResult = result
 				}
 			}
@@ -37,12 +37,5 @@ final class PicguardSpec: QuickSpec {
 				expect(capturedResult as? String).to(equal("fixture encoded image"))
 			}
 		}
-	}
-}
-
-private struct MockImageEncoder: ImageEncoding {
-
-	func encode(image image: UIImage) throws -> String {
-		return "fixture encoded image"
 	}
 }

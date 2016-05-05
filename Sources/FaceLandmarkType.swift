@@ -131,7 +131,7 @@ public enum FaceLandmarkType: APIRepresentationConvertible {
 	/// - Parameter string: The string representation of the receiver.
 	///
 	/// - Throws: `Error.InvalidStringValue` if the string is invalid.
-	init(string: String) throws {
+	public init(string: String) throws {
 		switch string {
 			case "UNKNOWN_LANDMARK": self = .Unknown
 			case "LEFT_EYE": self = .LeftEye

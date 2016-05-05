@@ -81,6 +81,27 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 
 	// MARK: Initializers
 
+	/// Initializes the receiver with raw values.
+	///
+	/// - Parameters:
+	///     - boundingPolygon: The bounding polygon around the face.
+	///     - skinBoundingPolygon: The skin bouning polygon.
+	///     - landmarks: Detected face landmarks.
+	///     - rollAngle: Rotation of the face.
+	///     - panAngle: Leftward/rightward angle of the face.
+	///     - tiltAngle: Upwards/downwards angle of the face.
+	///     - detectionConfidence: Confidence of the detection.
+	///     - landmarkingConfidence: Confidence of the landmarking.
+	///     - joyLikelihood: Joy emotion likelihood.
+	///     - sorrowLikelihood: Sorrow emotion likelihood.
+	///     - angerLikelihood: Anger emotion likelihood.
+	///     - surpriseLikelihood: Surprise emotion likelihood.
+	///     - underExposedLikelihood: Likelohood of being under-exposed.
+	///     - blurredLikelihood: Likelihood of being blurred.
+	///     - headwearLikelihood: Likelihood of headwear.
+	///
+	/// - Throws: Errors from `FaceAnnotation.Error` domain if the provided
+	/// numeric values are out of their expected range.
 	public init(
 		boundingPolygon: BoundingPolygon,
 		skinBoundingPolygon: BoundingPolygon,
@@ -130,11 +151,12 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 		self.headwearLikelihood = headwearLikelihood
 	}
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		try self.init(
 			boundingPolygon: value.get("boundingPoly"),
 			skinBoundingPolygon: value.get("fdBoundingPoly"),
-			landmarks:  value.get("landmarks"),
+			landmarks: value.get("landmarks"),
 			rollAngle: value.get("rollAngle"),
 			panAngle: value.get("panAngle"),
 			tiltAngle: value.get("tiltAngle"),
@@ -156,6 +178,7 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 
 extension FaceAnnotation: Equatable {}
 
+/// - SeeAlso: Equatable.==
 public func == (lhs: FaceAnnotation, rhs: FaceAnnotation) -> Bool {
 	return (
 		lhs.boundingPolygon == rhs.boundingPolygon &&
