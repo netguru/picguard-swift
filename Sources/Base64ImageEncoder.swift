@@ -15,7 +15,12 @@ public struct Base64ImageEncoder: ImageEncoding {
 
 	/// Describes errors which may occur during encoding.
 	public enum Error: ErrorType {
+
+		/// Thrown if image cannot be converted to data.
 		case UnsupportedBitmapData
+
+		/// Thrown if data cannot be converted to image.
+		case InvalidImageData
 	}
 
 	/// Encodes the image into base64 representation.
@@ -34,4 +39,19 @@ public struct Base64ImageEncoder: ImageEncoding {
 		return data.base64EncodedStringWithOptions([])
 	}
 
+	/// Encodes the image data into base64 representation.
+	///
+	/// - Throws: `InvalidImageData` if the given image data cannot be converted
+	/// to Image.
+	///
+	/// - Parameter image data: An image data to be encoded.
+	///
+	/// - Returns: A string which contains encoded representation of the given
+	/// image data.
+	public func encode(imageData imageData: NSData) throws -> String {
+		guard let _ = UIImage(data: imageData) else {
+			throw Error.InvalidImageData
+		}
+		return imageData.base64EncodedStringWithOptions([])
+	}
 }
