@@ -87,16 +87,13 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error NoResponse") {
-						var didReturnNoResponseError = false
-						switch annotationResult! {
-							case .Error(let error): let returnedError = error as! APIClient.Error
-							switch returnedError {
-								case .NoResponse: didReturnNoResponseError = true
-								default: break
-							}
-							default: break
+						guard
+							case .Error(let error) = annotationResult!,
+							case .NoResponse = error as! APIClient.Error
+						else {
+							fail("failed to get error")
+							return
 						}
-						expect(didReturnNoResponseError).to(beTruthy())
 					}
 				}
 
@@ -110,14 +107,12 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error UnsupportedResponseType") {
-						var returnedResponse: NSURLResponse!
-						switch annotationResult! {
-							case .Error(let error): let returnedError = error as! APIClient.Error
-							switch returnedError {
-								case .UnsupportedResponseType(let response): returnedResponse = response
-								default: break
-							}
-							default: break
+						guard
+							case .Error(let error) = annotationResult!,
+							case .UnsupportedResponseType(let returnedResponse) = error as! APIClient.Error
+						else {
+							fail("failed to get response")
+							return
 						}
 						expect(returnedResponse).to(equal(response))
 					}
@@ -133,14 +128,12 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error BadResponse") {
-						var returnedResponse: NSHTTPURLResponse!
-						switch annotationResult! {
-							case .Error(let error): let returnedError = error as! APIClient.Error
-								switch returnedError {
-									case .BadResponse(let response): returnedResponse = response
-									default: break
-							}
-							default: break
+						guard
+							case .Error(let error) = annotationResult!,
+							case .BadResponse(let returnedResponse) = error as! APIClient.Error
+						else {
+							fail("failed to get response")
+							return
 						}
 						expect(returnedResponse).to(equal(response))
 					}
@@ -157,12 +150,11 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with given response error") {
-						var returnedError: NSError!
-						switch annotationResult! {
-							case .Error(let error): returnedError = error as NSError
-							default: break
+						guard case .Error(let returnedError) = annotationResult! else {
+							fail("failed to error")
+							return
 						}
-						expect(returnedError).to(equal(responseError))
+						expect(returnedError as NSError).to(equal(responseError))
 					}
 				}
 
@@ -183,10 +175,9 @@ final class APIClientSpec: QuickSpec {
 						}
 
 						it("should return result containing thrown error") {
-							var returnedError: ErrorType!
-							switch annotationResult! {
-								case .Error(let error): returnedError = error
-								default: break
+							guard case .Error(let returnedError) = annotationResult! else {
+								fail("failed to get error")
+								return
 							}
 							expect(returnedError).toNot(beNil())
 						}
@@ -202,10 +193,9 @@ final class APIClientSpec: QuickSpec {
 						}
 
 						it("should return result containing response") {
-							var returnedResponse: AnnotationResponse!
-							switch annotationResult! {
-								case .Success(let response): returnedResponse = response
-								default: break
+							guard case .Success(let returnedResponse) = annotationResult! else {
+								fail("failed to get response")
+								return
 							}
 							expect(returnedResponse).toNot(beNil())
 						}
