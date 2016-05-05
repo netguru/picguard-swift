@@ -31,6 +31,7 @@ public struct BoundingPolygon: APIRepresentationConvertible {
 
 extension BoundingPolygon: Equatable {}
 
+/// - SeeAlso: Equatable.==
 public func == (lhs: BoundingPolygon, rhs: BoundingPolygon) -> Bool {
 	return lhs.vertices == rhs.vertices
 }
