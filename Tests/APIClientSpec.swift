@@ -92,7 +92,7 @@ final class APIClientSpec: QuickSpec {
 					it("should return result with error BadResponse") {
 						var returnedResponse: NSHTTPURLResponse!
 						switch annotationResult! {
-							case .Error(let error): let returnedError = error as! APIClientError
+							case .Error(let error): let returnedError = error as! APIClient.Error
 								switch returnedError {
 									case .BadResponse(let response): returnedResponse = response
 							}

@@ -5,7 +5,6 @@
 // Licensed under the MIT License.
 //
 
-import Foundation
 
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse: APIRepresentationConvertible {

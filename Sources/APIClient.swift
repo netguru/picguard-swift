@@ -18,19 +18,20 @@ public protocol APIClientType {
 	/// - Parameter completion: The closure with `AnnotationResult`,
 	/// called when response comes from Google Cloud Vision API.
 	///
-	/// - Throws: Errors from `APIClientError` domain or other errors while composing URL request.
+	/// - Throws: Any error thrown by concrete implementations.
 	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws
 }
 
-/// Describes an API client error.
-public enum APIClientError: ErrorType {
-
-	/// Thrown if Google Cloud Vision API reponse status code is not OK.
-	case BadResponse(NSHTTPURLResponse)
-}
 
 /// A default Google Cloud Vision API client.
 public final class APIClient: APIClientType {
+
+	/// Describes an API client error.
+	public enum Error: ErrorType {
+
+		/// Thrown if Google Cloud Vision API reponse status code is not OK.
+		case BadResponse(NSHTTPURLResponse)
+	}
 
 	/// The key to Google Cloud Vision API.
 	public let APIKey: String
@@ -64,7 +65,7 @@ public final class APIClient: APIClientType {
 		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, responseError) in
 			let HTTPURLResponse = URLResponse as! NSHTTPURLResponse
 			guard HTTPURLResponse.statusCode == 200 else {
-				completion(AnnotationResult.Error(APIClientError.BadResponse(HTTPURLResponse)))
+				completion(AnnotationResult.Error(Error.BadResponse(HTTPURLResponse)))
 				return
 			}
 			if let responseError = responseError {
@@ -89,7 +90,7 @@ private extension APIClient {
 
 	/// Creates NSURLRequest using annotation request and APIKey
 	///
-	/// - Throws: Errors when fails to create request body using JSON dictionary 
+	/// - Throws: Errors when fails to create request body using JSON dictionary
 	/// provided from annotation request.
 	func composeURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
 		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
