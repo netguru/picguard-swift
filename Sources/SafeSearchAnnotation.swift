@@ -17,7 +17,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 		spoofLikelihood: Likelihood,
 		medicalLikelihood: Likelihood,
 		violenceLikelihood: Likelihood
-	) throws {
+	) {
 		self.adultLikelihood = adultLikelihood
 		self.spoofLikelihood = spoofLikelihood
 		self.medicalLikelihood = medicalLikelihood
@@ -32,4 +32,18 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 			violenceLikelihood: value.get("violence")
 		)
 	}
+}
+
+// MARK: -
+
+extension SafeSearchAnnotation: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: SafeSearchAnnotation, rhs: SafeSearchAnnotation) -> Bool {
+	return (
+		lhs.adultLikelihood == rhs.adultLikelihood &&
+		lhs.spoofLikelihood == rhs.spoofLikelihood &&
+		lhs.medicalLikelihood == rhs.medicalLikelihood &&
+		lhs.violenceLikelihood == rhs.violenceLikelihood
+	)
 }

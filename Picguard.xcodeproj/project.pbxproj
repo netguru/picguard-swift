@@ -33,6 +33,7 @@
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
 		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
 		5CA75D811CDB84FF002B0422 /* SafeSearchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */; };
+		5CA75D841CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
 		5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSearchAnnotation.swift; sourceTree = "<group>"; };
+		5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSearchAnnotationSpec.swift; sourceTree = "<group>"; };
 		5CAA775E1CCF62A200D42B39 /* Picguard.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Picguard.playground; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +195,7 @@
 		3A22BAA01CCFA6590033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
 				3A839C471CDB7EA4006216A6 /* Geometry */,
 				3A839C4B1CDB8016006216A6 /* Label Annotation */,
 				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
@@ -286,6 +289,14 @@
 			isa = PBXGroup;
 			children = (
 				5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */,
+			);
+			name = "Safe Search Annotation";
+			sourceTree = "<group>";
+		};
+		5CA75D821CDB88B2002B0422 /* Safe Search Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */,
 			);
 			name = "Safe Search Annotation";
 			sourceTree = "<group>";
@@ -457,6 +468,7 @@
 			files = (
 				5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */,
 				3A839C371CDB68B8006216A6 /* PositionSpec.swift in Sources */,
+				5CA75D841CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift in Sources */,
 				3AD8FE3A1CD202A7008557F3 /* APIRepresentationValueSpec.swift in Sources */,
 				5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */,
 				3A839C461CDB7E22006216A6 /* BoundingPolygonSpec.swift in Sources */,
