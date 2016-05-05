@@ -42,3 +42,16 @@ public struct Position: APIRepresentationConvertible {
 	}
 
 }
+
+// MARK: -
+
+extension Position: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: Position, rhs: Position) -> Bool {
+	return (
+		lhs.x == rhs.x &&
+		lhs.y == rhs.y &&
+		lhs.z == rhs.z
+	)
+}

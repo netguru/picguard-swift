@@ -1,9 +1,8 @@
 //
-//  PositionSpec.swift
-//  Picguard
+// PositionSpec.swift
 //
-//  Created by Adrian Kashivskyy on 05.05.2016.
-//  Copyright © 2016 Netguru Sp. z o.o. All rights reserved.
+// Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+// Licensed under the MIT License.
 //
 
 import Nimble
@@ -47,12 +46,4 @@ final class PositionSpec: QuickSpec {
 
 	}
 
-}
-
-// MARK: -
-
-extension Position: Equatable {}
-
-public func == (lhs: Position, rhs: Position) -> Bool {
-	return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z
 }

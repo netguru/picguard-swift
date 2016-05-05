@@ -36,3 +36,15 @@ public struct Vertex: APIRepresentationConvertible {
 	}
 
 }
+
+// MARK: -
+
+extension Vertex: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: Vertex, rhs: Vertex) -> Bool {
+	return (
+		lhs.x == rhs.x &&
+		lhs.y == rhs.y
+	)
+}

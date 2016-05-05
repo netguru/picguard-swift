@@ -26,3 +26,11 @@ public struct BoundingPolygon: APIRepresentationConvertible {
 	}
 
 }
+
+// MARK: -
+
+extension BoundingPolygon: Equatable {}
+
+public func == (lhs: BoundingPolygon, rhs: BoundingPolygon) -> Bool {
+	return lhs.vertices == rhs.vertices
+}
