@@ -39,5 +39,11 @@ public struct FaceLandmark: APIRepresentationConvertible {
 
 // MARK: -
 
+extension FaceLandmark: Equatable {}
 
+public func == (lhs: FaceLandmark, rhs: FaceLandmark) -> Bool {
+	return (
+		lhs.type == rhs.type &&
+		lhs.position == rhs.position
+	)
 }
