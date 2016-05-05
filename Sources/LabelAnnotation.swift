@@ -57,3 +57,16 @@ public struct LabelAnnotation: APIRepresentationConvertible {
 	}
 
 }
+
+// MARK: -
+
+extension LabelAnnotation: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: LabelAnnotation, rhs: LabelAnnotation) -> Bool {
+	return (
+		lhs.entityIdentifier == rhs.entityIdentifier &&
+		lhs.description == rhs.description &&
+		lhs.score == rhs.score
+	)
+}

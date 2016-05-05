@@ -96,15 +96,3 @@ final class LabelAnnotationSpec: QuickSpec {
 	}
 
 }
-
-// MARK: -
-
-extension LabelAnnotation: Equatable {}
-
-public func == (lhs: LabelAnnotation, rhs: LabelAnnotation) -> Bool {
-	return (
-		lhs.entityIdentifier == rhs.entityIdentifier &&
-		lhs.description == rhs.description &&
-		lhs.score == rhs.score
-	)
-}
