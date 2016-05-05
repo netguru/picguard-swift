@@ -151,3 +151,26 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 	}
 
 }
+
+// MARK: -
+
+extension FaceAnnotation: Equatable {}
+
+public func == (lhs: FaceAnnotation, rhs: FaceAnnotation) -> Bool {
+	return (
+		lhs.boundingPolygon == rhs.boundingPolygon &&
+		lhs.skinBoundingPolygon == rhs.skinBoundingPolygon &&
+		lhs.landmarks == rhs.landmarks &&
+		lhs.rollAngle == rhs.rollAngle &&
+		lhs.panAngle == rhs.panAngle &&
+		lhs.tiltAngle == rhs.tiltAngle &&
+		lhs.detectionConfidence == rhs.detectionConfidence &&
+		lhs.landmarkingConfidence == rhs.landmarkingConfidence &&
+		lhs.joyLikelihood == rhs.joyLikelihood &&
+		lhs.sorrowLikelihood == rhs.sorrowLikelihood &&
+		lhs.angerLikelihood == rhs.angerLikelihood &&
+		lhs.underExposedLikelihood == rhs.underExposedLikelihood &&
+		lhs.blurredLikelihood == rhs.blurredLikelihood &&
+		lhs.headwearLikelihood == rhs.headwearLikelihood
+	)
+}
