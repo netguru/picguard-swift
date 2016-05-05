@@ -12,6 +12,8 @@
 		3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */; };
 		3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */; };
 		3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */; };
+		3A839C371CDB68B8006216A6 /* PositionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C311CDB6156006216A6 /* PositionSpec.swift */; };
+		3A839C3E1CDB6F74006216A6 /* APIRepresentationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C3A1CDB691F006216A6 /* APIRepresentationHelpers.swift */; };
 		3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB931CDA660600EDCC61 /* Likelihood.swift */; };
 		3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */; };
 		3AC0BB9C1CDA769900EDCC61 /* BoundingPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */; };
@@ -56,6 +58,8 @@
 		3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotation.swift; sourceTree = "<group>"; };
 		3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationSpec.swift; sourceTree = "<group>"; };
 		3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoder.swift; sourceTree = "<group>"; };
+		3A839C311CDB6156006216A6 /* PositionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionSpec.swift; sourceTree = "<group>"; };
+		3A839C3A1CDB691F006216A6 /* APIRepresentationHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationHelpers.swift; sourceTree = "<group>"; };
 		3AC0BB931CDA660600EDCC61 /* Likelihood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Likelihood.swift; sourceTree = "<group>"; };
 		3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikelihoodSpec.swift; sourceTree = "<group>"; };
 		3AC0BB981CDA766A00EDCC61 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			children = (
 				3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */,
 				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
+				3A839C311CDB6156006216A6 /* PositionSpec.swift */,
 			);
 			name = "Result Models";
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 		3AD8FE361CD1FA74008557F3 /* API Representation */ = {
 			isa = PBXGroup;
 			children = (
+				3A839C3A1CDB691F006216A6 /* APIRepresentationHelpers.swift */,
 				3AD8FE391CD202A7008557F3 /* APIRepresentationValueSpec.swift */,
 				3AD8FE371CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift */,
 			);
@@ -412,9 +418,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */,
+				3A839C371CDB68B8006216A6 /* PositionSpec.swift in Sources */,
 				3AD8FE3A1CD202A7008557F3 /* APIRepresentationValueSpec.swift in Sources */,
 				5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */,
 				3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */,
+				3A839C3E1CDB6F74006216A6 /* APIRepresentationHelpers.swift in Sources */,
 				3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */,
 				3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */,
 			);
