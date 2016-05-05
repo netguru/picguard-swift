@@ -18,7 +18,6 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 			describe("init with api representation") {
 
 				context("with valid dictionary") {
-
 					initWithAPIRepresentationShouldSucceed(
 						value:[
 							"adult": "VERY_LIKELY",
@@ -32,29 +31,24 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 							medicalLikelihood: .Possible,
 							violenceLikelihood: .Likely)
 					)
-
 				}
 
 				describe("init with api representation") {
 
 					context("with empty dictionary") {
-
 						initWithAPIRepresentationShouldFail(
 							value: [String: Int](),
 							type: SafeSearchAnnotation.self,
 							error: APIRepresentationError.MissingDictionaryKey
 						)
-
 					}
 
 					context("with invalid representation value type") {
-
 						initWithAPIRepresentationShouldFail(
 							value: "foobar",
 							type: SafeSearchAnnotation.self,
 							error: APIRepresentationError.UnexpectedValueType
 						)
-
 					}
 					
 				}

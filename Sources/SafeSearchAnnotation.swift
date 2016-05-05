@@ -11,7 +11,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing adult contents.
 	let adultLikelihood: Likelihood
 
-	/// Likelihood that an obvious modification was made to the image's canonical version 
+	/// Likelihood that an obvious modification was made to the image's canonical version
 	/// to make it appear funny or offensive.
 	let spoofLikelihood: Likelihood
 
@@ -21,6 +21,15 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing violence content.
 	let violenceLikelihood: Likelihood
 
+	// MARK: Initializers
+
+	/// Initializes the receiver with raw values.
+	///
+	/// - Parameters:
+	///     - adultLikelihood: Likelihood of adult content.
+	///     - spoofLikelihood: Likelihood of spoof content.
+	///     - medicalLikelihood: Likelihood of medical content.
+	///     - violenceLikelihood: Likelihood of violence content.
 	public init(
 		adultLikelihood: Likelihood,
 		spoofLikelihood: Likelihood,
