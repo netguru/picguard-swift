@@ -31,22 +31,6 @@ final class LikelihoodSpec: QuickSpec {
 				}
 			}
 
-			func initWithAPIRepresentationShouldSucceed(value value: APIRepresentationValue, expected: Likelihood) {
-				it("should succeed to initialize") {
-					expect {
-						try Likelihood(APIRepresentationValue: value)
-					}.to(equal(expected))
-				}
-			}
-
-			func initWithAPIRepresentationShouldFail<E: ErrorType>(value value: APIRepresentationValue, error: E) {
-				it("should fail to initialize") {
-					expect {
-						try Likelihood(APIRepresentationValue: value)
-					}.to(throwError(error))
-				}
-			}
-
 			describe("init with string") {
 
 				context("with valid string representing unknown likelihood") {
@@ -82,15 +66,15 @@ final class LikelihoodSpec: QuickSpec {
 			describe("init with api representation") {
 
 				context("with valid string") {
-					initWithAPIRepresentationShouldSucceed(value: .String("POSSIBLE"), expected: .Possible)
+					initWithAPIRepresentationShouldSucceed(value: "POSSIBLE", expected: Likelihood.Possible)
 				}
 
 				context("with invalid string") {
-					initWithAPIRepresentationShouldFail(value: .String("BAR"), error: Likelihood.Error.InvalidStringValue)
+					initWithAPIRepresentationShouldFail(value: "BAR", type: Likelihood.self, error: Likelihood.Error.InvalidStringValue)
 				}
 
 				context("with invalid representation value type") {
-					initWithAPIRepresentationShouldFail(value: .Bool(true), error: APIRepresentationError.UnexpectedValueType)
+					initWithAPIRepresentationShouldFail(value: true, type: Likelihood.self, error: APIRepresentationError.UnexpectedValueType)
 				}
 
 			}

@@ -19,12 +19,7 @@ final class LabelAnnotationSpec: QuickSpec {
 				it("should succeed to initialize") {
 					expect {
 						try LabelAnnotation(entityIdentifier: "foo", description: "bar", score: score)
-					}.to(NonNilMatcherFunc { expression, _ in
-						guard let actual = try expression.evaluate() else {
-							return false
-						}
-						return actual.score == score
-					})
+					}.toNot(throwError())
 				}
 			}
 
@@ -33,31 +28,6 @@ final class LabelAnnotationSpec: QuickSpec {
 					expect {
 						try LabelAnnotation(entityIdentifier: "foo", description: "bar", score: score)
 					}.to(throwError(LabelAnnotation.Error.InvalidScore))
-				}
-			}
-
-			func initWithAPIRepresentationShouldSucceed(dictionary dictionary: [String: AnyObject], expected: LabelAnnotation) {
-				it("should succeed to initialize") {
-					expect {
-						try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(data: NSJSONSerialization.dataWithJSONObject(dictionary, options: [])))
-					}.to(NonNilMatcherFunc<LabelAnnotation> { expression, _ in
-						guard let actual = try expression.evaluate() else {
-							return false
-						}
-						return (
-							actual.entityIdentifier == expected.entityIdentifier &&
-							actual.description == expected.description &&
-							actual.score == expected.score
-						)
-					})
-				}
-			}
-
-			func initWithAPIRepresentationShouldFail<E: ErrorType>(dictionary dictionary: [String: AnyObject], error: E) {
-				it("should fail to initialize") {
-					expect {
-						try LabelAnnotation(APIRepresentationValue: APIRepresentationValue(data: NSJSONSerialization.dataWithJSONObject(dictionary, options: [])))
-					}.to(throwError(error))
 				}
 			}
 
@@ -88,7 +58,7 @@ final class LabelAnnotationSpec: QuickSpec {
 			describe("init with api representation") {
 
 				context("with valid dictionary") {
-					initWithAPIRepresentationShouldSucceed(dictionary: [
+					initWithAPIRepresentationShouldSucceed(value: [
 						"mid": "foo",
 						"description": "bar",
 						"score": 0.123456789,
@@ -100,23 +70,23 @@ final class LabelAnnotationSpec: QuickSpec {
 				}
 
 				context("with empty dictionary") {
-					initWithAPIRepresentationShouldFail(dictionary: [:], error: APIRepresentationError.MissingDictionaryKey)
+					initWithAPIRepresentationShouldFail(value: [:], type: LabelAnnotation.self, error: APIRepresentationError.MissingDictionaryKey)
 				}
 
 				context("with dictionawy with invalid types") {
-					initWithAPIRepresentationShouldFail(dictionary: [
+					initWithAPIRepresentationShouldFail(value: [
 						"mid": 123,
 						"description": 123,
 						"score": true,
-					], error: APIRepresentationError.UnexpectedValueType)
+					], type: LabelAnnotation.self, error: APIRepresentationError.UnexpectedValueType)
 				}
 
 				context("with dictionary with invalid score") {
-					initWithAPIRepresentationShouldFail(dictionary: [
+					initWithAPIRepresentationShouldFail(value: [
 						"mid": "foo",
 						"description": "bar",
 						"score": 2.345678,
-					], error: LabelAnnotation.Error.InvalidScore)
+					], type: LabelAnnotation.self, error: LabelAnnotation.Error.InvalidScore)
 				}
 
 			}
@@ -125,4 +95,16 @@ final class LabelAnnotationSpec: QuickSpec {
 
 	}
 
+}
+
+// MARK: -
+
+extension LabelAnnotation: Equatable {}
+
+public func == (lhs: LabelAnnotation, rhs: LabelAnnotation) -> Bool {
+	return (
+		lhs.entityIdentifier == rhs.entityIdentifier &&
+		lhs.description == rhs.description &&
+		lhs.score == rhs.score
+	)
 }
