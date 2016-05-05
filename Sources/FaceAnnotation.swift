@@ -134,7 +134,7 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 		try self.init(
 			boundingPolygon: value.get("boundingPoly"),
 			skinBoundingPolygon: value.get("fdBoundingPoly"),
-			landmarks:  value.get("landmarks"),
+			landmarks: value.get("landmarks"),
 			rollAngle: value.get("rollAngle"),
 			panAngle: value.get("panAngle"),
 			tiltAngle: value.get("tiltAngle"),
