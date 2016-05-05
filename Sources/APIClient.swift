@@ -51,7 +51,7 @@ public final class APIClient: APIClientType {
 	public init(
 		APIKey: String,
 		encoder: ImageEncoding,
-		session: NSURLSession = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration())
+		session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	) {
 		self.APIKey = APIKey
 		self.encoder = encoder
@@ -87,6 +87,10 @@ public final class APIClient: APIClientType {
 
 private extension APIClient {
 
+	/// Creates NSURLRequest using annotation request and APIKey
+	///
+	/// - Throws: Errors when fails to create request body using JSON dictionary 
+	/// provided from annotation request.
 	func composeURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
 		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
 		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
