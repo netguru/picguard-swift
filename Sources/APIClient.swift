@@ -17,9 +17,7 @@ public protocol APIClientType {
 	///
 	/// - Parameter completion: The closure with `AnnotationResult`,
 	/// called when response comes from Google Cloud Vision API.
-	///
-	/// - Throws: Any error thrown by concrete implementations.
-	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws
+	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void)
 }
 
 
@@ -29,8 +27,14 @@ public final class APIClient: APIClientType {
 	/// Describes an API client error.
 	public enum Error: ErrorType {
 
-		/// Thrown if Google Cloud Vision API reponse status code is not OK.
+		/// Returned if Google Cloud Vision API reponse status code is not OK.
 		case BadResponse(NSHTTPURLResponse)
+
+		/// Returned if Google Cloud Vision API reponse type is not HTTP.
+		case UnsupportedResponseType(NSURLResponse)
+
+		/// Returned if Google Cloud Vision API does not return any reponse.
+		case NoResponse
 	}
 
 	/// The key to Google Cloud Vision API.
@@ -59,11 +63,54 @@ public final class APIClient: APIClientType {
 		self.session = session
 	}
 
-	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) throws {
+	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
+		do {
+			let URLRequest = try createURLRequest(request)
+			let dataTask = createDataTask(URLRequest, completion: completion)
+			dataTask.resume()
+		} catch let error {
+			dispatch_async(dispatch_get_main_queue()) {
+				completion(AnnotationResult.Error(error))
+			}
+		}
+	}
+}
 
-		let URLRequest = try composeURLRequest(request)
-		session.dataTaskWithRequest(URLRequest) { (data, URLResponse, responseError) in
-			let HTTPURLResponse = URLResponse as! NSHTTPURLResponse
+// MARK: - Private methods
+
+private extension APIClient {
+
+	/// Creates URL request using annotation request and APIKey
+	///
+	/// - Throws: Errors when fails to create request body using JSON dictionary
+	/// provided from annotation request.
+	///
+	/// - Returns: Configured `NSURLRequest`.
+	func createURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
+		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
+		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
+		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(requestsJSONDictioanry, options: [])
+		let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")
+		let request = NSMutableURLRequest(URL: URL!)
+		request.HTTPMethod = "POST"
+		request.HTTPBody = requestsJSONData
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		return request.copy() as! NSURLRequest
+	}
+
+	/// Created data task using URL request and completion block
+	///
+	/// - Returns: Configured `NSURLSessionDataTask`.
+	func createDataTask(URLRequest: NSURLRequest, completion: (AnnotationResult) -> Void) -> NSURLSessionDataTask {
+		return session.dataTaskWithRequest(URLRequest) { (data, URLResponse, responseError) in
+			guard let URLResponse = URLResponse else {
+				completion(AnnotationResult.Error(Error.NoResponse))
+				return
+			}
+			guard let HTTPURLResponse = URLResponse as? NSHTTPURLResponse else {
+				completion(AnnotationResult.Error(Error.UnsupportedResponseType(URLResponse)))
+				return
+			}
 			guard HTTPURLResponse.statusCode == 200 else {
 				completion(AnnotationResult.Error(Error.BadResponse(HTTPURLResponse)))
 				return
@@ -80,27 +127,6 @@ public final class APIClient: APIClientType {
 					completion(AnnotationResult.Error(error))
 				}
 			}
-		}.resume()
-	}
-}
-
-// MARK: - Private methods
-
-private extension APIClient {
-
-	/// Creates NSURLRequest using annotation request and APIKey
-	///
-	/// - Throws: Errors when fails to create request body using JSON dictionary
-	/// provided from annotation request.
-	func composeURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
-		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
-		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
-		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(requestsJSONDictioanry, options: [])
-		let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")
-		let request = NSMutableURLRequest(URL: URL!)
-		request.HTTPMethod = "POST"
-		request.HTTPBody = requestsJSONData
-		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		return request.copy() as! NSURLRequest
+		}
 	}
 }

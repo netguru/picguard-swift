@@ -33,7 +33,7 @@ final class APIClientSpec: QuickSpec {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
 				let image = AnnotationRequest.Image.Image(UIImage())
 				let request = try! AnnotationRequest.init(features: features, image: image)
-				try! sut.perform(request: request) { result in
+				sut.perform(request: request) { result in
 					annotationResult = result
 				}
 			}
@@ -80,6 +80,49 @@ final class APIClientSpec: QuickSpec {
 					dataTaskCompletionHandler = mockSession.dataTaskCompletionHandler
 				}
 
+				context("when there is no response") {
+
+					beforeEach {
+						dataTaskCompletionHandler(nil, nil, nil)
+					}
+
+					it("should return result with error NoResponse") {
+						var didReturnNoResponseError = false
+						switch annotationResult! {
+							case .Error(let error): let returnedError = error as! APIClient.Error
+							switch returnedError {
+								case .NoResponse: didReturnNoResponseError = true
+								default: break
+							}
+							default: break
+						}
+						expect(didReturnNoResponseError).to(beTruthy())
+					}
+				}
+
+				context("when response type is not HTTP") {
+
+					var response: NSURLResponse!
+
+					beforeEach {
+						response = NSURLResponse()
+						dataTaskCompletionHandler(nil, response, nil)
+					}
+
+					it("should return result with error UnsupportedResponseType") {
+						var returnedResponse: NSURLResponse!
+						switch annotationResult! {
+							case .Error(let error): let returnedError = error as! APIClient.Error
+							switch returnedError {
+								case .UnsupportedResponseType(let response): returnedResponse = response
+								default: break
+							}
+							default: break
+						}
+						expect(returnedResponse).to(equal(response))
+					}
+				}
+
 				context("when response status code is not 200") {
 
 					var response: NSHTTPURLResponse!
@@ -95,6 +138,7 @@ final class APIClientSpec: QuickSpec {
 							case .Error(let error): let returnedError = error as! APIClient.Error
 								switch returnedError {
 									case .BadResponse(let response): returnedResponse = response
+									default: break
 							}
 							default: break
 						}
