@@ -19,6 +19,7 @@
 		3A839C491CDB7FDD006216A6 /* FaceLandmarkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */; };
 		3A839C511CDB834D006216A6 /* FaceAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C501CDB834D006216A6 /* FaceAnnotationSpec.swift */; };
 		3A839C531CDB910B006216A6 /* FaceLandmarkSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C521CDB910B006216A6 /* FaceLandmarkSpec.swift */; };
+		3A839C551CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C541CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift */; };
 		3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB931CDA660600EDCC61 /* Likelihood.swift */; };
 		3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */; };
 		3AC0BB9C1CDA769900EDCC61 /* BoundingPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */; };
@@ -70,6 +71,7 @@
 		3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceLandmarkType.swift; sourceTree = "<group>"; };
 		3A839C501CDB834D006216A6 /* FaceAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceAnnotationSpec.swift; sourceTree = "<group>"; };
 		3A839C521CDB910B006216A6 /* FaceLandmarkSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceLandmarkSpec.swift; sourceTree = "<group>"; };
+		3A839C541CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceLandmarkTypeSpec.swift; sourceTree = "<group>"; };
 		3AC0BB931CDA660600EDCC61 /* Likelihood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Likelihood.swift; sourceTree = "<group>"; };
 		3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikelihoodSpec.swift; sourceTree = "<group>"; };
 		3AC0BB981CDA766A00EDCC61 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				3A839C501CDB834D006216A6 /* FaceAnnotationSpec.swift */,
 				3A839C521CDB910B006216A6 /* FaceLandmarkSpec.swift */,
+				3A839C541CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift */,
 			);
 			name = "Face Annotation";
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */,
 				3A839C531CDB910B006216A6 /* FaceLandmarkSpec.swift in Sources */,
 				3A839C511CDB834D006216A6 /* FaceAnnotationSpec.swift in Sources */,
+				3A839C551CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift in Sources */,
 				3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
