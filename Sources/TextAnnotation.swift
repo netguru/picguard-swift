@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-/// Describes the result of label detection.
+/// Describes the result of text detection.
 public struct TextAnnotation: APIRepresentationConvertible {
 
 	/// Image region to which this annotation belongs. Produced for entire text
