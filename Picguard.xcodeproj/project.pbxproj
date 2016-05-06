@@ -35,6 +35,7 @@
 		3ADA941A1CDCCDB000AB5736 /* TextAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */; };
 		3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */; };
 		3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94201CDCE8D800AB5736 /* Location.swift */; };
+		3ADA94251CDCEF9800AB5736 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */; };
 		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
@@ -101,6 +102,7 @@
 		3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotation.swift; sourceTree = "<group>"; };
 		3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotationSpec.swift; sourceTree = "<group>"; };
 		3ADA94201CDCE8D800AB5736 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
 		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
@@ -231,12 +233,14 @@
 		3A22BAA01CCFA6590033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
 				3A839C471CDB7EA4006216A6 /* Geometry */,
 				3A839C4B1CDB8016006216A6 /* Label Annotation */,
 				3A839C4F1CDB833F006216A6 /* Face Annotation */,
-				3ADA941C1CDCD00A00AB5736 /* Text Detection */,
+				3ADA941C1CDCD00A00AB5736 /* Text Annotation */,
+				3ADA94221CDCEE4700AB5736 /* Landmark Annotation */,
+				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
 				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
+				3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */,
 			);
 			name = "Result Models";
 			sourceTree = "<group>";
@@ -342,15 +346,22 @@
 			name = "Text Annotation";
 			sourceTree = "<group>";
 		};
-		3ADA941C1CDCD00A00AB5736 /* Text Detection */ = {
+		3ADA941C1CDCD00A00AB5736 /* Text Annotation */ = {
 			isa = PBXGroup;
 			children = (
 				3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */,
 			);
-			name = "Text Detection";
+			name = "Text Annotation";
 			sourceTree = "<group>";
 		};
 		3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Landmark Annotation";
+			sourceTree = "<group>";
+		};
+		3ADA94221CDCEE4700AB5736 /* Landmark Annotation */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -583,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */,
+				3ADA94251CDCEF9800AB5736 /* LocationSpec.swift in Sources */,
 				3A839C371CDB68B8006216A6 /* PositionSpec.swift in Sources */,
 				5CA75D841CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift in Sources */,
 				3AD8FE3A1CD202A7008557F3 /* APIRepresentationValueSpec.swift in Sources */,
