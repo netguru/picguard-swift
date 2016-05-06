@@ -13,27 +13,60 @@ final class AnnotationResponseSpec: QuickSpec {
 
 	override func spec() {
 
-		var sut: AnnotationResponse!
+		describe("AnnotationResponse") {
 
-		afterEach {
-			sut = nil
+			describe("init with api representation") {
+
+				context("with valid dictionary") {
+
+					context("with label annotations") {
+						initWithAPIRepresentationShouldSucceed(
+							value:[
+								"labelAnnotations": [
+									[
+										"mid": "/m/068hy",
+										"description": "dog",
+										"score": 0.2
+									],
+									[
+										"mid": "/m/032hy",
+										"description": "owl",
+										"score": 0.89
+									]
+								]
+							],
+							expected: AnnotationResponse(labelAnnotations: [
+									try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "dog", score: 0.2),
+									try! LabelAnnotation(entityIdentifier: "/m/032hy", description: "owl", score: 0.89)
+								]
+							)
+						)
+					}
+				}
+
+				describe("init with api representation") {
+
+					context("with empty dictionary") {
+						initWithAPIRepresentationShouldFail(
+							value: [String: AnyObject](),
+							type: AnnotationResponse.self,
+							error: APIRepresentationError.MissingDictionaryKey
+						)
+					}
+
+					context("with invalid representation value type") {
+						initWithAPIRepresentationShouldFail(
+							value: "foobar",
+							type: AnnotationResponse.self,
+							error: APIRepresentationError.UnexpectedValueType
+						)
+					}
+
+				}
+				
+			}
+			
 		}
 
-		context("when initialized with label response") {
-
-			beforeEach {
-				let bundle = NSBundle(forClass: AnnotationResponseSpec.self)
-				let dataURL = bundle.URLForResource("label_response", withExtension: ".json")
-				let data = NSData(contentsOfURL: dataURL!)
-				let JSONDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String: [AnyObject]]
-				let response = JSONDictionary["responses"]!.first
-				let value = try! APIRepresentationValue(value: response!)
-				sut = try! AnnotationResponse(APIRepresentationValue: value)
-			}
-
-			it("should have 3 label annotations") {
-				expect(sut.labelAnnotations?.count).to(equal(3))
-			}
-		}
 	}
 }
