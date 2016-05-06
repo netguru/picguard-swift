@@ -143,7 +143,7 @@ public func == (lhs: AnnotationRequest, rhs: AnnotationRequest) -> Bool {
 	return lhs.features == rhs.features && lhs.image == rhs.image
 }
 
-// MARK: - AnnotationRequest.Feature
+// MARK: -
 
 extension AnnotationRequest.Feature: Equatable {}
 
@@ -177,7 +177,7 @@ extension AnnotationRequest.Feature: Hashable {
 	}
 }
 
-// MARK: - Image
+// MARK: -
 
 extension AnnotationRequest.Image: Equatable {}
 
