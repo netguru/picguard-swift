@@ -70,7 +70,7 @@ public enum FaceLandmarkType: APIRepresentationConvertible {
 	/// Right eyebrow, upper midpoint.
 	case RightEyebrowUpperMidpoint
 
-	/// 	Nose tip.
+	/// Nose tip.
 	case NoseTip
 
 	/// Upper lip.
@@ -97,7 +97,7 @@ public enum FaceLandmarkType: APIRepresentationConvertible {
 	/// Nose, bottom right.
 	case NoseBottomRight
 
-	/// 	Left ear tragion.
+	/// Left ear tragion.
 	case LeftEarTragion
 
 	/// Right ear tragion.

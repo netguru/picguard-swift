@@ -192,6 +192,7 @@ public func == (lhs: FaceAnnotation, rhs: FaceAnnotation) -> Bool {
 		lhs.joyLikelihood == rhs.joyLikelihood &&
 		lhs.sorrowLikelihood == rhs.sorrowLikelihood &&
 		lhs.angerLikelihood == rhs.angerLikelihood &&
+		lhs.surpriseLikelihood == rhs.surpriseLikelihood &&
 		lhs.underExposedLikelihood == rhs.underExposedLikelihood &&
 		lhs.blurredLikelihood == rhs.blurredLikelihood &&
 		lhs.headwearLikelihood == rhs.headwearLikelihood
