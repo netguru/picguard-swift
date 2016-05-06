@@ -36,6 +36,7 @@
 		3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */; };
 		3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94201CDCE8D800AB5736 /* Location.swift */; };
 		3ADA94251CDCEF9800AB5736 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */; };
+		3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */; };
 		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
@@ -103,6 +104,7 @@
 		3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotationSpec.swift; sourceTree = "<group>"; };
 		3ADA94201CDCE8D800AB5736 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
+		3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
 		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 		3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */ = {
 			isa = PBXGroup;
 			children = (
+				3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */,
 			);
 			name = "Landmark Annotation";
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */,
 				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
 				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
 				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
