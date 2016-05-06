@@ -136,9 +136,34 @@ public struct AnnotationRequest {
 
 // MARK: -
 
-/// - SeeAlso: Hashable.hashValue
+extension AnnotationRequest: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationRequest, rhs: AnnotationRequest) -> Bool {
+	return lhs.features == rhs.features && lhs.image == rhs.image
+}
+
+// MARK: - AnnotationRequest.Feature
+
+extension AnnotationRequest.Feature: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
+	switch (lhs, rhs) {
+	case (.Label, .Label): return true
+	case (.Text, .Text): return true
+	case (.Face, .Face): return true
+	case (.Landmark, .Landmark): return true
+	case (.Logo, .Logo): return true
+	case (.SafeSearch, .SafeSearch): return true
+	case (.ImageProperties, .ImageProperties): return true
+	default: return false
+	}
+}
+
 extension AnnotationRequest.Feature: Hashable {
 
+	/// - SeeAlso: Hashable.hashValue
 	public var hashValue: Int {
 		switch self {
 			case .Label: return 1
@@ -152,18 +177,19 @@ extension AnnotationRequest.Feature: Hashable {
 	}
 }
 
-// MARK: -
+// MARK: - Image
+
+extension AnnotationRequest.Image: Equatable {}
 
 /// - SeeAlso: Equatable.==
-public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
+public func == (lhs: AnnotationRequest.Image, rhs: AnnotationRequest.Image) -> Bool {
 	switch (lhs, rhs) {
-		case (.Label, .Label): return true
-		case (.Text, .Text): return true
-		case (.Face, .Face): return true
-		case (.Landmark, .Landmark): return true
-		case (.Logo, .Logo): return true
-		case (.SafeSearch, .SafeSearch): return true
-		case (.ImageProperties, .ImageProperties): return true
+		case let (.URL(lhsURL), .URL(rhsURL)):
+			return lhsURL == rhsURL
+		case let (.Image(lhsImage), .Image(rhsImage)):
+			return UIImagePNGRepresentation(lhsImage) == UIImagePNGRepresentation(rhsImage)
+		case let (.Data(lhsData), .Data(rhsData)):
+			return lhsData == rhsData
 		default: return false
 	}
 }
