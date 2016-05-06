@@ -33,7 +33,6 @@
 		3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE371CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift */; };
 		3AD8FE3A1CD202A7008557F3 /* APIRepresentationValueSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE391CD202A7008557F3 /* APIRepresentationValueSpec.swift */; };
 		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
-		5C70EEDD1CDCA96800D22125 /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDC1CDCA96800D22125 /* ErrorType.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
 		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
@@ -97,7 +96,6 @@
 		3AD8FE371CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationConvertibleSpec.swift; sourceTree = "<group>"; };
 		3AD8FE391CD202A7008557F3 /* APIRepresentationValueSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationValueSpec.swift; sourceTree = "<group>"; };
 		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		5C70EEDC1CDCA96800D22125 /* ErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 			children = (
 				3AD8FE2B1CD14FB4008557F3 /* Dictionary.swift */,
 				5C70EEDA1CDC9EC400D22125 /* Array.swift */,
-				5C70EEDC1CDCA96800D22125 /* ErrorType.swift */,
 			);
 			name = "Type Extensions";
 			sourceTree = "<group>";
@@ -524,7 +521,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
-				5C70EEDD1CDCA96800D22125 /* ErrorType.swift in Sources */,
 				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
 				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
 				3A839C491CDB7FDD006216A6 /* FaceLandmarkType.swift in Sources */,

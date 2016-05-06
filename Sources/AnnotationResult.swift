@@ -14,16 +14,3 @@ public enum AnnotationResult {
 	/// Type indicating error when getting response from Google Cloud Vision API.
 	case Error(ErrorType)
 }
-
-// MARK: -
-
-extension AnnotationResult: Equatable {}
-
-/// - SeeAlso: Equatable.==
-public func == (lhs: AnnotationResult, rhs: AnnotationResult) -> Bool {
-	switch (lhs, rhs) {
-		case let (.Success(lhsResponse), .Success(rhsResponse)): return lhsResponse == rhsResponse
-		case let (.Error(lhsError), .Error(rhsError)): return lhsError == rhsError
-		default: return false
-	}
-}

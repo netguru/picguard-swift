@@ -87,7 +87,13 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error NoResponse") {
-						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.NoResponse)))
+						guard
+							case .Error(let error) = annotationResult!,
+							case .NoResponse = error as! APIClient.Error
+						else {
+							fail("failed to get error")
+							return
+						}
 					}
 				}
 
@@ -101,7 +107,14 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error UnsupportedResponseType") {
-						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.UnsupportedResponseType(response))))
+						guard
+							case .Error(let error) = annotationResult!,
+							case .UnsupportedResponseType(let returnedResponse) = error as! APIClient.Error
+						else {
+							fail("failed to get response")
+							return
+						}
+						expect(returnedResponse).to(equal(response))
 					}
 				}
 
@@ -115,7 +128,14 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error BadResponse") {
-						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.BadResponse(response))))
+						guard
+							case .Error(let error) = annotationResult!,
+							case .BadResponse(let returnedResponse) = error as! APIClient.Error
+						else {
+							fail("failed to get response")
+							return
+						}
+						expect(returnedResponse).to(equal(response))
 					}
 				}
 
@@ -130,7 +150,11 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with given response error") {
-						expect(annotationResult).to(equal(AnnotationResult.Error(responseError)))
+						guard case .Error(let returnedError) = annotationResult! else {
+							fail("failed to error")
+							return
+						}
+						expect(returnedError as NSError).to(equal(responseError))
 					}
 				}
 
@@ -170,7 +194,11 @@ final class APIClientSpec: QuickSpec {
 						it("should return result containing response") {
 							let labelAnnotations = [try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "pet", score: 0.2)]
 							let annotationResponse = AnnotationResponse(labelAnnotations: labelAnnotations)
-							expect(annotationResult).to(equal(AnnotationResult.Success(annotationResponse)))
+							guard case .Success(let returnedResponse) = annotationResult! else {
+								fail("failed to get response")
+								return
+							}
+							expect(returnedResponse).to(equal(annotationResponse))
 						}
 					}
 				}
