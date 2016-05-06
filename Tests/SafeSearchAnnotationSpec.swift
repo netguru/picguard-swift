@@ -26,10 +26,11 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 							"violence": "LIKELY"
 						],
 						expected: SafeSearchAnnotation(
-							adultLikelihood: .VeryLikely,
-							spoofLikelihood: .VeryUnlikely,
-							medicalLikelihood: .Possible,
-							violenceLikelihood: .Likely)
+							adultContentLikelihood: .VeryLikely,
+							spoofContentLikelihood: .VeryUnlikely,
+							medicalContentLikelihood: .Possible,
+							violentContentLikelihood: .Likely
+						)
 					)
 				}
 

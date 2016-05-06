@@ -9,46 +9,46 @@
 public struct SafeSearchAnnotation: APIRepresentationConvertible {
 
 	/// Likelihood of image containing adult contents.
-	let adultLikelihood: Likelihood
+	let adultContentLikelihood: Likelihood
 
 	/// Likelihood that an obvious modification was made to the image's canonical version
 	/// to make it appear funny or offensive.
-	let spoofLikelihood: Likelihood
+	let spoofContentLikelihood: Likelihood
 
 	/// Likelihood of image containing medical content.
-	let medicalLikelihood: Likelihood
+	let medicalContentLikelihood: Likelihood
 
-	/// Likelihood of image containing violence content.
-	let violenceLikelihood: Likelihood
+	/// Likelihood of image containing violent content.
+	let violentContentLikelihood: Likelihood
 
 	// MARK: Initializers
 
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
-	///     - adultLikelihood: Likelihood of adult content.
-	///     - spoofLikelihood: Likelihood of spoof content.
-	///     - medicalLikelihood: Likelihood of medical content.
-	///     - violenceLikelihood: Likelihood of violence content.
+	///     - adultContentLikelihood: Likelihood of adult content.
+	///     - spoofContentLikelihood: Likelihood of spoof content.
+	///     - medicalContentLikelihood: Likelihood of medical content.
+	///     - violentContentLikelihood: Likelihood of violent content.
 	public init(
-		adultLikelihood: Likelihood,
-		spoofLikelihood: Likelihood,
-		medicalLikelihood: Likelihood,
-		violenceLikelihood: Likelihood
+		adultContentLikelihood: Likelihood,
+		spoofContentLikelihood: Likelihood,
+		medicalContentLikelihood: Likelihood,
+		violentContentLikelihood: Likelihood
 	) {
-		self.adultLikelihood = adultLikelihood
-		self.spoofLikelihood = spoofLikelihood
-		self.medicalLikelihood = medicalLikelihood
-		self.violenceLikelihood = violenceLikelihood
+		self.adultContentLikelihood = adultContentLikelihood
+		self.spoofContentLikelihood = spoofContentLikelihood
+		self.medicalContentLikelihood = medicalContentLikelihood
+		self.violentContentLikelihood = violentContentLikelihood
 	}
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		try self.init(
-			adultLikelihood: value.get("adult"),
-			spoofLikelihood: value.get("spoof"),
-			medicalLikelihood: value.get("medical"),
-			violenceLikelihood: value.get("violence")
+			adultContentLikelihood: value.get("adult"),
+			spoofContentLikelihood: value.get("spoof"),
+			medicalContentLikelihood: value.get("medical"),
+			violentContentLikelihood: value.get("violence")
 		)
 	}
 }
@@ -60,9 +60,9 @@ extension SafeSearchAnnotation: Equatable {}
 /// - SeeAlso: Equatable.==
 public func == (lhs: SafeSearchAnnotation, rhs: SafeSearchAnnotation) -> Bool {
 	return (
-		lhs.adultLikelihood == rhs.adultLikelihood &&
-		lhs.spoofLikelihood == rhs.spoofLikelihood &&
-		lhs.medicalLikelihood == rhs.medicalLikelihood &&
-		lhs.violenceLikelihood == rhs.violenceLikelihood
+		lhs.adultContentLikelihood == rhs.adultContentLikelihood &&
+		lhs.spoofContentLikelihood == rhs.spoofContentLikelihood &&
+		lhs.medicalContentLikelihood == rhs.medicalContentLikelihood &&
+		lhs.violentContentLikelihood == rhs.violentContentLikelihood
 	)
 }
