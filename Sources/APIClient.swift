@@ -63,6 +63,7 @@ public final class APIClient: APIClientType {
 		self.session = session
 	}
 
+	/// - SeeAlso: APIClientType.perform(request:completion:)
 	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
 		do {
 			let URLRequest = try createURLRequest(request)
@@ -84,8 +85,7 @@ private extension APIClient {
 
 	/// Creates URL request using annotation request and APIKey
 	///
-	/// - Throws: Errors when fails to create request body using JSON dictionary
-	/// provided from annotation request.
+	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` while creating request body.
 	///
 	/// - Returns: Configured `NSURLRequest`.
 	func createURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {

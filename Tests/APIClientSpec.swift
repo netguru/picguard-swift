@@ -186,18 +186,19 @@ final class APIClientSpec: QuickSpec {
 					context("when data can be parsed") {
 
 						beforeEach {
-							let bundle = NSBundle(forClass: AnnotationResponseSpec.self)
-							let dataURL = bundle.URLForResource("label_response", withExtension: ".json")
-							let data = NSData(contentsOfURL: dataURL!)
+							let JSON = ["responses": [["labelAnnotations": [["mid": "/m/068hy", "description": "pet", "score": 0.2]]]]]
+							let data = try! NSJSONSerialization.dataWithJSONObject(JSON, options: [])
 							dataTaskCompletionHandler(data, response, nil)
 						}
 
 						it("should return result containing response") {
+							let labelAnnotations = [try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "pet", score: 0.2)]
+							let annotationResponse = AnnotationResponse(labelAnnotations: labelAnnotations)
 							guard case .Success(let returnedResponse) = annotationResult! else {
 								fail("failed to get response")
 								return
 							}
-							expect(returnedResponse).toNot(beNil())
+							expect(returnedResponse).to(equal(annotationResponse))
 						}
 					}
 				}
