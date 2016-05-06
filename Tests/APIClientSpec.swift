@@ -87,13 +87,7 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error NoResponse") {
-						guard
-							case .Error(let error) = annotationResult!,
-							case .NoResponse = error as! APIClient.Error
-						else {
-							fail("failed to get error")
-							return
-						}
+						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.NoResponse)))
 					}
 				}
 
@@ -107,14 +101,7 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error UnsupportedResponseType") {
-						guard
-							case .Error(let error) = annotationResult!,
-							case .UnsupportedResponseType(let returnedResponse) = error as! APIClient.Error
-						else {
-							fail("failed to get response")
-							return
-						}
-						expect(returnedResponse).to(equal(response))
+						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.UnsupportedResponseType(response))))
 					}
 				}
 
@@ -128,14 +115,7 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with error BadResponse") {
-						guard
-							case .Error(let error) = annotationResult!,
-							case .BadResponse(let returnedResponse) = error as! APIClient.Error
-						else {
-							fail("failed to get response")
-							return
-						}
-						expect(returnedResponse).to(equal(response))
+						expect(annotationResult).to(equal(AnnotationResult.Error(APIClient.Error.BadResponse(response))))
 					}
 				}
 
@@ -150,11 +130,7 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with given response error") {
-						guard case .Error(let returnedError) = annotationResult! else {
-							fail("failed to error")
-							return
-						}
-						expect(returnedError as NSError).to(equal(responseError))
+						expect(annotationResult).to(equal(AnnotationResult.Error(responseError)))
 					}
 				}
 
@@ -186,18 +162,15 @@ final class APIClientSpec: QuickSpec {
 					context("when data can be parsed") {
 
 						beforeEach {
-							let bundle = NSBundle(forClass: AnnotationResponseSpec.self)
-							let dataURL = bundle.URLForResource("label_response", withExtension: ".json")
-							let data = NSData(contentsOfURL: dataURL!)
+							let JSON = ["responses": [["labelAnnotations": [["mid": "/m/068hy", "description": "pet", "score": 0.2]]]]]
+							let data = try! NSJSONSerialization.dataWithJSONObject(JSON, options: [])
 							dataTaskCompletionHandler(data, response, nil)
 						}
 
 						it("should return result containing response") {
-							guard case .Success(let returnedResponse) = annotationResult! else {
-								fail("failed to get response")
-								return
-							}
-							expect(returnedResponse).toNot(beNil())
+							let labelAnnotations = [try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "pet", score: 0.2)]
+							let annotationResponse = AnnotationResponse(labelAnnotations: labelAnnotations)
+							expect(annotationResult).to(equal(AnnotationResult.Success(annotationResponse)))
 						}
 					}
 				}

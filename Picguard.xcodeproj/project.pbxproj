@@ -40,7 +40,6 @@
 		5CA75D811CDB84FF002B0422 /* SafeSearchAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */; };
 		5CA75D841CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */; };
 		5CA99C041CD77E6D00350B6C /* AnnotationResponseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA99C031CD77E6D00350B6C /* AnnotationResponseSpec.swift */; };
-		5CA99C071CD7804C00350B6C /* label_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CA99C061CD7804C00350B6C /* label_response.json */; };
 		5CA99C091CD7A27D00350B6C /* APIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA99C081CD7A27D00350B6C /* APIClientSpec.swift */; };
 		5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */; };
 		5CB005011CD1095400481A51 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005001CD1095400481A51 /* APIClient.swift */; };
@@ -105,7 +104,6 @@
 		5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSearchAnnotation.swift; sourceTree = "<group>"; };
 		5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeSearchAnnotationSpec.swift; sourceTree = "<group>"; };
 		5CA99C031CD77E6D00350B6C /* AnnotationResponseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResponseSpec.swift; sourceTree = "<group>"; };
-		5CA99C061CD7804C00350B6C /* label_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = label_response.json; sourceTree = "<group>"; };
 		5CA99C081CD7A27D00350B6C /* APIClientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientSpec.swift; sourceTree = "<group>"; };
 		5CAA775E1CCF62A200D42B39 /* Picguard.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Picguard.playground; sourceTree = "<group>"; };
 		5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationRequest.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				3AD8FE361CD1FA74008557F3 /* API Representation */,
 				3A22BAA01CCFA6590033E807 /* Result Models */,
 				5C70EED91CDC9D5700D22125 /* Image Encoding */,
-				5CA99C051CD7800D00350B6C /* Resources */,
 				5CC2FBC01CD26756004534B0 /* Mocks */,
 				5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */,
 			);
@@ -375,14 +372,6 @@
 			name = "Safe Search Annotation";
 			sourceTree = "<group>";
 		};
-		5CA99C051CD7800D00350B6C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5CA99C061CD7804C00350B6C /* label_response.json */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		5CC2FBC01CD26756004534B0 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,7 +480,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CA99C071CD7804C00350B6C /* label_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
