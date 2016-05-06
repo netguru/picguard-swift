@@ -25,7 +25,7 @@ public struct Base64ImageEncoder: ImageEncoding {
 
 	/// Encodes the image into base64 representation.
 	///
-	/// - Throws: `UnsupportedBitmapData` if the given image contains no bitmap
+	/// - Throws: `UnsupportedBitmapData` error if the given image contains no bitmap
 	/// data or contains data in unsupported bitmap format.
 	///
 	/// - Parameter image: An image to be encoded.

@@ -12,6 +12,7 @@ public struct AnnotationResponse: APIRepresentationConvertible {
 	/// Optional array of `LabelAnnotations` parsed from response data.
 	public let labelAnnotations: [LabelAnnotation]?
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		labelAnnotations = try value.get("labelAnnotations")
 	}

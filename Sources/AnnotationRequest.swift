@@ -83,8 +83,8 @@ public struct AnnotationRequest {
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Errors from `Base64ImageEncoder.Error` domain
-		/// if encoder fails to encode UIImage of NSData.
+		/// - Throws: Rethrows any errors thrown by `ImageEncoding`
+		/// when encoder fails to encode image to data.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
@@ -107,7 +107,7 @@ public struct AnnotationRequest {
 
 	/// Initializes the AnnotationRequest with image and a set of features
 	///
-	/// - Throws: EmptyFeaturesSet if provided features set is empty.
+	/// - Throws: `EmptyFeaturesSet` error if provided features set is empty.
 	///
 	/// - Parameter features: Set of features to initialize the request with.
 	///
@@ -122,8 +122,8 @@ public struct AnnotationRequest {
 
 	/// JSON dictionary representation of `AnnotationRequest`.
 	///
-	/// - Throws: Errors from `Base64ImageEncoder.Error` domain
-	/// if encoder fails to encode UIImage of NSData.
+	/// - Throws: Rethrows any errors thrown by `ImageEncoding`
+	/// when encoder fails to encode image to data.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
