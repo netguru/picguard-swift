@@ -17,3 +17,12 @@ public struct AnnotationResponse: APIRepresentationConvertible {
 		labelAnnotations = try value.get("labelAnnotations")
 	}
 }
+
+// MARK: -
+
+extension AnnotationResponse: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationResponse, rhs: AnnotationResponse) -> Bool {
+	return lhs.labelAnnotations == rhs.labelAnnotations
+}
