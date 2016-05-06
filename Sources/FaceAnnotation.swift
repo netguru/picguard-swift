@@ -102,6 +102,7 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 	///
 	/// - Throws: Errors from `FaceAnnotation.Error` domain if the provided
 	/// numeric values are out of their expected range.
+	// swiftlint:disable function_parameter_count
 	public init(
 		boundingPolygon: BoundingPolygon,
 		skinBoundingPolygon: BoundingPolygon,

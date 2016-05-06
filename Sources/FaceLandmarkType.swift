@@ -131,6 +131,7 @@ public enum FaceLandmarkType: APIRepresentationConvertible {
 	/// - Parameter string: The string representation of the receiver.
 	///
 	/// - Throws: `Error.InvalidStringValue` if the string is invalid.
+	// swiftlint:disable cyclomatic_complexity
 	public init(string: String) throws {
 		switch string {
 			case "UNKNOWN_LANDMARK": self = .Unknown

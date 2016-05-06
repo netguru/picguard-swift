@@ -95,6 +95,7 @@ private extension APIClient {
 		request.HTTPMethod = "POST"
 		request.HTTPBody = requestsJSONData
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		// swiftlint:disable force_cast
 		return request.copy() as! NSURLRequest
 	}
 
