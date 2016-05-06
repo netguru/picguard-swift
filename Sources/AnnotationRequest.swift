@@ -150,14 +150,14 @@ extension AnnotationRequest.Feature: Equatable {}
 /// - SeeAlso: Equatable.==
 public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
 	switch (lhs, rhs) {
-	case (.Label, .Label): return true
-	case (.Text, .Text): return true
-	case (.Face, .Face): return true
-	case (.Landmark, .Landmark): return true
-	case (.Logo, .Logo): return true
-	case (.SafeSearch, .SafeSearch): return true
-	case (.ImageProperties, .ImageProperties): return true
-	default: return false
+		case (.Label, .Label): return true
+		case (.Text, .Text): return true
+		case (.Face, .Face): return true
+		case (.Landmark, .Landmark): return true
+		case (.Logo, .Logo): return true
+		case (.SafeSearch, .SafeSearch): return true
+		case (.ImageProperties, .ImageProperties): return true
+		default: return false
 	}
 }
 
