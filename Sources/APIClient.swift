@@ -130,3 +130,19 @@ private extension APIClient {
 		}
 	}
 }
+
+// MARK: - APIClient.Error
+
+extension APIClient.Error: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: APIClient.Error, rhs: APIClient.Error) -> Bool {
+	switch (lhs, rhs) {
+		case (.NoResponse, .NoResponse): return true
+		case let (.BadResponse(lhsResponse), .BadResponse(rhsResponse)):
+			return lhsResponse == rhsResponse
+		case let (.UnsupportedResponseType(lhsResponse), .UnsupportedResponseType(rhsResponse)):
+			return lhsResponse == rhsResponse
+		default: return false
+	}
+}

@@ -134,8 +134,9 @@ public struct AnnotationRequest {
 	}
 }
 
-// MARK: - Hashable
+// MARK: -
 
+/// - SeeAlso: Hashable.hashValue
 extension AnnotationRequest.Feature: Hashable {
 
 	public var hashValue: Int {
@@ -151,8 +152,9 @@ extension AnnotationRequest.Feature: Hashable {
 	}
 }
 
-// MARK: - Equatable
+// MARK: -
 
+/// - SeeAlso: Equatable.==
 public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
 	switch (lhs, rhs) {
 		case (.Label, .Label): return true
