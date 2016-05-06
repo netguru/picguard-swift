@@ -32,9 +32,10 @@
 		3AD8FE351CD172DE008557F3 /* FaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */; };
 		3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE371CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift */; };
 		3AD8FE3A1CD202A7008557F3 /* APIRepresentationValueSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8FE391CD202A7008557F3 /* APIRepresentationValueSpec.swift */; };
-		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		3ADA941A1CDCCDB000AB5736 /* TextAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */; };
 		3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */; };
+		3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94201CDCE8D800AB5736 /* Location.swift */; };
+		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
 		5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */; };
@@ -97,9 +98,10 @@
 		3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceAnnotation.swift; sourceTree = "<group>"; };
 		3AD8FE371CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationConvertibleSpec.swift; sourceTree = "<group>"; };
 		3AD8FE391CD202A7008557F3 /* APIRepresentationValueSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationValueSpec.swift; sourceTree = "<group>"; };
-		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotation.swift; sourceTree = "<group>"; };
 		3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotationSpec.swift; sourceTree = "<group>"; };
+		3ADA94201CDCE8D800AB5736 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
 		5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEncoding.swift; sourceTree = "<group>"; };
@@ -214,12 +216,14 @@
 		3A22BA9B1CCF65800033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */,
 				3AC0BB971CDA765600EDCC61 /* Geometry */,
 				3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */,
 				3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */,
 				3ADA941B1CDCCDB300AB5736 /* Text Annotation */,
+				3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */,
+				5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */,
 				3AC0BB931CDA660600EDCC61 /* Likelihood.swift */,
+				3ADA94201CDCE8D800AB5736 /* Location.swift */,
 			);
 			name = "Result Models";
 			sourceTree = "<group>";
@@ -344,6 +348,13 @@
 				3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */,
 			);
 			name = "Text Detection";
+			sourceTree = "<group>";
+		};
+		3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Landmark Annotation";
 			sourceTree = "<group>";
 		};
 		5C70EED71CDC9CE300D22125 /* API Client */ = {
@@ -554,6 +565,7 @@
 				3AD8FE2C1CD14FB4008557F3 /* Dictionary.swift in Sources */,
 				3AD8FE331CD172C5008557F3 /* Position.swift in Sources */,
 				3AC0BB9D1CDA769B00EDCC61 /* Vertex.swift in Sources */,
+				3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */,
 				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
 				5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */,
 				3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */,
