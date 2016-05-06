@@ -15,6 +15,8 @@ public protocol ImageEncoding {
 	///
 	/// - Parameter image: An image to be encoded.
 	///
+	/// - Throws: Any error thrown by concrete implementations.
+	///
 	/// - Returns: A string which contains encoded representation of the given
 	/// image.
 	func encode(image image: UIImage) throws -> String
@@ -22,6 +24,8 @@ public protocol ImageEncoding {
 	/// Encodes an image data.
 	///
 	/// - Parameter image data: An image data to be encoded.
+	///
+	/// - Throws: Any error thrown by concrete implementations.
 	///
 	/// - Returns: A string which contains encoded representation of the given
 	/// image data.

@@ -83,8 +83,8 @@ public struct AnnotationRequest {
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Errors from `Base64ImageEncoder.Error` domain
-		/// if encoder fails to encode UIImage of NSData.
+		/// - Throws: Rethrows any errors thrown by `ImageEncoding`
+		/// when encoder fails to encode image to data.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
@@ -107,7 +107,7 @@ public struct AnnotationRequest {
 
 	/// Initializes the AnnotationRequest with image and a set of features
 	///
-	/// - Throws: EmptyFeaturesSet if provided features set is empty.
+	/// - Throws: `EmptyFeaturesSet` error if provided features set is empty.
 	///
 	/// - Parameter features: Set of features to initialize the request with.
 	///
@@ -122,8 +122,8 @@ public struct AnnotationRequest {
 
 	/// JSON dictionary representation of `AnnotationRequest`.
 	///
-	/// - Throws: Errors from `Base64ImageEncoder.Error` domain
-	/// if encoder fails to encode UIImage of NSData.
+	/// - Throws: Rethrows any errors thrown by `ImageEncoding`
+	/// when encoder fails to encode image to data.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
@@ -134,10 +134,36 @@ public struct AnnotationRequest {
 	}
 }
 
-// MARK: - Hashable
+// MARK: -
+
+extension AnnotationRequest: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationRequest, rhs: AnnotationRequest) -> Bool {
+	return lhs.features == rhs.features && lhs.image == rhs.image
+}
+
+// MARK: -
+
+extension AnnotationRequest.Feature: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
+	switch (lhs, rhs) {
+		case (.Label, .Label): return true
+		case (.Text, .Text): return true
+		case (.Face, .Face): return true
+		case (.Landmark, .Landmark): return true
+		case (.Logo, .Logo): return true
+		case (.SafeSearch, .SafeSearch): return true
+		case (.ImageProperties, .ImageProperties): return true
+		default: return false
+	}
+}
 
 extension AnnotationRequest.Feature: Hashable {
 
+	/// - SeeAlso: Hashable.hashValue
 	public var hashValue: Int {
 		switch self {
 			case .Label: return 1
@@ -151,17 +177,19 @@ extension AnnotationRequest.Feature: Hashable {
 	}
 }
 
-// MARK: - Equatable
+// MARK: -
 
-public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) -> Bool {
+extension AnnotationRequest.Image: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: AnnotationRequest.Image, rhs: AnnotationRequest.Image) -> Bool {
 	switch (lhs, rhs) {
-		case (.Label, .Label): return true
-		case (.Text, .Text): return true
-		case (.Face, .Face): return true
-		case (.Landmark, .Landmark): return true
-		case (.Logo, .Logo): return true
-		case (.SafeSearch, .SafeSearch): return true
-		case (.ImageProperties, .ImageProperties): return true
+		case let (.URL(lhsURL), .URL(rhsURL)):
+			return lhsURL == rhsURL
+		case let (.Image(lhsImage), .Image(rhsImage)):
+			return UIImagePNGRepresentation(lhsImage) == UIImagePNGRepresentation(rhsImage)
+		case let (.Data(lhsData), .Data(rhsData)):
+			return lhsData == rhsData
 		default: return false
 	}
 }
