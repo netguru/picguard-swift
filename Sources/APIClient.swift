@@ -81,6 +81,8 @@ public final class APIClient: APIClientType {
 
 private extension APIClient {
 
+	// swiftlint:disable force_cast
+
 	/// Creates URL request using annotation request and APIKey
 	///
 	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` while creating request body.
@@ -97,6 +99,8 @@ private extension APIClient {
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		return request.copy() as! NSURLRequest
 	}
+
+	// swiftlint:enable force_cast
 
 	/// Created data task using URL request and completion block
 	///

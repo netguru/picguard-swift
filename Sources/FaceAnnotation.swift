@@ -81,6 +81,8 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 
 	// MARK: Initializers
 
+	// swiftlint:disable function_parameter_count
+
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
@@ -150,6 +152,8 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 		self.blurredLikelihood = blurredLikelihood
 		self.headwearLikelihood = headwearLikelihood
 	}
+
+	// swiftlint:enable function_parameter_count
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
