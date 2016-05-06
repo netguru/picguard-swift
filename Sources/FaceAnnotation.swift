@@ -81,6 +81,8 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 
 	// MARK: Initializers
 
+	// swiftlint:disable function_parameter_count
+
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
@@ -102,7 +104,6 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 	///
 	/// - Throws: Errors from `FaceAnnotation.Error` domain if the provided
 	/// numeric values are out of their expected range.
-	// swiftlint:disable function_parameter_count
 	public init(
 		boundingPolygon: BoundingPolygon,
 		skinBoundingPolygon: BoundingPolygon,
@@ -151,6 +152,8 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 		self.blurredLikelihood = blurredLikelihood
 		self.headwearLikelihood = headwearLikelihood
 	}
+
+	// swiftlint:enable function_parameter_count
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
