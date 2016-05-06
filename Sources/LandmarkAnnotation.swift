@@ -91,4 +91,3 @@ public func == (lhs: LandmarkAnnotation, rhs: LandmarkAnnotation) -> Bool {
 		lhs.locations == rhs.locations
 	)
 }
-
