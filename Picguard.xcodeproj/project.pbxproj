@@ -38,6 +38,8 @@
 		3ADA94251CDCEF9800AB5736 /* LocationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */; };
 		3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */; };
 		3ADA94291CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */; };
+		5C0513601CE07BD90013B5A6 /* LogoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */; };
+		5C0513631CE080F00013B5A6 /* LogoAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */; };
 		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
@@ -107,6 +109,8 @@
 		3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSpec.swift; sourceTree = "<group>"; };
 		3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
 		3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotationSpec.swift; sourceTree = "<group>"; };
+		5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoAnnotation.swift; sourceTree = "<group>"; };
+		5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoAnnotationSpec.swift; sourceTree = "<group>"; };
 		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 		3A22BA9B1CCF65800033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
+				5C05135E1CE07BCF0013B5A6 /* Logo Annotation */,
 				3AC0BB971CDA765600EDCC61 /* Geometry */,
 				3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */,
 				3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */,
@@ -237,6 +242,7 @@
 		3A22BAA01CCFA6590033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
+				5C0513611CE080C20013B5A6 /* Logo Annotation */,
 				3A839C471CDB7EA4006216A6 /* Geometry */,
 				3A839C4B1CDB8016006216A6 /* Label Annotation */,
 				3A839C4F1CDB833F006216A6 /* Face Annotation */,
@@ -372,6 +378,22 @@
 				3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */,
 			);
 			name = "Landmark Annotation";
+			sourceTree = "<group>";
+		};
+		5C05135E1CE07BCF0013B5A6 /* Logo Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */,
+			);
+			name = "Logo Annotation";
+			sourceTree = "<group>";
+		};
+		5C0513611CE080C20013B5A6 /* Logo Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */,
+			);
+			name = "Logo Annotation";
 			sourceTree = "<group>";
 		};
 		5C70EED71CDC9CE300D22125 /* API Client */ = {
@@ -581,6 +603,7 @@
 				3AD8FE301CD15485008557F3 /* APIRepresentationConvertible.swift in Sources */,
 				3AC0BB9C1CDA769900EDCC61 /* BoundingPolygon.swift in Sources */,
 				3AD8FE2C1CD14FB4008557F3 /* Dictionary.swift in Sources */,
+				5C0513601CE07BD90013B5A6 /* LogoAnnotation.swift in Sources */,
 				3AD8FE331CD172C5008557F3 /* Position.swift in Sources */,
 				3AC0BB9D1CDA769B00EDCC61 /* Vertex.swift in Sources */,
 				3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */,
@@ -610,6 +633,7 @@
 				5CA99C041CD77E6D00350B6C /* AnnotationResponseSpec.swift in Sources */,
 				3ADA94291CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift in Sources */,
 				3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */,
+				5C0513631CE080F00013B5A6 /* LogoAnnotationSpec.swift in Sources */,
 				5CA99C091CD7A27D00350B6C /* APIClientSpec.swift in Sources */,
 				5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */,
 				3A839C461CDB7E22006216A6 /* BoundingPolygonSpec.swift in Sources */,
