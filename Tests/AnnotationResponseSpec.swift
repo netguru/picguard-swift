@@ -42,6 +42,7 @@ final class AnnotationResponseSpec: QuickSpec {
 							)
 						)
 					}
+					
 				}
 
 				describe("init with api representation") {
@@ -69,4 +70,5 @@ final class AnnotationResponseSpec: QuickSpec {
 		}
 
 	}
+
 }
