@@ -43,8 +43,10 @@ public struct LandmarkAnnotation: APIRepresentationConvertible {
 	///
 	/// - Parameters:
 	///     - entityIdentifier: The entity opaque identifier.
+	///     - boundingPolygon: Image region to which this annotation belongs.
 	///     - description: The textual description.
 	///     - score: The score of the result.
+	///     - locations: The location information for the detected entity.
 	///
 	/// - Throws: `InvalidScore` if the score is not in range `0...1`.
 	public init(
