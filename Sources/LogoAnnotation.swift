@@ -5,11 +5,20 @@
 // Licensed under the MIT License.
 //
 
+/// Describes the result of logo detection.
 public struct LogoAnnotation: APIRepresentationConvertible {
 
+	/// The opaque identifier of the entity. Some IDs might be available in
+	/// Google's Knowledge Graph.
 	public let entityIdentifier: String
+
+	/// Image region to which this annotation belongs.
 	public let boundingPolygon: BoundingPolygon
+
+	/// A textual description of the entity, usually the subject of the result.
 	public let description: String
+
+	/// Overall score of the result (0...1).
 	public let score: Double
 
 	// MARK: Errors
@@ -23,6 +32,15 @@ public struct LogoAnnotation: APIRepresentationConvertible {
 
 	// MARK: Initializers
 
+	/// Initializes the receiver with raw values.
+	///
+	/// - Parameters:
+	///     - entityIdentifier: The entity opaque identifier.
+	///     - boundingPolygon: Image region to which this annotation belongs.
+	///     - description: The textual description.
+	///     - score: The score of the result.
+	///
+	/// - Throws: `InvalidScore` if the score is not in range `0...1`.
 	public init(
 		entityIdentifier: String,
 		boundingPolygon: BoundingPolygon,
@@ -47,4 +65,18 @@ public struct LogoAnnotation: APIRepresentationConvertible {
 			score: value.get("score")
 		)
 	}
+}
+
+// MARK: -
+
+extension LogoAnnotation: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: LogoAnnotation, rhs: LogoAnnotation) -> Bool {
+	return (
+		lhs.entityIdentifier == rhs.entityIdentifier &&
+		lhs.boundingPolygon == rhs.boundingPolygon &&
+		lhs.description == rhs.description &&
+		lhs.score == rhs.score
+	)
 }
