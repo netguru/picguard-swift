@@ -58,6 +58,7 @@
 		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
 		5CE8B2961CE0D0AA00BD65EA /* ColorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */; };
 		5CE8B2981CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */; };
+		5CE8B29B1CE0D29500BD65EA /* ColorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInfo.swift; sourceTree = "<group>"; };
 		5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertiesAnnotation.swift; sourceTree = "<group>"; };
+		5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 		3A0CB7811CC65E9000A32F4E /* Picguard Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5CE8B2991CE0D27F00BD65EA /* ImagePropertiesAnnotation */,
 				5C70EED81CDC9D4500D22125 /* API Client */,
 				3AD8FE361CD1FA74008557F3 /* API Representation */,
 				3A22BAA01CCFA6590033E807 /* Result Models */,
@@ -466,6 +469,14 @@
 			name = "Image Properties Annotation";
 			sourceTree = "<group>";
 		};
+		5CE8B2991CE0D27F00BD65EA /* ImagePropertiesAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */,
+			);
+			name = ImagePropertiesAnnotation;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -662,6 +673,7 @@
 				3A839C3E1CDB6F74006216A6 /* APIRepresentationHelpers.swift in Sources */,
 				3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */,
 				3A839C531CDB910B006216A6 /* FaceLandmarkSpec.swift in Sources */,
+				5CE8B29B1CE0D29500BD65EA /* ColorSpec.swift in Sources */,
 				3A839C511CDB834D006216A6 /* FaceAnnotationSpec.swift in Sources */,
 				3A839C551CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift in Sources */,
 				3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */,

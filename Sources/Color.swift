@@ -39,3 +39,16 @@ public struct Color: APIRepresentationConvertible {
 		)
 	}
 }
+
+// MARK: -
+
+extension Color: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: Color, rhs: Color) -> Bool {
+	return (
+		lhs.red == rhs.red &&
+		lhs.green == rhs.green &&
+		lhs.blue == rhs.blue
+	)
+}
