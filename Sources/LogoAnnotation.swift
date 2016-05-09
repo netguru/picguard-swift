@@ -46,7 +46,7 @@ public struct LogoAnnotation: APIRepresentationConvertible {
 		boundingPolygon: BoundingPolygon,
 		description: String,
 		score: Double
-		) throws {
+	) throws {
 		guard 0...1 ~= score else {
 			throw Error.InvalidScore
 		}

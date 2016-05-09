@@ -24,7 +24,7 @@ final class LogoAnnotationSpec: QuickSpec {
 							description: "bar",
 							score: score
 						)
-						}.toNot(throwError())
+					}.toNot(throwError())
 				}
 			}
 
@@ -37,7 +37,7 @@ final class LogoAnnotationSpec: QuickSpec {
 							description: "bar",
 							score: score
 						)
-						}.to(throwError(error))
+					}.to(throwError(error))
 				}
 			}
 
@@ -70,12 +70,12 @@ final class LogoAnnotationSpec: QuickSpec {
 								["x": 3, "y": 4],
 							],
 						],
-						], expected: try! LogoAnnotation(
-							entityIdentifier: "foo",
-							boundingPolygon: BoundingPolygon(vertices: [Vertex(x: 1, y: 2), Vertex(x: 3, y: 4)]),
-							description: "bar",
-							score: 0.12345
-						))
+					], expected: try! LogoAnnotation(
+						entityIdentifier: "foo",
+						boundingPolygon: BoundingPolygon(vertices: [Vertex(x: 1, y: 2), Vertex(x: 3, y: 4)]),
+						description: "bar",
+						score: 0.12345
+					))
 				}
 
 				context("with empty dictionary") {
