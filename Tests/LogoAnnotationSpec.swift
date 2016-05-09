@@ -1,9 +1,22 @@
 //
-//  LogoAnnotationSpec.swift
-//  Picguard
+// LogoAnnotationSpec.swift
 //
-//  Created by Lukasz Wolanczyk on 5/9/16.
-//  Copyright © 2016 Netguru Sp. z o.o. All rights reserved.
+// Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
+// Licensed under the MIT License.
 //
 
-import Foundation
+import Nimble
+import Quick
+import Picguard
+
+final class LogoAnnotationSpec: QuickSpec {
+
+	override func spec() {
+
+		describe("LogoAnnotation") {
+			
+		}
+		
+	}
+	
+}
