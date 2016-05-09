@@ -5,6 +5,7 @@
 // Licensed under the MIT License.
 //
 
+/// Describes the result of face detection.
 public struct FaceAnnotation: APIRepresentationConvertible {
 
 	/// The bounding polygon around the face, computed to "frame" the face in
