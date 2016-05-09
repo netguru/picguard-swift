@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-public struct Color {
+public struct Color: APIRepresentationConvertible {
 
 	let red: Int
 	let green: Int

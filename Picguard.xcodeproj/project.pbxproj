@@ -56,6 +56,7 @@
 		5CC2FBC21CD26766004534B0 /* MockImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
+		5CE8B2961CE0D0AA00BD65EA /* ColorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageEncoder.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
+				5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */,
 			);
 			name = "Image Properties Annotation";
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */,
 				3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */,
 				5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */,
+				5CE8B2961CE0D0AA00BD65EA /* ColorInfo.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
 				3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */,
