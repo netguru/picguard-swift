@@ -7,15 +7,22 @@
 
 public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
-	let dominantColors: [Color]
+	let dominantColorsAnnotation: DominantColorsAnnotation
 
-	public init(dominantColors: [Color]) {
-		self.dominantColors = dominantColors
+	public init(dominantColorsAnnotation: DominantColorsAnnotation) {
+		self.dominantColorsAnnotation = dominantColorsAnnotation
 	}
 
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		try self.init(
-			dominantColors: value.get("dominantColors")
-		)
+		try self.init(dominantColorsAnnotation: value.get("dominantColors"))
 	}
+}
+
+// MARK: -
+
+extension ImagePropertiesAnnotation: Equatable {}
+
+/// - SeeAlso: Equatable.==
+public func == (lhs: ImagePropertiesAnnotation, rhs: ImagePropertiesAnnotation) -> Bool {
+	return lhs.dominantColorsAnnotation == rhs.dominantColorsAnnotation
 }
