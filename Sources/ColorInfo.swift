@@ -5,18 +5,41 @@
 // Licensed under the MIT License.
 //
 
+/// Color information consists of RGB channels, 
+/// score and fraction of image the color occupies in the image.
 public struct ColorInfo: APIRepresentationConvertible {
 
+	/// RGB components of the color.
 	let color: Color
+
+	/// Image-specific score for this color. Value in range [0, 1].
 	let score: Double
+
+	/// Stores the fraction of pixels the color occupies in the image. Value in range [0, 1].
 	let pixelFraction: Double
 
+	// MARK: Errors
+
+	/// Describes the errors which can be thrown inside this type.
 	public enum Error: ErrorType {
 
+		/// Thrown if the score is not in the correct range.
 		case InvalidScore
+
+		/// Thrown if the pixel fraction is not in the correct range.
 		case InvalidPixelFraction
 	}
 
+	// MARK: Initializers
+
+	/// Initializes the receiver with raw values.
+	///
+	/// - Parameters:
+	///     - color: RGB components of the color.
+	///     - score: Score for this color in the image.
+	///     - pixelFraction: Fraction of pixels the color occupies in the image.
+	/// - Throws: Errors from `ColorInfo.Error` domain if the provided
+	/// numeric values are out of their expected range.
 	public init(color: Color, score: Double, pixelFraction: Double) throws {
 		guard 0...1 ~= score else {
 			throw Error.InvalidScore
@@ -29,6 +52,7 @@ public struct ColorInfo: APIRepresentationConvertible {
 		self.pixelFraction = pixelFraction
 	}
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		try self.init(
 			color: value.get("color"),
