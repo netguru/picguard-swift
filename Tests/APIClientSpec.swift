@@ -49,6 +49,7 @@ final class APIClientSpec: QuickSpec {
 				it("should be resumed") {
 					expect(mockDataTask.hasBeenResumed).to(beTruthy())
 				}
+
 			}
 
 			describe("data task request") {
@@ -70,6 +71,7 @@ final class APIClientSpec: QuickSpec {
 				it("should have proper HTTP header fields") {
 					expect(dataTaskRequest.allHTTPHeaderFields).to(equal(["Content-Type": "application/json"]))
 				}
+
 			}
 
 			describe("data task completion") {
@@ -95,6 +97,7 @@ final class APIClientSpec: QuickSpec {
 							return
 						}
 					}
+
 				}
 
 				context("when response type is not HTTP") {
@@ -116,6 +119,7 @@ final class APIClientSpec: QuickSpec {
 						}
 						expect(returnedResponse).to(equal(response))
 					}
+
 				}
 
 				context("when response status code is not 200") {
@@ -137,6 +141,7 @@ final class APIClientSpec: QuickSpec {
 						}
 						expect(returnedResponse).to(equal(response))
 					}
+
 				}
 
 				context("when there is a response error") {
@@ -156,6 +161,7 @@ final class APIClientSpec: QuickSpec {
 						}
 						expect(returnedError as NSError).to(equal(responseError))
 					}
+
 				}
 
 				context("when there is no error") {
@@ -181,6 +187,7 @@ final class APIClientSpec: QuickSpec {
 							}
 							expect(returnedError).toNot(beNil())
 						}
+
 					}
 
 					context("when data can be parsed") {
@@ -200,11 +207,17 @@ final class APIClientSpec: QuickSpec {
 							}
 							expect(returnedResponse).to(equal(annotationResponse))
 						}
+
 					}
+
 				}
+
 			}
+
 		}
+
 	}
+
 }
 
 private final class MockURLSession: NSURLSession {
@@ -219,6 +232,7 @@ private final class MockURLSession: NSURLSession {
 			lastCreatedDataTask = MockURLSessionDataTask()
 			return lastCreatedDataTask
 	}
+	
 }
 
 private final class MockURLSessionDataTask: NSURLSessionDataTask {
@@ -228,4 +242,5 @@ private final class MockURLSessionDataTask: NSURLSessionDataTask {
 	override func resume() {
 		hasBeenResumed = true
 	}
+
 }

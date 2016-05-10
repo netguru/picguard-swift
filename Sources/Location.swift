@@ -52,10 +52,9 @@ public struct Location: APIRepresentationConvertible {
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		let latLngValue = try APIRepresentationValue(value: value.get("latLng") as [String: Double])
 		try self.init(
-			latitude: latLngValue.get("latitude"),
-			longitude: latLngValue.get("longitude")
+			latitude: value.get("latLng").get("latitude"),
+			longitude: value.get("latLng").get("longitude")
 		)
 	}
 

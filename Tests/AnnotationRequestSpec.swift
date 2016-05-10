@@ -39,7 +39,9 @@ final class AnnotationRequestSpec: QuickSpec {
 				it("should have proper content") {
 					expect(imageJSON["content"] as? String).to(equal("fixture encoded image"))
 				}
+				
 			}
+
 		}
 
 		context("when initialized with Data image type") {
@@ -62,7 +64,9 @@ final class AnnotationRequestSpec: QuickSpec {
 				it("should have proper content") {
 					expect(imageJSON["content"] as? String).to(equal("fixture encoded image data"))
 				}
+
 			}
+
 		}
 
 		context("when initialized with URL image type") {
@@ -93,8 +97,11 @@ final class AnnotationRequestSpec: QuickSpec {
 					it("should have proper Google Cloud Storage URI") {
 						expect(sourceJSON["gcs_image_uri"] as? String).to(equal("fixture image url"))
 					}
+
 				}
+
 			}
+
 		}
 
 		context("when initialized with single feature") {
@@ -133,8 +140,11 @@ final class AnnotationRequestSpec: QuickSpec {
 					it("should have max results 1") {
 						expect(firstFeatureJSON["maxResults"] as? Int).to(equal(1))
 					}
+
 				}
+
 			}
+
 		}
 
 		context("when initialized with multiple features") {
@@ -178,6 +188,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should have max results 5") {
 							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(5))
 						}
+
 					}
 
 					describe("second feature") {
@@ -195,6 +206,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should have max results 2") {
 							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(2))
 						}
+
 					}
 
 					describe("third feature") {
@@ -212,6 +224,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should have max results 3") {
 							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(3))
 						}
+
 					}
 
 					describe("fourth feature") {
@@ -229,8 +242,11 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should have max results 2") {
 							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(2))
 						}
+
 					}
+
 				}
+
 			}
 
 			context("when features repeat") {
@@ -265,8 +281,11 @@ final class AnnotationRequestSpec: QuickSpec {
 					it("should have max results 3") {
 						expect(firstFeatureJSON["maxResults"] as? Int).to(equal(3))
 					}
+
 				}
+
 			}
+
 		}
 
 		context("when initialized with empty features set") {
@@ -276,6 +295,9 @@ final class AnnotationRequestSpec: QuickSpec {
 					try AnnotationRequest.init(features: Set(), image: .URL("fixture url"))
 				}.to(throwError(AnnotationRequest.Error.EmptyFeaturesSet))
 			}
+
 		}
+
 	}
+
 }

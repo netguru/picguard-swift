@@ -10,12 +10,16 @@ import UIKit
 /// Describes type which creates Google Cloud Vision API request body in JSON.
 public struct AnnotationRequest {
 
+	// MARK: Errors
+
 	/// Describes errors which may occur while composing request.
 	public enum Error: ErrorType {
 
 		/// Thrown if the features set is empty.
 		case EmptyFeaturesSet
 	}
+
+	// MARK: Initializers
 
 	/// Detection operations which are run against image.
 	///

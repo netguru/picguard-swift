@@ -55,6 +55,12 @@
 		5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */; };
 		5CC2FBC21CD26766004534B0 /* MockImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
+		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
+		5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */; };
+		5CE8B2981CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */; };
+		5CE8B29B1CE0D29500BD65EA /* ColorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */; };
+		5CE8B29D1CE0D6E000BD65EA /* ColorInformationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */; };
+		5CE8B29F1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +133,12 @@
 		5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationRequestSpec.swift; sourceTree = "<group>"; };
 		5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageEncoder.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
+		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformation.swift; sourceTree = "<group>"; };
+		5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertiesAnnotation.swift; sourceTree = "<group>"; };
+		5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpec.swift; sourceTree = "<group>"; };
+		5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformationSpec.swift; sourceTree = "<group>"; };
+		5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertiesAnnotationSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +238,7 @@
 		3A22BA9B1CCF65800033E807 /* Result Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */,
 				5C05135E1CE07BCF0013B5A6 /* Logo Annotation */,
 				3AC0BB971CDA765600EDCC61 /* Geometry */,
 				3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */,
@@ -249,6 +262,7 @@
 				3ADA941C1CDCD00A00AB5736 /* Text Annotation */,
 				3ADA94221CDCEE4700AB5736 /* Landmark Annotation */,
 				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
+				5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */,
 				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
 				3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */,
 			);
@@ -449,6 +463,26 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
+		5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
+				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
+				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
+			);
+			name = "Image Properties Annotation";
+			sourceTree = "<group>";
+		};
+		5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */,
+				5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */,
+				5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */,
+			);
+			name = "Image Properties Annotation";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -610,7 +644,10 @@
 				5C8972411CC7CFF200843EB8 /* ImageEncoding.swift in Sources */,
 				5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */,
 				3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */,
+				5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */,
+				5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
+				5CE8B2981CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
 				3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */,
 				3ADA941A1CDCCDB000AB5736 /* TextAnnotation.swift in Sources */,
@@ -635,13 +672,16 @@
 				3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */,
 				5C0513631CE080F00013B5A6 /* LogoAnnotationSpec.swift in Sources */,
 				5CA99C091CD7A27D00350B6C /* APIClientSpec.swift in Sources */,
+				5CE8B29D1CE0D6E000BD65EA /* ColorInformationSpec.swift in Sources */,
 				5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */,
 				3A839C461CDB7E22006216A6 /* BoundingPolygonSpec.swift in Sources */,
 				3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */,
 				3A839C431CDB7D8D006216A6 /* VertexSpec.swift in Sources */,
 				3A839C3E1CDB6F74006216A6 /* APIRepresentationHelpers.swift in Sources */,
 				3AC0BB961CDA68B800EDCC61 /* LikelihoodSpec.swift in Sources */,
+				5CE8B29F1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift in Sources */,
 				3A839C531CDB910B006216A6 /* FaceLandmarkSpec.swift in Sources */,
+				5CE8B29B1CE0D29500BD65EA /* ColorSpec.swift in Sources */,
 				3A839C511CDB834D006216A6 /* FaceAnnotationSpec.swift in Sources */,
 				3A839C551CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift in Sources */,
 				3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */,

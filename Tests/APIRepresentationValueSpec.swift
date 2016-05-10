@@ -51,6 +51,22 @@ final class APIRepresentationValueSpec: QuickSpec {
 				return try! NSJSONSerialization.dataWithJSONObject(object, options: [])
 			}
 
+			func getFlatShouldSucceed(subject subject: APIRepresentationValue, key: String, expected: APIRepresentationValue) {
+				it("should succeed to get value") {
+					expect { _ -> APIRepresentationValue in
+						try subject.get(key)
+					}.to(equal(expected))
+				}
+			}
+
+			func getFlatShouldFail(subject subject: APIRepresentationValue, key: String, expectedError: APIRepresentationError) {
+				it("should fail to get value") {
+					expect { _ -> APIRepresentationValue in
+						try subject.get(key)
+					}.to(throwError(expectedError))
+				}
+			}
+
 			func getNonOptionalElementShouldSucceed<T: protocol<Equatable, APIRepresentationConvertible>>(subject subject: APIRepresentationValue, key: String, expected: T) {
 				it("should succeed to get value") {
 					expect { _ -> T in
@@ -259,6 +275,30 @@ final class APIRepresentationValueSpec: QuickSpec {
 
 			}
 
+			describe("get flat value") {
+
+				let subject = try! APIRepresentationValue(value: ["first": 123, "second": ["third": "foo"], "null": NSNull()])
+
+				context("when they key exists") {
+					getFlatShouldSucceed(subject: subject, key: "first", expected: .Number(123))
+				}
+
+				context("when the key does not exist") {
+					getFlatShouldFail(subject: subject, key: "fourth", expectedError: .MissingDictionaryKey)
+				}
+
+				context("when the subject has incorrect type") {
+					getFlatShouldFail(subject: .String("foo"), key: "bar", expectedError: .UnexpectedValueType)
+				}
+
+				it("should be composable") {
+					expect { _ -> APIRepresentationValue in
+						try subject.get("second").get("third")
+					}.to(equal(APIRepresentationValue.String("foo")))
+				}
+
+			}
+
 			describe("get non optional value") {
 
 				let subject = try! APIRepresentationValue(value: ["first": 123, "second": "foo", "null": NSNull()])
@@ -276,7 +316,7 @@ final class APIRepresentationValueSpec: QuickSpec {
 				}
 
 				context("when the subject has icorrect type") {
-					getNonOptionalElementShouldFail(subject: try! APIRepresentationValue(value: "foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
+					getNonOptionalElementShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
 				}
 
 			}
@@ -302,7 +342,7 @@ final class APIRepresentationValueSpec: QuickSpec {
 				}
 
 				context("when the subject has icorrect type") {
-					getOptionalElementShouldFail(subject: try! APIRepresentationValue(value: "foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
+					getOptionalElementShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
 				}
 
 			}
@@ -329,7 +369,7 @@ final class APIRepresentationValueSpec: QuickSpec {
 				}
 
 				context("when the subject has icorrect type") {
-					getArrayShouldFail(subject: try! APIRepresentationValue(value: "foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
+					getArrayShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
 				}
 
 			}
@@ -356,7 +396,7 @@ final class APIRepresentationValueSpec: QuickSpec {
 				}
 
 				context("when the subject has icorrect type") {
-					getDictionaryShouldFail(subject: try! APIRepresentationValue(value: "foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
+					getDictionaryShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
 				}
 
 			}
