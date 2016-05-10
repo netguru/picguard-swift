@@ -42,7 +42,7 @@ final class ColorSpec: QuickSpec {
 					it("should fail") {
 						expect {
 							try Color(red: 0.1, green: -0.2, blue: 0.3)
-							}.to(throwError(Color.Error.InvalidColorComponent))
+						}.to(throwError(Color.Error.InvalidColorComponent))
 					}
 
 				}
@@ -52,7 +52,7 @@ final class ColorSpec: QuickSpec {
 					it("should fail") {
 						expect {
 							try Color(red: 0.1, green: 0.2, blue: -0.01)
-							}.to(throwError(Color.Error.InvalidColorComponent))
+						}.to(throwError(Color.Error.InvalidColorComponent))
 					}
 
 				}
