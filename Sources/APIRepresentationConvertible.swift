@@ -13,7 +13,7 @@ public protocol APIRepresentationConvertible {
 	/// - Parameter APIRepresentationValue: The API representation value.
 	///
 	/// - Throws: Errors from `APIRepresentationError` domain or any other
-	/// errors specific to implementation.
+	///   errors specific to implementation.
 	init(APIRepresentationValue value: APIRepresentationValue) throws
 
 }
@@ -22,6 +22,7 @@ public protocol APIRepresentationConvertible {
 
 extension Int: APIRepresentationConvertible {
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		guard case .Number(let wrapped) = value else {
 			throw APIRepresentationError.UnexpectedValueType
@@ -35,6 +36,7 @@ extension Int: APIRepresentationConvertible {
 
 extension Double: APIRepresentationConvertible {
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		guard case .Number(let wrapped) = value else {
 			throw APIRepresentationError.UnexpectedValueType
@@ -48,6 +50,7 @@ extension Double: APIRepresentationConvertible {
 
 extension Bool: APIRepresentationConvertible {
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		guard case .Bool(let wrapped) = value else {
 			throw APIRepresentationError.UnexpectedValueType
@@ -61,6 +64,7 @@ extension Bool: APIRepresentationConvertible {
 
 extension String: APIRepresentationConvertible {
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		guard case .String(let wrapped) = value else {
 			throw APIRepresentationError.UnexpectedValueType

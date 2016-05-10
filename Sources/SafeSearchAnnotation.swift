@@ -11,8 +11,8 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing adult contents.
 	let adultContentLikelihood: Likelihood
 
-	/// Likelihood that an obvious modification was made to the image's canonical version
-	/// to make it appear funny or offensive.
+	/// Likelihood that an obvious modification was made to the image's
+	/// canonical version to make it appear funny or offensive.
 	let spoofContentLikelihood: Likelihood
 
 	/// Likelihood of image containing medical content.

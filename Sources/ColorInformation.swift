@@ -9,13 +9,13 @@
 /// score and fraction of image the color occupies in the image.
 public struct ColorInformation: APIRepresentationConvertible {
 
-	/// RGBA components of the color.
+	/// Components of the color.
 	let color: Color
 
-	/// Image-specific score for this color. Value in range (0...1).
+	/// Image-specific score for this color (0...1).
 	let score: Double
 
-	/// Stores the fraction of pixels the color occupies in the image. Value in range (0...1).
+	/// Stores the fraction of pixels the color occupies in the image (0...1).
 	let pixelFraction: Double
 
 	// MARK: Errors
@@ -40,7 +40,7 @@ public struct ColorInformation: APIRepresentationConvertible {
 	///     - pixelFraction: Fraction of pixels the color occupies in the image.
 	///
 	/// - Throws: Errors from `ColorInformation.Error` domain if the provided
-	/// numeric values are out of their expected range.
+	///   numeric values are out of their expected range.
 	public init(color: Color, score: Double, pixelFraction: Double) throws {
 		guard 0...1 ~= score else {
 			throw Error.InvalidScore

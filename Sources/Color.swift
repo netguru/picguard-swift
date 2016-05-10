@@ -8,16 +8,16 @@
 /// Represents a color in the RGBA color space.
 public struct Color: APIRepresentationConvertible {
 
-	/// The amount of red in the color as a value in the interval (0...1).
+	/// The red component of the color (0...1).
 	let red: Double
 
-	/// The amount of green in the color as a value in the interval (0...1).
+	/// The gren component of the color (0...1).
 	let green: Double
 
-	/// The amount of blue in the color as a value in the interval (0...1).
+	/// The blue component of the color (0...1).
 	let blue: Double
 
-	/// Describes color transparency in the interval (0...1).
+	/// The color transparency (0...1).
 	let alpha: Double?
 
 	// MARK: Errors
@@ -34,10 +34,10 @@ public struct Color: APIRepresentationConvertible {
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
-	///     - red: Red color component value.
-	///     - green: Green color component value.
-	///     - blue: Blue color component value.
-	///     - alpha: Color transparency value.
+	///     - red: Red color component.
+	///     - green: Green color component.
+	///     - blue: Blue color component.
+	///     - alpha: Color transparency.
 	///
 	/// - Throws: `InvalidColorComponent` if the color component value is out of range.
 	public init(red: Double, green: Double, blue: Double, alpha: Double?) throws {

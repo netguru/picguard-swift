@@ -54,7 +54,7 @@ public extension APIRepresentationValue {
 	/// Initializes the representation value with a value.
 	///
 	/// - Throws: `UnsupportedInitType` if the value given is of an unsupported
-	/// type.
+	///   type.
 	///
 	/// - Parameter value: The value to initialize the representation with.
 	init(value: AnyObject) throws {
@@ -81,7 +81,7 @@ public extension APIRepresentationValue {
 	/// Initializes the representation with JSON data.
 	///
 	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` and
-	/// `self.init(value:)`.
+	///   `self.init(value:)`.
 	///
 	/// - Parameter data: The serialized JSON data.
 	init(data: NSData) throws {
@@ -100,7 +100,7 @@ public extension APIRepresentationValue {
 	/// - Parameter key: The key of value.
 	///
 	/// - Throws: `UnexpectedValueType` if the receiver is not a dictionary,
-	/// `MissingDictionaryKey` if the key doesn't exist.
+	///   `MissingDictionaryKey` if the key doesn't exist.
 	///
 	/// - Returns: A representation value.
 	func get(key: Swift.String) throws -> APIRepresentationValue {
@@ -119,9 +119,9 @@ public extension APIRepresentationValue {
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
-	///     is not a dictionary,
+	///       is not a dictionary,
 	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
-	///     exist,
+	///       exist,
 	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented value.
@@ -135,7 +135,7 @@ public extension APIRepresentationValue {
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
-	///     is not a dictionary,
+	///       is not a dictionary,
 	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped optional represented value.
@@ -156,9 +156,9 @@ public extension APIRepresentationValue {
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
-	///     is not a dictionary or value is not an array,
+	///       is not a dictionary or value is not an array,
 	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
-	///     exist,
+	///       exist,
 	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented array.
@@ -175,7 +175,7 @@ public extension APIRepresentationValue {
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
-	///     is not a dictionary or value is not a null or an array,
+	///       is not a dictionary or value is not a null or an array,
 	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped optional represented array.
@@ -201,9 +201,9 @@ public extension APIRepresentationValue {
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
-	///     is not a dictionary or value is not a dictionary,
+	///       is not a dictionary or value is not a dictionary,
 	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
-	///     exist,
+	///       exist,
 	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented dictionary.
