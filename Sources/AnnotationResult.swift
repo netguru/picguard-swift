@@ -5,12 +5,30 @@
 // Licensed under the MIT License.
 //
 
-/// Result returned by Google Cloud Vision API.
-public enum AnnotationResult {
+import Foundation
 
-	/// Type indicating successful Google Cloud Vision API respone.
+/// Result returned by Google Cloud Vision API.
+public enum AnnotationResult: APIRepresentationConvertible {
+
+	/// Case when Google Cloud Vision API response is successful.
 	case Success(AnnotationResponse)
 
-	/// Type indicating error when getting response from Google Cloud Vision API.
+	/// Case when Google Cloud Vision API response is erroneous.
 	case Error(ErrorType)
+
+	// MARK: Initializers
+
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
+	public init(APIRepresentationValue value: APIRepresentationValue) {
+		do {
+			if let error = try value.get("status") as AnnotationError? {
+				self = .Error(error)
+			} else {
+				self = .Success(try AnnotationResponse(APIRepresentationValue: value))
+			}
+		} catch let error {
+			self = .Error(error)
+		}
+	}
+
 }
