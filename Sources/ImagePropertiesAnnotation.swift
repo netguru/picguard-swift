@@ -5,23 +5,36 @@
 // Licensed under the MIT License.
 //
 
+/// Contains dominant colors and their corresponding scores.
 private struct DominantColorsAnnotation: APIRepresentationConvertible {
 
+	/// RGB color values, with their score and pixel fraction.
 	let colors: [ColorInfo]
 
+	// MARK: Initializers
+
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	init(APIRepresentationValue value: APIRepresentationValue) throws {
 		colors = try value.get("colors")
 	}
 }
 
+/// Describes the result of image properties detection.
 public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
+	/// Array of dominan colors RGB color values, with their scores and pixel fractions.
 	let dominantColors: [ColorInfo]
 
+	// MARK: Initializers
+
+	/// Initializes the receiver with raw values.
+	///
+	/// - Parameter dominantColors: Array of colors with their scores and pixel fractions.
 	public init(dominantColors: [ColorInfo]) {
 		self.dominantColors = dominantColors
 	}
 
+	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		let dominantColorsAnnotation: DominantColorsAnnotation = try value.get("dominantColors")
 		self.init(dominantColors: dominantColorsAnnotation.colors)

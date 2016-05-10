@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-/// Color information consists of RGB channels, 
+/// Color information consists of RGB channels,
 /// score and fraction of image the color occupies in the image.
 public struct ColorInfo: APIRepresentationConvertible {
 
