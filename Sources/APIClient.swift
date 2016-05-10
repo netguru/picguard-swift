@@ -36,13 +36,13 @@ public final class APIClient: APIClientType {
 
 	// MARK: Initializers
 
-	/// Initializes the receiver with Google Cloud Vision API key, image encoder and URL session.
+	/// Initializes the receiver.
 	///
 	/// - Parameters:
 	///     - APIKey: Google Cloud Vision API key.
 	///     - encoder: Image encoder which converts image to data.
-	///     - session: URL session used to create data task.
-	/// By default creates session with default configuration.
+	///     - session: URL session used to create data task. By default creates
+	///       a session with default configuration.
 	public init(
 		APIKey: String,
 		encoder: ImageEncoding,
@@ -56,8 +56,8 @@ public final class APIClient: APIClientType {
 	/// - SeeAlso: APIClientType.perform(request:completion:)
 	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
 		do {
-			let URLRequest = try createURLRequest(request)
-			let dataTask = createDataTask(URLRequest, completion: completion)
+			let URLRequest = try composeURLRequest(annotationRequest: request)
+			let dataTask = createDataTask(URLRequest: URLRequest, completion: completion)
 			dataTask.resume()
 		} catch let error {
 			dispatch_async(dispatch_get_main_queue()) {
@@ -67,58 +67,65 @@ public final class APIClient: APIClientType {
 	}
 }
 
-// MARK: - Private methods
+// MARK: -
 
 private extension APIClient {
 
+	// MARK: Request composition
+
 	// swiftlint:disable force_cast
 
-	/// Creates URL request using annotation request and APIKey
+	/// Creates URL request using annotation request and APIKey.
 	///
-	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` while creating request body.
+	/// - Parameters:
+	///     - annotationRequest: The source annotation request.
 	///
-	/// - Returns: Configured `NSURLRequest`.
-	func createURLRequest(annotationRequest: AnnotationRequest) throws -> NSURLRequest {
-		let requestJSONDictionary = try annotationRequest.JSONDictionaryRepresentation(encoder)
-		let requestsJSONDictioanry = ["requests": [requestJSONDictionary]]
-		let requestsJSONData = try NSJSONSerialization.dataWithJSONObject(requestsJSONDictioanry, options: [])
-		let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")
-		let request = NSMutableURLRequest(URL: URL!)
+	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` while
+	///   creating request body.
+	///
+	/// - Returns: A composed `NSURLRequest` instance.
+	func composeURLRequest(annotationRequest annotationRequest: AnnotationRequest) throws -> NSURLRequest {
+		let request = NSMutableURLRequest(URL: NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")!)
 		request.HTTPMethod = "POST"
-		request.HTTPBody = requestsJSONData
+		request.HTTPBody = try NSJSONSerialization.dataWithJSONObject([
+			"requests": [
+				try annotationRequest.JSONDictionaryRepresentation(encoder)
+			]
+		], options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		return request.copy() as! NSURLRequest
 	}
 
 	// swiftlint:enable force_cast
 
-	/// Created data task using URL request and completion block
+	/// Creates data task using URL request and completion closure.
+	///
+	/// - Parameters:
+	///     - URLRequest: The URL request to send with data task.
+	///     - completion: The completion closure to be execured.
 	///
 	/// - Returns: Configured `NSURLSessionDataTask`.
-	func createDataTask(URLRequest: NSURLRequest, completion: (AnnotationResult) -> Void) -> NSURLSessionDataTask {
-		return session.dataTaskWithRequest(URLRequest) { (data, URLResponse, responseError) in
+	func createDataTask(URLRequest URLRequest: NSURLRequest, completion: (AnnotationResult) -> Void) -> NSURLSessionDataTask {
+		return session.dataTaskWithRequest(URLRequest) { data, URLResponse, responseError in
 			guard let URLResponse = URLResponse else {
-				completion(AnnotationResult.Error(Error.NoResponse))
+				completion(.Error(Error.NoResponse))
 				return
 			}
 			guard let HTTPURLResponse = URLResponse as? NSHTTPURLResponse else {
-				completion(AnnotationResult.Error(Error.UnsupportedResponseType(URLResponse)))
+				completion(.Error(Error.UnsupportedResponseType(URLResponse)))
 				return
 			}
 			guard HTTPURLResponse.statusCode == 200 else {
-				completion(AnnotationResult.Error(Error.BadResponse(HTTPURLResponse)))
+				completion(.Error(Error.BadResponse(HTTPURLResponse)))
 				return
 			}
 			if let responseError = responseError {
-				completion(AnnotationResult.Error(responseError))
+				completion(.Error(responseError))
 			} else if let data = data {
 				do {
-					let value = try APIRepresentationValue(data: data)
-					let responses: [AnnotationResponse] = try value.get("responses")
-					let response = responses[0]
-					completion(AnnotationResult.Success(response))
+					completion(try APIRepresentationValue(data: data).get("responses")[0] as AnnotationResult)
 				} catch let error {
-					completion(AnnotationResult.Error(error))
+					completion(.Error(error))
 				}
 			}
 		}
