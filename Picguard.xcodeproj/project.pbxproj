@@ -56,10 +56,10 @@
 		5CC2FBC21CD26766004534B0 /* MockImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
-		5CE8B2961CE0D0AA00BD65EA /* ColorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */; };
+		5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */; };
 		5CE8B2981CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */; };
 		5CE8B29B1CE0D29500BD65EA /* ColorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */; };
-		5CE8B29D1CE0D6E000BD65EA /* ColorInfoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29C1CE0D6E000BD65EA /* ColorInfoSpec.swift */; };
+		5CE8B29D1CE0D6E000BD65EA /* ColorInformationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */; };
 		5CE8B29F1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,10 +134,10 @@
 		5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageEncoder.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInfo.swift; sourceTree = "<group>"; };
+		5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformation.swift; sourceTree = "<group>"; };
 		5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertiesAnnotation.swift; sourceTree = "<group>"; };
 		5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpec.swift; sourceTree = "<group>"; };
-		5CE8B29C1CE0D6E000BD65EA /* ColorInfoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInfoSpec.swift; sourceTree = "<group>"; };
+		5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformationSpec.swift; sourceTree = "<group>"; };
 		5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePropertiesAnnotationSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,6 @@
 		3A0CB7811CC65E9000A32F4E /* Picguard Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5CE8B2991CE0D27F00BD65EA /* ImagePropertiesAnnotation */,
 				5C70EED81CDC9D4500D22125 /* API Client */,
 				3AD8FE361CD1FA74008557F3 /* API Representation */,
 				3A22BAA01CCFA6590033E807 /* Result Models */,
@@ -263,6 +262,7 @@
 				3ADA941C1CDCD00A00AB5736 /* Text Annotation */,
 				3ADA94221CDCEE4700AB5736 /* Landmark Annotation */,
 				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
+				5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */,
 				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
 				3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */,
 			);
@@ -467,20 +467,20 @@
 			isa = PBXGroup;
 			children = (
 				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
-				5CE8B2951CE0D0AA00BD65EA /* ColorInfo.swift */,
+				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
 				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
 			);
 			name = "Image Properties Annotation";
 			sourceTree = "<group>";
 		};
-		5CE8B2991CE0D27F00BD65EA /* ImagePropertiesAnnotation */ = {
+		5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */ = {
 			isa = PBXGroup;
 			children = (
 				5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */,
-				5CE8B29C1CE0D6E000BD65EA /* ColorInfoSpec.swift */,
+				5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */,
 				5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */,
 			);
-			name = ImagePropertiesAnnotation;
+			name = "Image Properties Annotation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -645,7 +645,7 @@
 				5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */,
 				3AC0BB941CDA660600EDCC61 /* Likelihood.swift in Sources */,
 				5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */,
-				5CE8B2961CE0D0AA00BD65EA /* ColorInfo.swift in Sources */,
+				5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */,
 				3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */,
 				5CE8B2981CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift in Sources */,
 				5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */,
@@ -672,7 +672,7 @@
 				3ADA941E1CDCD02500AB5736 /* TextAnnotationSpec.swift in Sources */,
 				5C0513631CE080F00013B5A6 /* LogoAnnotationSpec.swift in Sources */,
 				5CA99C091CD7A27D00350B6C /* APIClientSpec.swift in Sources */,
-				5CE8B29D1CE0D6E000BD65EA /* ColorInfoSpec.swift in Sources */,
+				5CE8B29D1CE0D6E000BD65EA /* ColorInformationSpec.swift in Sources */,
 				5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */,
 				3A839C461CDB7E22006216A6 /* BoundingPolygonSpec.swift in Sources */,
 				3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */,

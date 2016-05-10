@@ -1,5 +1,5 @@
 //
-//  ImagePropertiesAnnotationSpec.swift
+// ImagePropertiesAnnotationSpec.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -32,7 +32,7 @@ final class ImagePropertiesAnnotationSpec: QuickSpec {
 						],
 						expected: try! ImagePropertiesAnnotation(
 							dominantColors: [
-								ColorInfo(
+								ColorInformation(
 									color: Color(red: 0.2, green: 0.4, blue: 0.6),
 									score: 0.2,
 									pixelFraction: 0.3

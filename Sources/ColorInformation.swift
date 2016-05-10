@@ -1,5 +1,5 @@
 //
-//  ColorInfo.swift
+// ColorInformation.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -7,15 +7,15 @@
 
 /// Color information consists of RGB channels,
 /// score and fraction of image the color occupies in the image.
-public struct ColorInfo: APIRepresentationConvertible {
+public struct ColorInformation: APIRepresentationConvertible {
 
 	/// RGB components of the color.
 	let color: Color
 
-	/// Image-specific score for this color. Value in range [0, 1].
+	/// Image-specific score for this color. Value in range (0...1).
 	let score: Double
 
-	/// Stores the fraction of pixels the color occupies in the image. Value in range [0, 1].
+	/// Stores the fraction of pixels the color occupies in the image. Value in range (0...1).
 	let pixelFraction: Double
 
 	// MARK: Errors
@@ -38,7 +38,8 @@ public struct ColorInfo: APIRepresentationConvertible {
 	///     - color: RGB components of the color.
 	///     - score: Score for this color in the image.
 	///     - pixelFraction: Fraction of pixels the color occupies in the image.
-	/// - Throws: Errors from `ColorInfo.Error` domain if the provided
+	///
+	/// - Throws: Errors from `ColorInformation.Error` domain if the provided
 	/// numeric values are out of their expected range.
 	public init(color: Color, score: Double, pixelFraction: Double) throws {
 		guard 0...1 ~= score else {
@@ -63,10 +64,10 @@ public struct ColorInfo: APIRepresentationConvertible {
 }
 // MARK: -
 
-extension ColorInfo: Equatable {}
+extension ColorInformation: Equatable {}
 
 /// - SeeAlso: Equatable.==
-public func == (lhs: ColorInfo, rhs: ColorInfo) -> Bool {
+public func == (lhs: ColorInformation, rhs: ColorInformation) -> Bool {
 	return (
 		lhs.color == rhs.color &&
 		lhs.score == rhs.score &&

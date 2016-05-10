@@ -1,5 +1,5 @@
 //
-//  ColorInfoSpec.swift
+// ColorInformationSpec.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -9,11 +9,11 @@ import Nimble
 import Quick
 import Picguard
 
-final class ColorInfoSpec: QuickSpec {
+final class ColorInformationSpec: QuickSpec {
 
 	override func spec() {
 
-		describe("ColorInfo") {
+		describe("ColorInformation") {
 
 			describe("init with raw values") {
 
@@ -21,7 +21,7 @@ final class ColorInfoSpec: QuickSpec {
 
 					it("should succeed") {
 						expect {
-							try ColorInfo(
+							try ColorInformation(
 								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 0.2,
 								pixelFraction: 0.3
@@ -35,12 +35,12 @@ final class ColorInfoSpec: QuickSpec {
 
 					it("should fail") {
 						expect {
-							try ColorInfo(
+							try ColorInformation(
 								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 1.2,
 								pixelFraction: 0.3
 							)
-						}.to(throwError(ColorInfo.Error.InvalidScore))
+						}.to(throwError(ColorInformation.Error.InvalidScore))
 					}
 
 				}
@@ -49,12 +49,12 @@ final class ColorInfoSpec: QuickSpec {
 
 					it("should fail") {
 						expect {
-							try ColorInfo(
+							try ColorInformation(
 								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 0.2,
 								pixelFraction: 1.3
 							)
-						}.to(throwError(ColorInfo.Error.InvalidPixelFraction))
+						}.to(throwError(ColorInformation.Error.InvalidPixelFraction))
 					}
 					
 				}
@@ -70,7 +70,7 @@ final class ColorInfoSpec: QuickSpec {
 							"pixelFraction": 0.3,
 							"color": ["red": 51, "green": 51, "blue": 51]
 						],
-						expected: try! ColorInfo(
+						expected: try! ColorInformation(
 							color: Color(red: 0.2, green: 0.2, blue: 0.2),
 							score: 0.2,
 							pixelFraction: 0.3
@@ -81,7 +81,7 @@ final class ColorInfoSpec: QuickSpec {
 				context("with invalid representation value type") {
 					initWithAPIRepresentationShouldFail(
 						value: "foobar",
-						type: ColorInfo.self,
+						type: ColorInformation.self,
 						error: APIRepresentationError.UnexpectedValueType
 					)
 				}

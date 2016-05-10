@@ -1,5 +1,5 @@
 //
-//  ImagePropertiesAnnotation.swift
+// ImagePropertiesAnnotation.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -9,7 +9,7 @@
 private struct DominantColorsAnnotation: APIRepresentationConvertible {
 
 	/// RGB color values, with their score and pixel fraction.
-	let colors: [ColorInfo]
+	let colors: [ColorInformation]
 
 	// MARK: Initializers
 
@@ -23,14 +23,14 @@ private struct DominantColorsAnnotation: APIRepresentationConvertible {
 public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
 	/// Array of dominan colors RGB color values, with their scores and pixel fractions.
-	let dominantColors: [ColorInfo]
+	let dominantColors: [ColorInformation]
 
 	// MARK: Initializers
 
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameter dominantColors: Array of colors with their scores and pixel fractions.
-	public init(dominantColors: [ColorInfo]) {
+	public init(dominantColors: [ColorInformation]) {
 		self.dominantColors = dominantColors
 	}
 
