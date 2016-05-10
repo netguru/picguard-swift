@@ -5,11 +5,11 @@
 // Licensed under the MIT License.
 //
 
-/// Color information consists of RGB channels,
+/// Color information consists of RGBA channels,
 /// score and fraction of image the color occupies in the image.
 public struct ColorInformation: APIRepresentationConvertible {
 
-	/// RGB components of the color.
+	/// RGBA components of the color.
 	let color: Color
 
 	/// Image-specific score for this color. Value in range (0...1).
@@ -35,7 +35,7 @@ public struct ColorInformation: APIRepresentationConvertible {
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
-	///     - color: RGB components of the color.
+	///     - color: RGBA components of the color.
 	///     - score: Score for this color in the image.
 	///     - pixelFraction: Fraction of pixels the color occupies in the image.
 	///

@@ -17,6 +17,9 @@ public struct Color: APIRepresentationConvertible {
 	/// The amount of blue in the color as a value in the interval (0...1).
 	let blue: Double
 
+	/// Describes color transparency in the interval (0...1).
+	let alpha: Double?
+
 	// MARK: Errors
 
 	/// Describes errors which can be thrown inside this type.
@@ -34,9 +37,10 @@ public struct Color: APIRepresentationConvertible {
 	///     - red: Red color component value.
 	///     - green: Green color component value.
 	///     - blue: Blue color component value.
+	///     - alpha: Color transparency value.
 	///
 	/// - Throws: `InvalidColorComponent` if the color component value is out of range.
-	public init(red: Double, green: Double, blue: Double) throws {
+	public init(red: Double, green: Double, blue: Double, alpha: Double?) throws {
 		guard 0...1 ~= red else {
 			throw Error.InvalidColorComponent
 		}
@@ -45,6 +49,14 @@ public struct Color: APIRepresentationConvertible {
 		}
 		guard 0...1 ~= blue else {
 			throw Error.InvalidColorComponent
+		}
+		if let alpha = alpha {
+			guard 0...1 ~= alpha else {
+				throw Error.InvalidColorComponent
+			}
+			self.alpha = alpha
+		} else {
+			self.alpha = 1
 		}
 		self.red = red
 		self.green = green
@@ -56,7 +68,8 @@ public struct Color: APIRepresentationConvertible {
 		try self.init(
 			red: value.get("red") / 255,
 			green: value.get("green") / 255,
-			blue: value.get("blue") / 255
+			blue: value.get("blue") / 255,
+			alpha: value.get("alpha")
 		)
 	}
 }
@@ -70,6 +83,7 @@ public func == (lhs: Color, rhs: Color) -> Bool {
 	return (
 		lhs.red == rhs.red &&
 		lhs.green == rhs.green &&
-		lhs.blue == rhs.blue
+		lhs.blue == rhs.blue &&
+		lhs.alpha == rhs.alpha
 	)
 }
