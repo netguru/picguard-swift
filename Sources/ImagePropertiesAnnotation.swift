@@ -36,8 +36,7 @@ public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		let dominantColorsAnnotation: DominantColorsAnnotation = try value.get("dominantColors")
-		self.init(dominantColors: dominantColorsAnnotation.colors)
+		try self.init(dominantColors: value.get("dominantColors").get("colors"))
 	}
 }
 
