@@ -51,23 +51,21 @@ public struct AnnotationRequest {
 		case ImageProperties(maxResults: Int)
 
 		/// JSON dictionary representation of `Feature`.
-		///
-		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
-				case .Label(maxResults: let maxResults):
+				case .Label(let maxResults):
 					return ["type": "LABEL_DETECTION", "maxResults": maxResults]
-				case .Text(maxResults: let maxResults):
+				case .Text(let maxResults):
 					return ["type": "TEXT_DETECTION", "maxResults": maxResults]
-				case .Face(maxResults: let maxResults):
+				case .Face(let maxResults):
 					return ["type": "FACE_DETECTION", "maxResults": maxResults]
-				case .Landmark(maxResults: let maxResults):
+				case .Landmark(let maxResults):
 					return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
-				case .Logo(maxResults: let maxResults):
+				case .Logo(let maxResults):
 					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
-				case .SafeSearch(maxResults: let maxResults):
+				case .SafeSearch(let maxResults):
 					return ["type": "SAFE_SEARCH_DETECTION", "maxResults": maxResults]
-				case .ImageProperties(maxResults: let maxResults):
+				case .ImageProperties(let maxResults):
 					return ["type": "IMAGE_PROPERTIES", "maxResults": maxResults]
 			}
 		}
