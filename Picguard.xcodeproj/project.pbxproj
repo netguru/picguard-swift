@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */; };
+		3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */; };
 		3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0CB7641CC55A8500A32F4E /* Picguard.framework */; };
 		3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0CB7921CC683D300A32F4E /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationError.swift; sourceTree = "<group>"; };
+		3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientType.swift; sourceTree = "<group>"; };
 		3A0CB7641CC55A8500A32F4E /* Picguard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Picguard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB7801CC65E9000A32F4E /* Picguard Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picguard Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB78C1CC6748200A32F4E /* Picguard-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Picguard-Common.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +164,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0C82AE1CE2355500FFEE12 /* Supporting Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */,
+				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
+				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
+				3AC0BB9F1CDA76DA00EDCC61 /* FaceLandmark.swift */,
+				3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */,
+				3AC0BB931CDA660600EDCC61 /* Likelihood.swift */,
+				3ADA94201CDCE8D800AB5736 /* Location.swift */,
+				3AD8FE321CD172C5008557F3 /* Position.swift */,
+				3AC0BB981CDA766A00EDCC61 /* Vertex.swift */,
+			);
+			name = "Supporting Models";
+			sourceTree = "<group>";
+		};
+		3A0C82AF1CE2369B00FFEE12 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
+				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
+				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
+				3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */,
+				3A22BA9B1CCF65800033E807 /* Annotation Models */,
+				3A0C82AE1CE2355500FFEE12 /* Supporting Models */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
 		3A0CB75A1CC55A8500A32F4E = {
 			isa = PBXGroup;
 			children = (
@@ -185,12 +218,12 @@
 		3A0CB7661CC55A8500A32F4E /* Picguard */ = {
 			isa = PBXGroup;
 			children = (
+				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 				5C70EED71CDC9CE300D22125 /* API Client */,
 				3AD8FE2E1CD1544A008557F3 /* API Representation */,
-				3A22BA9B1CCF65800033E807 /* Result Models */,
+				3A0C82AF1CE2369B00FFEE12 /* Data Models */,
 				3A2E7C301CC8F54400277114 /* Image Encoding */,
 				3AD8FE2D1CD15246008557F3 /* Type Extensions */,
-				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 			);
 			name = Picguard;
 			path = Sources;
@@ -235,21 +268,18 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		3A22BA9B1CCF65800033E807 /* Result Models */ = {
+		3A22BA9B1CCF65800033E807 /* Annotation Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */,
-				5C05135E1CE07BCF0013B5A6 /* Logo Annotation */,
-				3AC0BB971CDA765600EDCC61 /* Geometry */,
-				3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */,
-				3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */,
-				3ADA941B1CDCCDB300AB5736 /* Text Annotation */,
-				3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */,
-				5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */,
-				3AC0BB931CDA660600EDCC61 /* Likelihood.swift */,
-				3ADA94201CDCE8D800AB5736 /* Location.swift */,
+				3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */,
+				3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */,
+				3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */,
+				5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */,
+				3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */,
+				5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */,
+				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
 			);
-			name = "Result Models";
+			name = "Annotation Models";
 			sourceTree = "<group>";
 		};
 		3A22BAA01CCFA6590033E807 /* Result Models */ = {
@@ -306,34 +336,6 @@
 			name = "Face Annotation";
 			sourceTree = "<group>";
 		};
-		3AC0BB971CDA765600EDCC61 /* Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				3AD8FE321CD172C5008557F3 /* Position.swift */,
-				3AC0BB981CDA766A00EDCC61 /* Vertex.swift */,
-				3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */,
-			);
-			name = Geometry;
-			sourceTree = "<group>";
-		};
-		3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */,
-				3AC0BB9F1CDA76DA00EDCC61 /* FaceLandmark.swift */,
-				3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */,
-			);
-			name = "Face Annotation";
-			sourceTree = "<group>";
-		};
-		3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */,
-			);
-			name = "Label Annotation";
-			sourceTree = "<group>";
-		};
 		3AD8FE2D1CD15246008557F3 /* Type Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,14 +364,6 @@
 			name = "API Representation";
 			sourceTree = "<group>";
 		};
-		3ADA941B1CDCCDB300AB5736 /* Text Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */,
-			);
-			name = "Text Annotation";
-			sourceTree = "<group>";
-		};
 		3ADA941C1CDCD00A00AB5736 /* Text Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,28 +372,12 @@
 			name = "Text Annotation";
 			sourceTree = "<group>";
 		};
-		3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */,
-			);
-			name = "Landmark Annotation";
-			sourceTree = "<group>";
-		};
 		3ADA94221CDCEE4700AB5736 /* Landmark Annotation */ = {
 			isa = PBXGroup;
 			children = (
 				3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */,
 			);
 			name = "Landmark Annotation";
-			sourceTree = "<group>";
-		};
-		5C05135E1CE07BCF0013B5A6 /* Logo Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */,
-			);
-			name = "Logo Annotation";
 			sourceTree = "<group>";
 		};
 		5C0513611CE080C20013B5A6 /* Logo Annotation */ = {
@@ -413,10 +391,8 @@
 		5C70EED71CDC9CE300D22125 /* API Client */ = {
 			isa = PBXGroup;
 			children = (
+				3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */,
 				5CB005001CD1095400481A51 /* APIClient.swift */,
-				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
-				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
-				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
 			);
 			name = "API Client";
 			sourceTree = "<group>";
@@ -439,14 +415,6 @@
 			name = "Image Encoding";
 			sourceTree = "<group>";
 		};
-		5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */,
-			);
-			name = "Safe Search Annotation";
-			sourceTree = "<group>";
-		};
 		5CA75D821CDB88B2002B0422 /* Safe Search Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,16 +429,6 @@
 				5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */,
 			);
 			name = Mocks;
-			sourceTree = "<group>";
-		};
-		5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
-				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
-				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
-			);
-			name = "Image Properties Annotation";
 			sourceTree = "<group>";
 		};
 		5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */ = {
@@ -629,8 +587,10 @@
 				3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */,
 				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
 				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
+				3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */,
 				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
 				3A839C491CDB7FDD006216A6 /* FaceLandmarkType.swift in Sources */,
+				3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */,
 				3AC0BBA11CDA798F00EDCC61 /* FaceLandmark.swift in Sources */,
 				5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */,
 				3AD8FE351CD172DE008557F3 /* FaceAnnotation.swift in Sources */,
