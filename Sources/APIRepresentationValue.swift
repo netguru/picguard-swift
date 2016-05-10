@@ -95,6 +95,24 @@ public extension APIRepresentationValue {
 
 public extension APIRepresentationValue {
 
+	/// Returns a value under the given key from the representation.
+	///
+	/// - Parameter key: The key of value.
+	///
+	/// - Throws: `UnexpectedValueType` if the receiver is not a dictionary,
+	/// `MissingDictionaryKey` if the key doesn't exist.
+	///
+	/// - Returns: A representation value.
+	func get(key: Swift.String) throws -> APIRepresentationValue {
+		guard case .Dictionary(let dictionary) = self else {
+			throw APIRepresentationError.UnexpectedValueType
+		}
+		guard let value = dictionary[key] else {
+			throw APIRepresentationError.MissingDictionaryKey
+		}
+		return value
+	}
+
 	/// Unwraps a value under the given key from the representation.
 	///
 	/// - Parameter key: The key of the value.
@@ -105,13 +123,7 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped represented value.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> T {
-		guard case .Dictionary(let dictionary) = self else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		guard let value = dictionary[key] else {
-			throw APIRepresentationError.MissingDictionaryKey
-		}
-		return try T(APIRepresentationValue: value)
+		return try T(APIRepresentationValue: get(key))
 	}
 
 	/// Unwraps a value under the given key from the representation.
@@ -123,16 +135,14 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped optional represented value.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> T? {
-		guard case .Dictionary(let dictionary) = self else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		guard let value = dictionary[key] else {
+		do {
+			if case .Null = try get(key) {
+				return nil
+			}
+			return try T(APIRepresentationValue: get(key))
+		} catch APIRepresentationError.MissingDictionaryKey {
 			return nil
 		}
-		if case .Null = value {
-			return nil
-		}
-		return try T(APIRepresentationValue: value)
 	}
 
 	/// Unwraps an array under the given key from the representation.
@@ -144,13 +154,7 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped represented array.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T] {
-		guard case .Dictionary(let dictionary) = self else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		guard let value = dictionary[key] else {
-			throw APIRepresentationError.MissingDictionaryKey
-		}
-		guard case .Array(let array) = value else {
+		guard case .Array(let array) = try get(key) else {
 			throw APIRepresentationError.UnexpectedValueType
 		}
 		return try array.map(T.init(APIRepresentationValue:))
@@ -165,16 +169,10 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped represented dictionary.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [Swift.String: T] {
-		guard case .Dictionary(let dictionary) = self else {
+		guard case .Dictionary(let dictionary) = try get(key) else {
 			throw APIRepresentationError.UnexpectedValueType
 		}
-		guard let value = dictionary[key] else {
-			throw APIRepresentationError.MissingDictionaryKey
-		}
-		guard case .Dictionary(let wrappedDictionary) = value else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		return try wrappedDictionary.map(T.init(APIRepresentationValue:))
+		return try dictionary.map(T.init(APIRepresentationValue:))
 	}
 
 }
