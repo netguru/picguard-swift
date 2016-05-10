@@ -144,7 +144,7 @@ public extension APIRepresentationValue {
 			if case .Null = try get(key) {
 				return nil
 			}
-			return try T(APIRepresentationValue: get(key))
+			return try get(key) as T
 		} catch APIRepresentationError.MissingDictionaryKey {
 			return nil
 		}
@@ -180,19 +180,14 @@ public extension APIRepresentationValue {
 	///
 	/// - Returns: An unwrapped optional represented array.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T]? {
-		guard case .Dictionary(let dictionary) = self else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		guard let value = dictionary[key] else {
+		do {
+			if case .Null = try get(key) {
+				return nil
+			}
+			return try get(key) as [T]
+		} catch APIRepresentationError.MissingDictionaryKey {
 			return nil
 		}
-		if case .Null = value {
-			return nil
-		}
-		guard case .Array(let array) = value else {
-			throw APIRepresentationError.UnexpectedValueType
-		}
-		return try array.map(T.init(APIRepresentationValue:))
 	}
 
 	/// Unwraps a dictioanry under the given key from the representation.
