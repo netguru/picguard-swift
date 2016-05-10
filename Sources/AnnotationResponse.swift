@@ -8,17 +8,20 @@
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse: APIRepresentationConvertible {
 
-	/// Array of label detection results.
-	public let labelAnnotations: [LabelAnnotation]?
-
 	/// Array of face detection results.
 	public let faceAnnotations: [FaceAnnotation]?
 
-	/// Array of text detection results.
-	public let textAnnotations: [TextAnnotation]?
+	/// Array of label detection results.
+	public let labelAnnotations: [LabelAnnotation]?
 
 	/// Array of landmark detection results.
 	public let landmarkAnnotations: [LandmarkAnnotation]?
+
+	/// Array of logo detection results.
+	public let logoAnnotations: [LogoAnnotation]?
+
+	/// Array of text detection results.
+	public let textAnnotations: [TextAnnotation]?
 
 	/// Safe search detection result.
 	public let safeSearchAnnotation: SafeSearchAnnotation?
@@ -28,38 +31,46 @@ public struct AnnotationResponse: APIRepresentationConvertible {
 
 	// MARK: Initializers
 
+	// swiftlint:disable function_parameter_count
+
 	/// Initializes the receiver with raw values.
 	///
 	/// - Parameters:
-	///     - labelAnnotations: Array containing label annotations.
 	///     - faceAnnotations: Array containing face annotations.
-	///     - textAnnotations: Array containing text annotations.
+	///     - labelAnnotations: Array containing label annotations.
 	///     - landmarkAnnotations: Array containing landmark annotations.
+	///     - logoAnnotations: Array containing logo annotations.
+	///     - textAnnotations: Array containing text annotations.
 	///     - safeSearchAnnotation: Safe search annotation.
 	///     - imagePropertiesAnnotation: Image properties annotation.
 	public init(
-		labelAnnotations: [LabelAnnotation]?,
 		faceAnnotations: [FaceAnnotation]?,
-		textAnnotations: [TextAnnotation]?,
+		labelAnnotations: [LabelAnnotation]?,
 		landmarkAnnotations: [LandmarkAnnotation]?,
+		logoAnnotations: [LogoAnnotation]?,
+		textAnnotations: [TextAnnotation]?,
 		safeSearchAnnotation: SafeSearchAnnotation?,
 		imagePropertiesAnnotation: ImagePropertiesAnnotation?
 	) {
-		self.labelAnnotations = labelAnnotations
 		self.faceAnnotations = faceAnnotations
-		self.textAnnotations = textAnnotations
+		self.labelAnnotations = labelAnnotations
 		self.landmarkAnnotations = landmarkAnnotations
+		self.logoAnnotations = logoAnnotations
+		self.textAnnotations = textAnnotations
 		self.safeSearchAnnotation = safeSearchAnnotation
 		self.imagePropertiesAnnotation = imagePropertiesAnnotation
 	}
 
+	// swiftlint:enable function_parameter_count
+
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
 		try self.init(
-			labelAnnotations: value.get("labelAnnotations"),
 			faceAnnotations: value.get("faceAnnotations"),
-			textAnnotations: value.get("textAnnotations"),
+			labelAnnotations: value.get("labelAnnotations"),
 			landmarkAnnotations: value.get("landmarkAnnotations"),
+			logoAnnotations: value.get("logoAnnotations"),
+			textAnnotations: value.get("textAnnotations"),
 			safeSearchAnnotation: value.get("safeSearchAnnotation"),
 			imagePropertiesAnnotation: value.get("imagePropertiesAnnotation")
 		)
