@@ -5,12 +5,23 @@
 // Licensed under the MIT License.
 //
 
-
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse: APIRepresentationConvertible {
 
-	/// Optional array of `LabelAnnotations` parsed from response data.
+	/// Array of label detection results.
 	public let labelAnnotations: [LabelAnnotation]?
+
+	/// Array of label detection results.
+	public let faceAnnotations: [FaceAnnotation]?
+
+	/// Array of label detection results.
+	public let textAnnotations: [TextAnnotation]?
+
+	/// Array of label detection results.
+	public let landmarkAnnotations: [LandmarkAnnotation]?
+
+	/// Array of label detection results.
+	public let safeSearchAnnotations: [SafeSearchAnnotation]?
 
 	// MARK: Initializers
 
