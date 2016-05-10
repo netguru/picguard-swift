@@ -21,7 +21,7 @@ final class ColorSpec: QuickSpec {
 
 					it("should succeed") {
 						expect {
-							try Color(red: 33, green: 44, blue: 55)
+							try Color(red: 0.1, green: 0.2, blue: 0.3)
 						}.toNot(throwError())
 					}
 
@@ -31,7 +31,7 @@ final class ColorSpec: QuickSpec {
 
 					it("should fail") {
 						expect {
-							try Color(red: 333, green: 44, blue: 55)
+							try Color(red: 1.1, green: 0.2, blue: 0.3)
 						}.to(throwError(Color.Error.InvalidColorComponent))
 					}
 
@@ -41,7 +41,7 @@ final class ColorSpec: QuickSpec {
 
 					it("should fail") {
 						expect {
-							try Color(red: 33, green: 444, blue: 55)
+							try Color(red: 0.1, green: -0.2, blue: 0.3)
 							}.to(throwError(Color.Error.InvalidColorComponent))
 					}
 
@@ -51,7 +51,7 @@ final class ColorSpec: QuickSpec {
 
 					it("should fail") {
 						expect {
-							try Color(red: 33, green: 44, blue: 555)
+							try Color(red: 0.1, green: 0.2, blue: -0.01)
 							}.to(throwError(Color.Error.InvalidColorComponent))
 					}
 
@@ -63,8 +63,8 @@ final class ColorSpec: QuickSpec {
 
 				context("with valid dictionary") {
 					initWithAPIRepresentationShouldSucceed(
-						value: ["red": 33, "green": 44, "blue": 55,],
-						expected: try! Color(red: 33, green: 44,blue: 55)
+						value: ["red": 51, "green": 102, "blue": 204,],
+						expected: try! Color(red: 0.2, green: 0.4,blue: 0.8)
 					)
 				}
 

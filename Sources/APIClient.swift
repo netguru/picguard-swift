@@ -24,6 +24,17 @@ public protocol APIClientType {
 /// A default Google Cloud Vision API client.
 public final class APIClient: APIClientType {
 
+	/// The key to Google Cloud Vision API.
+	public let APIKey: String
+
+	/// Image encoder which converts image to data.
+	public let encoder: ImageEncoding
+
+	/// An URL session used to create data task.
+	private let session: NSURLSession
+
+	// MARK: Errors
+
 	/// Describes an API client error.
 	public enum Error: ErrorType {
 
@@ -37,14 +48,7 @@ public final class APIClient: APIClientType {
 		case NoResponse
 	}
 
-	/// The key to Google Cloud Vision API.
-	public let APIKey: String
-
-	/// Image encoder which converts image to data.
-	public let encoder: ImageEncoding
-
-	/// An URL session used to create data task.
-	private let session: NSURLSession
+	// MARK: Initializers
 
 	/// Initializes the receiver with Google Cloud Vision API key, image encoder and URL session.
 	///

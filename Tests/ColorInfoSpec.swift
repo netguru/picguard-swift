@@ -22,7 +22,7 @@ final class ColorInfoSpec: QuickSpec {
 					it("should succeed") {
 						expect {
 							try ColorInfo(
-								color: Color(red: 1, green: 2, blue: 3),
+								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 0.2,
 								pixelFraction: 0.3
 							)
@@ -36,7 +36,7 @@ final class ColorInfoSpec: QuickSpec {
 					it("should fail") {
 						expect {
 							try ColorInfo(
-								color: Color(red: 1, green: 2, blue: 3),
+								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 1.2,
 								pixelFraction: 0.3
 							)
@@ -50,7 +50,7 @@ final class ColorInfoSpec: QuickSpec {
 					it("should fail") {
 						expect {
 							try ColorInfo(
-								color: Color(red: 1, green: 2, blue: 3),
+								color: Color(red: 0.1, green: 0.2, blue: 0.3),
 								score: 0.2,
 								pixelFraction: 1.3
 							)
@@ -68,10 +68,10 @@ final class ColorInfoSpec: QuickSpec {
 						value: [
 							"score": 0.2,
 							"pixelFraction": 0.3,
-							"color": ["red": 1, "green": 2, "blue": 3]
+							"color": ["red": 51, "green": 51, "blue": 51]
 						],
 						expected: try! ColorInfo(
-							color: Color(red: 1, green: 2, blue: 3),
+							color: Color(red: 0.2, green: 0.2, blue: 0.2),
 							score: 0.2,
 							pixelFraction: 0.3
 						)
