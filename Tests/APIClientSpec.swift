@@ -200,7 +200,15 @@ final class APIClientSpec: QuickSpec {
 
 						it("should return result containing response") {
 							let labelAnnotations = [try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "pet", score: 0.2)]
-							let annotationResponse = AnnotationResponse(labelAnnotations: labelAnnotations)
+							let annotationResponse = AnnotationResponse(
+								faceAnnotations: nil,
+								labelAnnotations: labelAnnotations,
+								landmarkAnnotations: nil,
+								logoAnnotations: nil,
+								textAnnotations: nil,
+								safeSearchAnnotation: nil,
+								imagePropertiesAnnotation: nil
+							)
 							guard case .Success(let returnedResponse) = annotationResult! else {
 								fail("failed to get response")
 								return

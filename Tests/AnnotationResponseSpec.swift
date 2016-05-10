@@ -17,54 +17,83 @@ final class AnnotationResponseSpec: QuickSpec {
 
 			describe("init with api representation") {
 
-				context("with valid dictionary") {
-
-					context("with label annotations") {
-						initWithAPIRepresentationShouldSucceed(
-							value:[
-								"labelAnnotations": [
-									[
-										"mid": "/m/068hy",
-										"description": "dog",
-										"score": 0.2
-									],
-									[
-										"mid": "/m/032hy",
-										"description": "owl",
-										"score": 0.89
+				context("with non empty dictionary") {
+					initWithAPIRepresentationShouldSucceed(
+						value: [
+							"faceAnnotations": [AnyObject](),
+							"labelAnnotations": [AnyObject](),
+							"landmarkAnnotations": [AnyObject](),
+							"logoAnnotations": [AnyObject](),
+							"textAnnotations": [AnyObject](),
+							"safeSearchAnnotation": [
+								"adult": "UNKNOWN",
+								"spoof": "UNKNOWN",
+								"medical": "UNKNOWN",
+								"violence": "UNKNOWN",
+							],
+							"imagePropertiesAnnotation": [
+								"dominantColors": [
+									"colors": [
+										[
+											"color": [
+												"red": 0,
+												"green": 255,
+												"blue": 0,
+												"alpha": 1,
+											],
+											"score": 0.75,
+											"pixelFraction": 0.25,
+										],
 									]
 								]
 							],
-							expected: AnnotationResponse(labelAnnotations: [
-									try! LabelAnnotation(entityIdentifier: "/m/068hy", description: "dog", score: 0.2),
-									try! LabelAnnotation(entityIdentifier: "/m/032hy", description: "owl", score: 0.89)
-								]
-							)
+						],
+						expected: AnnotationResponse(
+							faceAnnotations: [],
+							labelAnnotations: [],
+							landmarkAnnotations: [],
+							logoAnnotations: [],
+							textAnnotations: [],
+							safeSearchAnnotation: SafeSearchAnnotation(
+								adultContentLikelihood: .Unknown,
+								spoofContentLikelihood: .Unknown,
+								medicalContentLikelihood: .Unknown,
+								violentContentLikelihood: .Unknown
+							),
+							imagePropertiesAnnotation: ImagePropertiesAnnotation(dominantColors: [
+								try! ColorInformation(
+									color: try! Color(red: 0, green: 1, blue: 0, alpha: 1),
+									score: 0.75,
+									pixelFraction: 0.25
+								),
+							])
 						)
-					}
-					
+					)
 				}
 
-				describe("init with api representation") {
-
-					context("with empty dictionary") {
-						initWithAPIRepresentationShouldFail(
-							value: [String: AnyObject](),
-							type: AnnotationResponse.self,
-							error: APIRepresentationError.MissingDictionaryKey
+				context("with empty dictionary") {
+					initWithAPIRepresentationShouldSucceed(
+						value: [String: AnyObject](),
+						expected: AnnotationResponse(
+							faceAnnotations: nil,
+							labelAnnotations: nil,
+							landmarkAnnotations: nil,
+							logoAnnotations: nil,
+							textAnnotations: nil,
+							safeSearchAnnotation: nil,
+							imagePropertiesAnnotation: nil
 						)
-					}
-
-					context("with invalid representation value type") {
-						initWithAPIRepresentationShouldFail(
-							value: "foobar",
-							type: AnnotationResponse.self,
-							error: APIRepresentationError.UnexpectedValueType
-						)
-					}
-
+					)
 				}
-				
+
+				context("with invalid representation value type") {
+					initWithAPIRepresentationShouldFail(
+						value: "foobar",
+						type: AnnotationResponse.self,
+						error: APIRepresentationError.UnexpectedValueType
+					)
+				}
+
 			}
 			
 		}
