@@ -7,20 +7,6 @@
 
 import Foundation
 
-/// Describes a type that is capable of sending image analysis requests
-/// to Google Cloud Vision API.
-public protocol APIClientType {
-
-	/// Sends request to Google Cloud Vision API.
-	///
-	/// - Parameter request: An `AnnotationRequest` describing image type and detection features.
-	///
-	/// - Parameter completion: The closure with `AnnotationResult`,
-	/// called when response comes from Google Cloud Vision API.
-	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void)
-}
-
-
 /// A default Google Cloud Vision API client.
 public final class APIClient: APIClientType {
 
