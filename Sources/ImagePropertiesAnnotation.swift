@@ -5,16 +5,26 @@
 // Licensed under the MIT License.
 //
 
+private struct DominantColorsAnnotation: APIRepresentationConvertible {
+
+	let colors: [ColorInfo]
+
+	init(APIRepresentationValue value: APIRepresentationValue) throws {
+		colors = try value.get("colors")
+	}
+}
+
 public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
-	let dominantColorsAnnotation: DominantColorsAnnotation
+	let dominantColors: [ColorInfo]
 
-	public init(dominantColorsAnnotation: DominantColorsAnnotation) {
-		self.dominantColorsAnnotation = dominantColorsAnnotation
+	public init(dominantColors: [ColorInfo]) {
+		self.dominantColors = dominantColors
 	}
 
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		try self.init(dominantColorsAnnotation: value.get("dominantColors"))
+		let dominantColorsAnnotation: DominantColorsAnnotation = try value.get("dominantColors")
+		self.init(dominantColors: dominantColorsAnnotation.colors)
 	}
 }
 
@@ -24,5 +34,5 @@ extension ImagePropertiesAnnotation: Equatable {}
 
 /// - SeeAlso: Equatable.==
 public func == (lhs: ImagePropertiesAnnotation, rhs: ImagePropertiesAnnotation) -> Bool {
-	return lhs.dominantColorsAnnotation == rhs.dominantColorsAnnotation
+	return lhs.dominantColors == rhs.dominantColors
 }

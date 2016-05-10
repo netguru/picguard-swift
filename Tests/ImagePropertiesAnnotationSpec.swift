@@ -31,15 +31,13 @@ final class ImagePropertiesAnnotationSpec: QuickSpec {
 							]
 						],
 						expected: try! ImagePropertiesAnnotation(
-							dominantColorsAnnotation: DominantColorsAnnotation(
-								colors: [
-									ColorInfo(
-										color: Color(red: 1, green: 2, blue: 3),
-										score: 0.2,
-										pixelFraction: 0.3
-									)
-								]
-							)
+							dominantColors: [
+								ColorInfo(
+									color: Color(red: 1, green: 2, blue: 3),
+									score: 0.2,
+									pixelFraction: 0.3
+								)
+							]
 						)
 					)
 				}
