@@ -19,6 +19,8 @@ public struct Picguard {
 		self.APIClient = APIClient
 	}
 
+	// swiftlint:disable closing_brace
+
 	public func detectUnsafeContent(image image: UIImage, completion: (result: Result<Likelihood>) -> Void) {
 		do {
 			try APIClient.perform(
@@ -45,4 +47,6 @@ public struct Picguard {
 			}
 		}
 	}
+
+	// swiftlint:enable closing_brace
 }

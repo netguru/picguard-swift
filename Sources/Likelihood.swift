@@ -26,7 +26,7 @@ public enum Likelihood: APIRepresentationConvertible {
 	/// The image very likely belongs to the vertical specified.
 	case VeryLikely
 
-	var score: Double {
+	public var score: Double {
 		switch self {
 			case .Unknown: return -1
 			case .VeryUnlikely: return 0
