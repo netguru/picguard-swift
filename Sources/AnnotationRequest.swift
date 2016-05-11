@@ -24,7 +24,7 @@ public struct AnnotationRequest {
 	/// Detection operations which are run against image.
 	///
 	/// - Parameter maxResults: Indicates the maximum number of results
-	/// to return for this feature type.
+	///   to return for this feature type.
 	///
 	/// - Note: The API can return fewer results.
 	public enum Feature {
@@ -47,27 +47,25 @@ public struct AnnotationRequest {
 		/// Determine image safe search properties on the image.
 		case SafeSearch(maxResults: Int)
 
-		/// Compute a set of properties about the image (such as the image's dominant colors).
+		/// Compute a set of properties about the image.
 		case ImageProperties(maxResults: Int)
 
 		/// JSON dictionary representation of `Feature`.
-		///
-		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
-				case .Label(maxResults: let maxResults):
+				case .Label(let maxResults):
 					return ["type": "LABEL_DETECTION", "maxResults": maxResults]
-				case .Text(maxResults: let maxResults):
+				case .Text(let maxResults):
 					return ["type": "TEXT_DETECTION", "maxResults": maxResults]
-				case .Face(maxResults: let maxResults):
+				case .Face(let maxResults):
 					return ["type": "FACE_DETECTION", "maxResults": maxResults]
-				case .Landmark(maxResults: let maxResults):
+				case .Landmark(let maxResults):
 					return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
-				case .Logo(maxResults: let maxResults):
+				case .Logo(let maxResults):
 					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
-				case .SafeSearch(maxResults: let maxResults):
+				case .SafeSearch(let maxResults):
 					return ["type": "SAFE_SEARCH_DETECTION", "maxResults": maxResults]
-				case .ImageProperties(maxResults: let maxResults):
+				case .ImageProperties(let maxResults):
 					return ["type": "IMAGE_PROPERTIES", "maxResults": maxResults]
 			}
 		}
@@ -87,8 +85,8 @@ public struct AnnotationRequest {
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Rethrows any errors thrown by `ImageEncoding`
-		/// when encoder fails to encode image to data.
+		/// - Throws: Rethrows any errors thrown by `ImageEncoding` when encoder
+		///   fails to encode image to data.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
@@ -127,7 +125,7 @@ public struct AnnotationRequest {
 	/// JSON dictionary representation of `AnnotationRequest`.
 	///
 	/// - Throws: Rethrows any errors thrown by `ImageEncoding`
-	/// when encoder fails to encode image to data.
+	///   when encoder fails to encode image to data.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
@@ -164,6 +162,8 @@ public func == (lhs: AnnotationRequest.Feature, rhs: AnnotationRequest.Feature) 
 		default: return false
 	}
 }
+
+// MARK: -
 
 extension AnnotationRequest.Feature: Hashable {
 

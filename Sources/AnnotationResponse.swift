@@ -5,25 +5,75 @@
 // Licensed under the MIT License.
 //
 
-
 /// Response containing annotations returned by Google Cloud Vision API.
 public struct AnnotationResponse: APIRepresentationConvertible {
 
-	/// Optional array of `LabelAnnotations` parsed from response data.
+	/// Array of face detection results.
+	public let faceAnnotations: [FaceAnnotation]?
+
+	/// Array of label detection results.
 	public let labelAnnotations: [LabelAnnotation]?
+
+	/// Array of landmark detection results.
+	public let landmarkAnnotations: [LandmarkAnnotation]?
+
+	/// Array of logo detection results.
+	public let logoAnnotations: [LogoAnnotation]?
+
+	/// Array of text detection results.
+	public let textAnnotations: [TextAnnotation]?
+
+	/// Safe search detection result.
+	public let safeSearchAnnotation: SafeSearchAnnotation?
+
+	/// Image properties detection result.
+	public let imagePropertiesAnnotation: ImagePropertiesAnnotation?
 
 	// MARK: Initializers
 
+	// swiftlint:disable function_parameter_count
+
 	/// Initializes the receiver with raw values.
 	///
-	/// - Parameter labelAnnotations: Optional array containing label annotations.
-	public init(labelAnnotations: [LabelAnnotation]?) {
+	/// - Parameters:
+	///     - faceAnnotations: Array containing face annotations.
+	///     - labelAnnotations: Array containing label annotations.
+	///     - landmarkAnnotations: Array containing landmark annotations.
+	///     - logoAnnotations: Array containing logo annotations.
+	///     - textAnnotations: Array containing text annotations.
+	///     - safeSearchAnnotation: Safe search annotation.
+	///     - imagePropertiesAnnotation: Image properties annotation.
+	public init(
+		faceAnnotations: [FaceAnnotation]?,
+		labelAnnotations: [LabelAnnotation]?,
+		landmarkAnnotations: [LandmarkAnnotation]?,
+		logoAnnotations: [LogoAnnotation]?,
+		textAnnotations: [TextAnnotation]?,
+		safeSearchAnnotation: SafeSearchAnnotation?,
+		imagePropertiesAnnotation: ImagePropertiesAnnotation?
+	) {
+		self.faceAnnotations = faceAnnotations
 		self.labelAnnotations = labelAnnotations
+		self.landmarkAnnotations = landmarkAnnotations
+		self.logoAnnotations = logoAnnotations
+		self.textAnnotations = textAnnotations
+		self.safeSearchAnnotation = safeSearchAnnotation
+		self.imagePropertiesAnnotation = imagePropertiesAnnotation
 	}
+
+	// swiftlint:enable function_parameter_count
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		labelAnnotations = try value.get("labelAnnotations")
+		try self.init(
+			faceAnnotations: value.get("faceAnnotations"),
+			labelAnnotations: value.get("labelAnnotations"),
+			landmarkAnnotations: value.get("landmarkAnnotations"),
+			logoAnnotations: value.get("logoAnnotations"),
+			textAnnotations: value.get("textAnnotations"),
+			safeSearchAnnotation: value.get("safeSearchAnnotation"),
+			imagePropertiesAnnotation: value.get("imagePropertiesAnnotation")
+		)
 	}
 }
 
@@ -33,5 +83,13 @@ extension AnnotationResponse: Equatable {}
 
 /// - SeeAlso: Equatable.==
 public func == (lhs: AnnotationResponse, rhs: AnnotationResponse) -> Bool {
-	return lhs.labelAnnotations == rhs.labelAnnotations
+	return (
+		lhs.faceAnnotations == rhs.faceAnnotations &&
+		lhs.labelAnnotations == rhs.labelAnnotations &&
+		lhs.landmarkAnnotations == rhs.landmarkAnnotations &&
+		lhs.logoAnnotations == rhs.logoAnnotations &&
+		lhs.textAnnotations == rhs.textAnnotations &&
+		lhs.safeSearchAnnotation == rhs.safeSearchAnnotation &&
+		lhs.imagePropertiesAnnotation == rhs.imagePropertiesAnnotation
+	)
 }

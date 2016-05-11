@@ -104,7 +104,7 @@ public struct FaceAnnotation: APIRepresentationConvertible {
 	///     - headwearLikelihood: Likelihood of headwear.
 	///
 	/// - Throws: Errors from `FaceAnnotation.Error` domain if the provided
-	/// numeric values are out of their expected range.
+	///   numeric values are out of their expected range.
 	public init(
 		boundingPolygon: BoundingPolygon,
 		skinBoundingPolygon: BoundingPolygon,

@@ -54,7 +54,7 @@ public extension APIRepresentationValue {
 	/// Initializes the representation value with a value.
 	///
 	/// - Throws: `UnsupportedInitType` if the value given is of an unsupported
-	/// type.
+	///   type.
 	///
 	/// - Parameter value: The value to initialize the representation with.
 	init(value: AnyObject) throws {
@@ -81,7 +81,7 @@ public extension APIRepresentationValue {
 	/// Initializes the representation with JSON data.
 	///
 	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` and
-	/// `self.init(value:)`.
+	///   `self.init(value:)`.
 	///
 	/// - Parameter data: The serialized JSON data.
 	init(data: NSData) throws {
@@ -100,7 +100,7 @@ public extension APIRepresentationValue {
 	/// - Parameter key: The key of value.
 	///
 	/// - Throws: `UnexpectedValueType` if the receiver is not a dictionary,
-	/// `MissingDictionaryKey` if the key doesn't exist.
+	///   `MissingDictionaryKey` if the key doesn't exist.
 	///
 	/// - Returns: A representation value.
 	func get(key: Swift.String) throws -> APIRepresentationValue {
@@ -117,9 +117,12 @@ public extension APIRepresentationValue {
 	///
 	/// - Parameter key: The key of the value.
 	///
-	/// - Throws: `UnexpectedValueType` if the receiver is not a dictionary,
-	/// `MissingDictionaryKey` if the key doesn't exist, or any other error
-	/// thrown by `APIRepresentationConvertible.init`.
+	/// - Throws: The following errors:
+	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
+	///       is not a dictionary,
+	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
+	///       exist,
+	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented value.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> T {
@@ -130,8 +133,10 @@ public extension APIRepresentationValue {
 	///
 	/// - Parameter key: The key of the value.
 	///
-	/// - Throws: `UnexpectedValueType` if the receiver is neither a dictionary
-	/// nor a null, or any other error thrown by `APIRepresentationConvertible.init`.
+	/// - Throws: The following errors:
+	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
+	///       is not a dictionary,
+	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped optional represented value.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> T? {
@@ -139,7 +144,7 @@ public extension APIRepresentationValue {
 			if case .Null = try get(key) {
 				return nil
 			}
-			return try T(APIRepresentationValue: get(key))
+			return try get(key) as T
 		} catch APIRepresentationError.MissingDictionaryKey {
 			return nil
 		}
@@ -149,8 +154,12 @@ public extension APIRepresentationValue {
 	///
 	/// - Parameter key: The key of the array.
 	///
-	/// - Throws: `UnexpectedValueType` if the receiver is not an array, or any
-	/// other error thrown by `APIRepresentationConvertible.init`.
+	/// - Throws: The following errors:
+	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
+	///       is not a dictionary or value is not an array,
+	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
+	///       exist,
+	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented array.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T] {
@@ -160,12 +169,37 @@ public extension APIRepresentationValue {
 		return try array.map(T.init(APIRepresentationValue:))
 	}
 
+	/// Unwraps an array under the given key from the representation.
+	///
+	/// - Parameter key: The key of the array.
+	///
+	/// - Throws: The following errors:
+	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
+	///       is not a dictionary or value is not a null or an array,
+	///     - Any other error thrown by `APIRepresentationConvertible.init`.
+	///
+	/// - Returns: An unwrapped optional represented array.
+	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T]? {
+		do {
+			if case .Null = try get(key) {
+				return nil
+			}
+			return try get(key) as [T]
+		} catch APIRepresentationError.MissingDictionaryKey {
+			return nil
+		}
+	}
+
 	/// Unwraps a dictioanry under the given key from the representation.
 	///
 	/// - Parameter key: The key of the array.
 	///
-	/// - Throws: `UnexpectedValueType` if the receiver is not a dictionary, or
-	/// any other error thrown by `APIRepresentationConvertible.init`.
+	/// - Throws: The following errors:
+	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
+	///       is not a dictionary or value is not a dictionary,
+	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
+	///       exist,
+	///     - Any other error thrown by `APIRepresentationConvertible.init`.
 	///
 	/// - Returns: An unwrapped represented dictionary.
 	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [Swift.String: T] {

@@ -121,6 +121,28 @@ final class APIRepresentationValueSpec: QuickSpec {
 				}
 			}
 
+			func getOptionalArrayShouldSucceed<T: protocol<Equatable, APIRepresentationConvertible>>(subject subject: APIRepresentationValue, key: String, expected: [T]?) {
+				it("should succeed to get value") {
+					if let expected = expected {
+						expect { _ -> [T]? in
+							try subject.get(key)
+						}.to(equal(expected))
+					} else {
+						expect { _ -> [T]? in
+							try subject.get(key)
+						}.to(beNil())
+					}
+				}
+			}
+
+			func getOptionalArrayShouldFail<T: APIRepresentationConvertible>(subject subject: APIRepresentationValue, key: String, type: T.Type, expectedError: APIRepresentationError) {
+				it("should fail to get value") {
+					expect { _ -> [T]? in
+						try subject.get(key)
+					}.to(throwError(expectedError))
+				}
+			}
+
 			func getDictionaryShouldSucceed<T: protocol<Equatable, APIRepresentationConvertible>>(subject subject: APIRepresentationValue, key: String, expected: [String: T]) {
 				it("should succeed to get value") {
 					expect { _ -> [String: T] in
@@ -370,6 +392,32 @@ final class APIRepresentationValueSpec: QuickSpec {
 
 				context("when the subject has icorrect type") {
 					getArrayShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
+				}
+
+			}
+			describe("get optional array") {
+
+				let subject = try! APIRepresentationValue(value: ["first": ["foo", "bar"], "second": ["baz": 123], "null": NSNull()])
+
+				context("when the key exists and holds values of the same type") {
+					getOptionalArrayShouldSucceed(subject: subject, key: "first", expected: ["foo", "bar"])
+				}
+
+				pending("when the key exists and holds values of different types") {
+					// not yet supported by the compiler
+					// getArrayShouldSucceed(subject: subject, key: "second", expected: ["baz", 123] as [APIRepresentationConvertible])
+				}
+
+				context("when the key does not exist") {
+					getOptionalArrayShouldSucceed(subject: subject, key: "third", expected: Optional<[String]>.None)
+				}
+
+				context("when the key exists and is null") {
+					getOptionalArrayShouldFail(subject: subject, key: "second", type: String.self, expectedError: .UnexpectedValueType)
+				}
+
+				context("when the subject has icorrect type") {
+					getOptionalArrayShouldFail(subject: .String("foo"), key: "bar", type: String.self, expectedError: .UnexpectedValueType)
 				}
 
 			}

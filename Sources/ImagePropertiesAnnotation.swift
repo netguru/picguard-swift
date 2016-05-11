@@ -8,14 +8,15 @@
 /// Describes the result of image properties detection.
 public struct ImagePropertiesAnnotation: APIRepresentationConvertible {
 
-	/// Array of dominan colors RGBA color values, with their scores and pixel fractions.
+	/// Array of dominant colors with their scores and pixel fractions.
 	let dominantColors: [ColorInformation]
 
 	// MARK: Initializers
 
 	/// Initializes the receiver with raw values.
 	///
-	/// - Parameter dominantColors: Array of colors with their scores and pixel fractions.
+	/// - Parameter dominantColors: Array of dominant colors with their scores
+	///   and pixel fractions.
 	public init(dominantColors: [ColorInformation]) {
 		self.dominantColors = dominantColors
 	}

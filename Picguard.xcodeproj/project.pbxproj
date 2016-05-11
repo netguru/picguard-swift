@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */; };
+		3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */; };
 		3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0CB7641CC55A8500A32F4E /* Picguard.framework */; };
 		3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0CB7921CC683D300A32F4E /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */; };
 		3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */; };
 		3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */; };
+		3A38B67D1CE252F5006975AC /* AnnotationResultSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38B67B1CE252D1006975AC /* AnnotationResultSpec.swift */; };
 		3A839C371CDB68B8006216A6 /* PositionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C311CDB6156006216A6 /* PositionSpec.swift */; };
 		3A839C3E1CDB6F74006216A6 /* APIRepresentationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C3A1CDB691F006216A6 /* APIRepresentationHelpers.swift */; };
 		3A839C431CDB7D8D006216A6 /* VertexSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839C411CDB7D59006216A6 /* VertexSpec.swift */; };
@@ -74,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationError.swift; sourceTree = "<group>"; };
+		3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientType.swift; sourceTree = "<group>"; };
 		3A0CB7641CC55A8500A32F4E /* Picguard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Picguard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB7801CC65E9000A32F4E /* Picguard Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picguard Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB78C1CC6748200A32F4E /* Picguard-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Picguard-Common.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotation.swift; sourceTree = "<group>"; };
 		3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationSpec.swift; sourceTree = "<group>"; };
 		3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoder.swift; sourceTree = "<group>"; };
+		3A38B67B1CE252D1006975AC /* AnnotationResultSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResultSpec.swift; sourceTree = "<group>"; };
 		3A839C311CDB6156006216A6 /* PositionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionSpec.swift; sourceTree = "<group>"; };
 		3A839C3A1CDB691F006216A6 /* APIRepresentationHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRepresentationHelpers.swift; sourceTree = "<group>"; };
 		3A839C411CDB7D59006216A6 /* VertexSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VertexSpec.swift; sourceTree = "<group>"; };
@@ -160,6 +166,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0C82AE1CE2355500FFEE12 /* Supporting Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */,
+				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
+				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
+				3AC0BB9F1CDA76DA00EDCC61 /* FaceLandmark.swift */,
+				3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */,
+				3AC0BB931CDA660600EDCC61 /* Likelihood.swift */,
+				3ADA94201CDCE8D800AB5736 /* Location.swift */,
+				3AD8FE321CD172C5008557F3 /* Position.swift */,
+				3AC0BB981CDA766A00EDCC61 /* Vertex.swift */,
+			);
+			name = "Supporting Models";
+			sourceTree = "<group>";
+		};
+		3A0C82AF1CE2369B00FFEE12 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
+				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
+				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
+				3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */,
+				3A22BA9B1CCF65800033E807 /* Annotation Models */,
+				3A0C82AE1CE2355500FFEE12 /* Supporting Models */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		3A0C82B01CE24EE100FFEE12 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */,
+				3A38B67B1CE252D1006975AC /* AnnotationResultSpec.swift */,
+				5CA99C031CD77E6D00350B6C /* AnnotationResponseSpec.swift */,
+				3A0C82B11CE24F0A00FFEE12 /* Annotation Models */,
+				3A0C82B21CE24F2700FFEE12 /* Supporting Models */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		3A0C82B11CE24F0A00FFEE12 /* Annotation Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A839C501CDB834D006216A6 /* FaceAnnotationSpec.swift */,
+				3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */,
+				3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */,
+				5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */,
+				3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */,
+				5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */,
+				5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */,
+			);
+			name = "Annotation Models";
+			sourceTree = "<group>";
+		};
+		3A0C82B21CE24F2700FFEE12 /* Supporting Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A839C441CDB7DD6006216A6 /* BoundingPolygonSpec.swift */,
+				5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */,
+				5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */,
+				3A839C521CDB910B006216A6 /* FaceLandmarkSpec.swift */,
+				3A839C541CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift */,
+				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
+				3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */,
+				3A839C311CDB6156006216A6 /* PositionSpec.swift */,
+				3A839C411CDB7D59006216A6 /* VertexSpec.swift */,
+			);
+			name = "Supporting Models";
+			sourceTree = "<group>";
+		};
 		3A0CB75A1CC55A8500A32F4E = {
 			isa = PBXGroup;
 			children = (
@@ -185,12 +262,12 @@
 		3A0CB7661CC55A8500A32F4E /* Picguard */ = {
 			isa = PBXGroup;
 			children = (
+				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 				5C70EED71CDC9CE300D22125 /* API Client */,
 				3AD8FE2E1CD1544A008557F3 /* API Representation */,
-				3A22BA9B1CCF65800033E807 /* Result Models */,
+				3A0C82AF1CE2369B00FFEE12 /* Data Models */,
 				3A2E7C301CC8F54400277114 /* Image Encoding */,
 				3AD8FE2D1CD15246008557F3 /* Type Extensions */,
-				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 			);
 			name = Picguard;
 			path = Sources;
@@ -199,12 +276,12 @@
 		3A0CB7811CC65E9000A32F4E /* Picguard Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */,
 				5C70EED81CDC9D4500D22125 /* API Client */,
 				3AD8FE361CD1FA74008557F3 /* API Representation */,
-				3A22BAA01CCFA6590033E807 /* Result Models */,
+				3A0C82B01CE24EE100FFEE12 /* Data Models */,
 				5C70EED91CDC9D5700D22125 /* Image Encoding */,
 				5CC2FBC01CD26756004534B0 /* Mocks */,
-				5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */,
 			);
 			name = "Picguard Tests";
 			path = Tests;
@@ -235,38 +312,18 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		3A22BA9B1CCF65800033E807 /* Result Models */ = {
+		3A22BA9B1CCF65800033E807 /* Annotation Models */ = {
 			isa = PBXGroup;
 			children = (
-				5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */,
-				5C05135E1CE07BCF0013B5A6 /* Logo Annotation */,
-				3AC0BB971CDA765600EDCC61 /* Geometry */,
-				3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */,
-				3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */,
-				3ADA941B1CDCCDB300AB5736 /* Text Annotation */,
-				3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */,
-				5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */,
-				3AC0BB931CDA660600EDCC61 /* Likelihood.swift */,
-				3ADA94201CDCE8D800AB5736 /* Location.swift */,
+				3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */,
+				3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */,
+				3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */,
+				5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */,
+				3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */,
+				5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */,
+				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
 			);
-			name = "Result Models";
-			sourceTree = "<group>";
-		};
-		3A22BAA01CCFA6590033E807 /* Result Models */ = {
-			isa = PBXGroup;
-			children = (
-				5C0513611CE080C20013B5A6 /* Logo Annotation */,
-				3A839C471CDB7EA4006216A6 /* Geometry */,
-				3A839C4B1CDB8016006216A6 /* Label Annotation */,
-				3A839C4F1CDB833F006216A6 /* Face Annotation */,
-				3ADA941C1CDCD00A00AB5736 /* Text Annotation */,
-				3ADA94221CDCEE4700AB5736 /* Landmark Annotation */,
-				5CA75D821CDB88B2002B0422 /* Safe Search Annotation */,
-				5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */,
-				3AC0BB951CDA68B800EDCC61 /* LikelihoodSpec.swift */,
-				3ADA94231CDCEE5600AB5736 /* LocationSpec.swift */,
-			);
-			name = "Result Models";
+			name = "Annotation Models";
 			sourceTree = "<group>";
 		};
 		3A2E7C301CC8F54400277114 /* Image Encoding */ = {
@@ -276,62 +333,6 @@
 				3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */,
 			);
 			name = "Image Encoding";
-			sourceTree = "<group>";
-		};
-		3A839C471CDB7EA4006216A6 /* Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				3A839C311CDB6156006216A6 /* PositionSpec.swift */,
-				3A839C411CDB7D59006216A6 /* VertexSpec.swift */,
-				3A839C441CDB7DD6006216A6 /* BoundingPolygonSpec.swift */,
-			);
-			name = Geometry;
-			sourceTree = "<group>";
-		};
-		3A839C4B1CDB8016006216A6 /* Label Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */,
-			);
-			name = "Label Annotation";
-			sourceTree = "<group>";
-		};
-		3A839C4F1CDB833F006216A6 /* Face Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3A839C501CDB834D006216A6 /* FaceAnnotationSpec.swift */,
-				3A839C521CDB910B006216A6 /* FaceLandmarkSpec.swift */,
-				3A839C541CDB91DF006216A6 /* FaceLandmarkTypeSpec.swift */,
-			);
-			name = "Face Annotation";
-			sourceTree = "<group>";
-		};
-		3AC0BB971CDA765600EDCC61 /* Geometry */ = {
-			isa = PBXGroup;
-			children = (
-				3AD8FE321CD172C5008557F3 /* Position.swift */,
-				3AC0BB981CDA766A00EDCC61 /* Vertex.swift */,
-				3AC0BB9A1CDA768600EDCC61 /* BoundingPolygon.swift */,
-			);
-			name = Geometry;
-			sourceTree = "<group>";
-		};
-		3AC0BBA21CDA7E7900EDCC61 /* Face Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3AD8FE341CD172DE008557F3 /* FaceAnnotation.swift */,
-				3AC0BB9F1CDA76DA00EDCC61 /* FaceLandmark.swift */,
-				3A839C481CDB7FDD006216A6 /* FaceLandmarkType.swift */,
-			);
-			name = "Face Annotation";
-			sourceTree = "<group>";
-		};
-		3AC0BBA31CDA7E8F00EDCC61 /* Label Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */,
-			);
-			name = "Label Annotation";
 			sourceTree = "<group>";
 		};
 		3AD8FE2D1CD15246008557F3 /* Type Extensions */ = {
@@ -362,61 +363,11 @@
 			name = "API Representation";
 			sourceTree = "<group>";
 		};
-		3ADA941B1CDCCDB300AB5736 /* Text Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA94191CDCCDB000AB5736 /* TextAnnotation.swift */,
-			);
-			name = "Text Annotation";
-			sourceTree = "<group>";
-		};
-		3ADA941C1CDCD00A00AB5736 /* Text Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA941D1CDCD02500AB5736 /* TextAnnotationSpec.swift */,
-			);
-			name = "Text Annotation";
-			sourceTree = "<group>";
-		};
-		3ADA941F1CDCE8A200AB5736 /* Landmark Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA94261CDCF1E200AB5736 /* LandmarkAnnotation.swift */,
-			);
-			name = "Landmark Annotation";
-			sourceTree = "<group>";
-		};
-		3ADA94221CDCEE4700AB5736 /* Landmark Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */,
-			);
-			name = "Landmark Annotation";
-			sourceTree = "<group>";
-		};
-		5C05135E1CE07BCF0013B5A6 /* Logo Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */,
-			);
-			name = "Logo Annotation";
-			sourceTree = "<group>";
-		};
-		5C0513611CE080C20013B5A6 /* Logo Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */,
-			);
-			name = "Logo Annotation";
-			sourceTree = "<group>";
-		};
 		5C70EED71CDC9CE300D22125 /* API Client */ = {
 			isa = PBXGroup;
 			children = (
+				3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */,
 				5CB005001CD1095400481A51 /* APIClient.swift */,
-				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
-				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
-				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
 			);
 			name = "API Client";
 			sourceTree = "<group>";
@@ -424,8 +375,6 @@
 		5C70EED81CDC9D4500D22125 /* API Client */ = {
 			isa = PBXGroup;
 			children = (
-				5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */,
-				5CA99C031CD77E6D00350B6C /* AnnotationResponseSpec.swift */,
 				5CA99C081CD7A27D00350B6C /* APIClientSpec.swift */,
 			);
 			name = "API Client";
@@ -439,48 +388,12 @@
 			name = "Image Encoding";
 			sourceTree = "<group>";
 		};
-		5CA75D7F1CDB84DB002B0422 /* Safe Search Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CA75D801CDB84FF002B0422 /* SafeSearchAnnotation.swift */,
-			);
-			name = "Safe Search Annotation";
-			sourceTree = "<group>";
-		};
-		5CA75D821CDB88B2002B0422 /* Safe Search Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CA75D831CDB88CF002B0422 /* SafeSearchAnnotationSpec.swift */,
-			);
-			name = "Safe Search Annotation";
-			sourceTree = "<group>";
-		};
 		5CC2FBC01CD26756004534B0 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */,
 			);
 			name = Mocks;
-			sourceTree = "<group>";
-		};
-		5CE8B2921CE0CD9800BD65EA /* Image Properties Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CE8B2931CE0CE5E00BD65EA /* Color.swift */,
-				5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */,
-				5CE8B2971CE0D1DC00BD65EA /* ImagePropertiesAnnotation.swift */,
-			);
-			name = "Image Properties Annotation";
-			sourceTree = "<group>";
-		};
-		5CE8B2991CE0D27F00BD65EA /* Image Properties Annotation */ = {
-			isa = PBXGroup;
-			children = (
-				5CE8B29A1CE0D29500BD65EA /* ColorSpec.swift */,
-				5CE8B29C1CE0D6E000BD65EA /* ColorInformationSpec.swift */,
-				5CE8B29E1CE0DAE900BD65EA /* ImagePropertiesAnnotationSpec.swift */,
-			);
-			name = "Image Properties Annotation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,8 +542,10 @@
 				3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */,
 				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
 				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
+				3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */,
 				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
 				3A839C491CDB7FDD006216A6 /* FaceLandmarkType.swift in Sources */,
+				3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */,
 				3AC0BBA11CDA798F00EDCC61 /* FaceLandmark.swift in Sources */,
 				5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */,
 				3AD8FE351CD172DE008557F3 /* FaceAnnotation.swift in Sources */,
@@ -674,6 +589,7 @@
 				5CA99C091CD7A27D00350B6C /* APIClientSpec.swift in Sources */,
 				5CE8B29D1CE0D6E000BD65EA /* ColorInformationSpec.swift in Sources */,
 				5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */,
+				3A38B67D1CE252F5006975AC /* AnnotationResultSpec.swift in Sources */,
 				3A839C461CDB7E22006216A6 /* BoundingPolygonSpec.swift in Sources */,
 				3AD8FE381CD1FA8B008557F3 /* APIRepresentationConvertibleSpec.swift in Sources */,
 				3A839C431CDB7D8D006216A6 /* VertexSpec.swift in Sources */,

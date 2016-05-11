@@ -38,7 +38,7 @@ public struct Location: APIRepresentationConvertible {
 	///     - longitude: The longitude in degrees.
 	///
 	/// - Throws: Errors from `Location.Error` domain if latitude or longitude
-	/// are not in valid range.
+	///   are not in valid range.
 	public init(latitude: Double, longitude: Double) throws {
 		guard -90...90 ~= latitude else {
 			throw Error.InvalidLatitude
