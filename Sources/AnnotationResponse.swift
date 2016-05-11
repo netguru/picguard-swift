@@ -84,10 +84,11 @@ extension AnnotationResponse: Equatable {}
 /// - SeeAlso: Equatable.==
 public func == (lhs: AnnotationResponse, rhs: AnnotationResponse) -> Bool {
 	return (
-		lhs.labelAnnotations == rhs.labelAnnotations &&
 		lhs.faceAnnotations == rhs.faceAnnotations &&
-		lhs.textAnnotations == rhs.textAnnotations &&
+		lhs.labelAnnotations == rhs.labelAnnotations &&
 		lhs.landmarkAnnotations == rhs.landmarkAnnotations &&
+		lhs.logoAnnotations == rhs.logoAnnotations &&
+		lhs.textAnnotations == rhs.textAnnotations &&
 		lhs.safeSearchAnnotation == rhs.safeSearchAnnotation &&
 		lhs.imagePropertiesAnnotation == rhs.imagePropertiesAnnotation
 	)
