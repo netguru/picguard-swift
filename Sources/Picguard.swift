@@ -9,7 +9,7 @@ import UIKit
 
 public struct Picguard {
 
-	private let APIClient: APIClientType
+	public let APIClient: APIClientType
 
 	public enum Error: ErrorType {
 		case AnnotationsNotFound
@@ -33,8 +33,9 @@ public struct Picguard {
 								completion(result: .Error(Error.AnnotationsNotFound))
 								return
 							}
-							completion(result: .Value(safeSearchAnnotation.adultContentLikelihood))
-						case .Error(let error): completion(result: .Error(error))
+							completion(result: .Value(safeSearchAnnotation.violentContentLikelihood))
+						case .Error(let error):
+							completion(result: .Error(error))
 					}
 				}
 			)
