@@ -56,6 +56,48 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 
 			}
 
+			describe("unsafe content likelihood") {
+
+				context("when there is unknown likelihood") {
+
+					var sut: SafeSearchAnnotation!
+
+					beforeEach {
+						sut = SafeSearchAnnotation(
+							adultContentLikelihood: .Possible,
+							spoofContentLikelihood: .Unknown,
+							medicalContentLikelihood: .VeryLikely,
+							violentContentLikelihood: .Likely
+						)
+					}
+
+					it("should return unknown likelihood") {
+						expect(sut.unsafeContentLikelihood).to(equal(Likelihood.Unknown))
+					}
+
+				}
+
+				context("when there no unknown likelihood") {
+
+					var sut: SafeSearchAnnotation!
+
+					beforeEach {
+						sut = SafeSearchAnnotation(
+							adultContentLikelihood: .Possible,
+							spoofContentLikelihood: .Unlikely,
+							medicalContentLikelihood: .VeryLikely,
+							violentContentLikelihood: .Likely
+						)
+					}
+
+					it("should properly calculate likelihood") {
+						expect(sut.unsafeContentLikelihood).to(equal(Likelihood.Likely))
+					}
+					
+				}
+
+			}
+
 		}
 
 	}

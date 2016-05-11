@@ -21,12 +21,12 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing violent content.
 	let violentContentLikelihood: Likelihood
 
-	var unsafeContentLikelihood: Likelihood {
+	public var unsafeContentLikelihood: Likelihood {
 		guard
-			case .Unknown = adultContentLikelihood,
-			case .Unknown = violentContentLikelihood,
-			case .Unknown = medicalContentLikelihood,
-			case .Unknown = spoofContentLikelihood
+			adultContentLikelihood != .Unknown &&
+			violentContentLikelihood != .Unknown &&
+			medicalContentLikelihood != .Unknown &&
+			spoofContentLikelihood != .Unknown
 		else {
 			return .Unknown
 		}
