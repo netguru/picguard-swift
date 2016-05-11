@@ -57,6 +57,7 @@
 		5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005041CD1099A00481A51 /* AnnotationResponse.swift */; };
 		5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */; };
 		5CC2FBC21CD26766004534B0 /* MockImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */; };
+		5CC49CC01CE33E6D00C696E7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC49CBF1CE33E6D00C696E7 /* Result.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
 		5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */; };
@@ -138,6 +139,7 @@
 		5CB005041CD1099A00481A51 /* AnnotationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResponse.swift; sourceTree = "<group>"; };
 		5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationRequestSpec.swift; sourceTree = "<group>"; };
 		5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageEncoder.swift; sourceTree = "<group>"; };
+		5CC49CBF1CE33E6D00C696E7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformation.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		3A0C82AF1CE2369B00FFEE12 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				5CC49CBF1CE33E6D00C696E7 /* Result.swift */,
 				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
 				5CB005021CD1098700481A51 /* AnnotationResult.swift */,
 				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
@@ -545,6 +548,7 @@
 				3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */,
 				5CB005031CD1098700481A51 /* AnnotationResult.swift in Sources */,
 				3A839C491CDB7FDD006216A6 /* FaceLandmarkType.swift in Sources */,
+				5CC49CC01CE33E6D00C696E7 /* Result.swift in Sources */,
 				3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */,
 				3AC0BBA11CDA798F00EDCC61 /* FaceLandmark.swift in Sources */,
 				5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */,
