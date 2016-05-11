@@ -9,21 +9,19 @@ import UIKit
 
 public struct Picguard {
 
-	public let APIClient: APIClientType
+	public var client: APIClientType
 
 	public enum Error: ErrorType {
 		case AnnotationsNotFound
 	}
 
-	public init(APIClient: APIClientType) {
-		self.APIClient = APIClient
+	public init(APIKey: String) {
+		client = APIClient(APIKey: APIKey, encoder: Base64ImageEncoder())
 	}
-
-	// swiftlint:disable closing_brace
 
 	public func detectUnsafeContent(image image: UIImage, completion: (result: Result<Likelihood>) -> Void) {
 		do {
-			try APIClient.perform(
+			try client.perform(
 				request: AnnotationRequest(
 					features: Set([.SafeSearch(maxResults: 1)]),
 					image: .Image(image)
@@ -39,8 +37,7 @@ public struct Picguard {
 						case .Error(let error):
 							completion(result: .Error(error))
 					}
-				}
-			)
+			})
 		} catch let error {
 			dispatch_async(dispatch_get_main_queue()) {
 				completion(result: .Error(error))
@@ -48,5 +45,4 @@ public struct Picguard {
 		}
 	}
 
-	// swiftlint:enable closing_brace
 }

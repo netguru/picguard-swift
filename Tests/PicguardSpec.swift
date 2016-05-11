@@ -16,14 +16,52 @@ final class PicguardSpec: QuickSpec {
 		var sut: Picguard!
 
 		beforeEach {
-			sut = Picguard(APIClient: APIClient(APIKey: "", encoder: Base64ImageEncoder()))
+			sut = Picguard(APIKey: "fixture api key")
 		}
 
 		afterEach {
 			sut = nil
 		}
 
-		it("should pass") {
+		it("should have API client") {
+			expect(sut.client.dynamicType == APIClient.self).to(beTruthy())
 		}
+
+		describe("detect unsafe content") {
+
+			var mockClient: MockAPIClient!
+			var capturedResult: Result<Likelihood>!
+			var image: UIImage!
+
+			beforeEach {
+				image = UIImage()
+				mockClient = MockAPIClient()
+				sut.client = mockClient
+				sut.detectUnsafeContent(image: UIImage(), completion: { result in
+					capturedResult = result
+				})
+			}
+
+
+			it("perform proper request") {
+				expect(mockClient.lastRequest).to(equal(try! AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]), image: .Image(image)))
+				)
+			}
+
+		}
+
 	}
+
+}
+
+private final class MockAPIClient: APIClientType {
+
+	var lastRequest: AnnotationRequest!
+	var lastCompletion: ((AnnotationResult) -> Void)!
+
+	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
+		lastRequest = request
+		lastCompletion = completion
+	}
+
 }
