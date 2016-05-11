@@ -9,7 +9,7 @@ import UIKit
 
 public struct Picguard {
 
-	public var client: APIClientType
+	public let client: APIClientType
 
 	public enum Error: ErrorType {
 		case AnnotationsNotFound
@@ -17,6 +17,10 @@ public struct Picguard {
 
 	public init(APIKey: String) {
 		client = APIClient(APIKey: APIKey, encoder: Base64ImageEncoder())
+	}
+
+	public init(APIClient: APIClientType) {
+		client = APIClient
 	}
 
 	public func detectUnsafeContent(image image: UIImage, completion: (result: Result<Likelihood>) -> Void) {

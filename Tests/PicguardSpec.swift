@@ -13,39 +13,50 @@ final class PicguardSpec: QuickSpec {
 
 	override func spec() {
 
-		var sut: Picguard!
-
-		beforeEach {
-			sut = Picguard(APIKey: "fixture api key")
-		}
-
-		afterEach {
-			sut = nil
-		}
-
-		it("should have API client") {
-			expect(sut.client.dynamicType == APIClient.self).to(beTruthy())
-		}
-
-		describe("detect unsafe content") {
+		describe("Picguard") {
 
 			var mockClient: MockAPIClient!
-			var capturedResult: Result<Likelihood>!
-			var image: UIImage!
+			var sut: Picguard!
 
 			beforeEach {
-				image = UIImage()
 				mockClient = MockAPIClient()
-				sut.client = mockClient
-				sut.detectUnsafeContent(image: UIImage(), completion: { result in
-					capturedResult = result
-				})
+				sut = Picguard(APIClient: mockClient)
 			}
 
+			afterEach {
+				sut = nil
+			}
 
-			it("perform proper request") {
-				expect(mockClient.lastRequest).to(equal(try! AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]), image: .Image(image)))
-				)
+			context("when initialized with API key") {
+
+				var sut: Picguard!
+
+				beforeEach {
+					sut = Picguard(APIKey: "foo")
+				}
+
+				it("should have proper API client") {
+					expect(sut.client.dynamicType == APIClient.self).to(beTruthy())
+				}
+			}
+
+			describe("detect unsafe content") {
+
+				var capturedResult: Result<Likelihood>!
+				var image: UIImage!
+
+				beforeEach {
+					image = UIImage()
+					sut.detectUnsafeContent(image: UIImage(), completion: { result in
+						capturedResult = result
+					})
+				}
+
+				it("perform proper request") {
+					expect(mockClient.lastRequest).to(equal(try! AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]), image: .Image(image)))
+					)
+				}
+				
 			}
 
 		}
