@@ -54,14 +54,14 @@ public final class APIClient: APIClientType {
 	}
 
 	/// - SeeAlso: APIClientType.perform(request:completion:)
-	public func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
+	public func perform(request request: AnnotationRequest, completion: (PicguardResult<AnnotationResponse>) -> Void) {
 		do {
 			let URLRequest = try composeURLRequest(annotationRequest: request)
 			let dataTask = createDataTask(URLRequest: URLRequest, completion: completion)
 			dataTask.resume()
 		} catch let error {
 			dispatch_async(dispatch_get_main_queue()) {
-				completion(AnnotationResult.Error(error))
+				completion(PicguardResult.Error(error))
 			}
 		}
 	}
@@ -105,7 +105,7 @@ private extension APIClient {
 	///     - completion: The completion closure to be execured.
 	///
 	/// - Returns: Configured `NSURLSessionDataTask`.
-	func createDataTask(URLRequest URLRequest: NSURLRequest, completion: (AnnotationResult) -> Void) -> NSURLSessionDataTask {
+	func createDataTask(URLRequest URLRequest: NSURLRequest, completion: (PicguardResult<AnnotationResponse>) -> Void) -> NSURLSessionDataTask {
 		return session.dataTaskWithRequest(URLRequest) { data, URLResponse, responseError in
 			guard let URLResponse = URLResponse else {
 				completion(.Error(Error.NoResponse))
@@ -123,7 +123,7 @@ private extension APIClient {
 				completion(.Error(responseError))
 			} else if let data = data {
 				do {
-					completion(try APIRepresentationValue(data: data).get("responses")[0] as AnnotationResult)
+					completion(try APIRepresentationValue(data: data).get("responses")[0] as PicguardResult<AnnotationResponse>)
 				} catch let error {
 					completion(.Error(error))
 				}

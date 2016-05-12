@@ -21,6 +21,32 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing violent content.
 	let violentContentLikelihood: Likelihood
 
+	/// Likelihood of unsafe content, calculated using adult, spoof, medical and violent
+	/// contents likelihoods.
+	///
+	/// - Throws: Rethrows any errors thrown while creating combined
+	/// unsafe content `Likelihood` using calculated score.
+	///
+	/// - Returns: Likelihood of unsafe content.
+	public func unsafeContentLikelihood() throws -> Likelihood {
+		guard
+			adultContentLikelihood != .Unknown &&
+			violentContentLikelihood != .Unknown &&
+			medicalContentLikelihood != .Unknown &&
+			spoofContentLikelihood != .Unknown
+		else {
+			return .Unknown
+		}
+		return try Likelihood(
+			score: (
+				adultContentLikelihood.score * 4 +
+				violentContentLikelihood.score * 3 +
+				medicalContentLikelihood.score * 2 +
+				spoofContentLikelihood.score
+			) / 9
+		)
+	}
+
 	// MARK: Initializers
 
 	/// Initializes the receiver with raw values.

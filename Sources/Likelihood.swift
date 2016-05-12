@@ -26,6 +26,17 @@ public enum Likelihood: APIRepresentationConvertible {
 	/// The image very likely belongs to the vertical specified.
 	case VeryLikely
 
+	public var score: Double {
+		switch self {
+			case .Unknown: return -1
+			case .VeryUnlikely: return 0
+			case .Unlikely: return 0.3
+			case .Possible: return 0.5
+			case .Likely: return 0.7
+			case .VeryLikely: return 1
+		}
+	}
+
 	// MARK: Errors
 
 	/// Describes errors which can be thrown inside this type.
@@ -33,6 +44,9 @@ public enum Likelihood: APIRepresentationConvertible {
 
 		/// Thrown if representation string is invalid.
 		case InvalidStringValue
+
+		/// Thrown if representation score is invalid.
+		case InvalidScore
 	}
 
 	// MARK: Initializers
@@ -41,7 +55,7 @@ public enum Likelihood: APIRepresentationConvertible {
 	///
 	/// - Parameter string: The string representation of the receiver.
 	///
-	/// - Throws: `Error.InvalidStringValue` if the string is invalid.
+	/// - Throws: `Error.InvalidString` if the string is invalid.
 	public init(string: String) throws {
 		switch string {
 			case "UNKNOWN": self = .Unknown
@@ -51,6 +65,22 @@ public enum Likelihood: APIRepresentationConvertible {
 			case "LIKELY": self = .Likely
 			case "VERY_LIKELY": self = .VeryLikely
 			default: throw Error.InvalidStringValue
+		}
+	}
+
+	/// Initializes the receiver with a score.
+	///
+	/// - Parameter score: The number representation of the receiver.
+	///
+	/// - Throws: `InvalidScore` if the score is not in range `0...1`.
+	public init(score: Double) throws {
+		switch score {
+			case 0...0.2: self = .VeryUnlikely
+			case 0.2...0.4: self = .Unlikely
+			case 0.4...0.6: self = .Possible
+			case 0.6...0.8: self = .Likely
+			case 0.8...1: self = .VeryLikely
+			default: throw Error.InvalidScore
 		}
 	}
 
