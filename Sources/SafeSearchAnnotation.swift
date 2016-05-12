@@ -24,7 +24,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of unsafe content, calculated using adult, spoof, medical and violent
 	/// contents likelihoods.
 	///
-	/// - Throws: Rethrows any errors thrown while creating combined 
+	/// - Throws: Rethrows any errors thrown while creating combined
 	/// unsafe content `Likelihood` using calculated score.
 	///
 	/// - Returns: Likelihood of unsafe content.
