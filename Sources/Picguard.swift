@@ -26,8 +26,8 @@ public struct Picguard {
 					features: Set([.SafeSearch(maxResults: 1)]),
 					image: .Image(image)
 				),
-				completion: { annotationResult in
-					switch annotationResult {
+				completion: { result in
+					switch result {
 						case .Value(let response):
 							guard let safeSearchAnnotation = response.safeSearchAnnotation else {
 								completion(result: .Value(Likelihood.Unknown))

@@ -56,6 +56,85 @@ final class PicguardSpec: QuickSpec {
 					expect(mockClient.lastRequest).to(equal(try! AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]), image: .Image(image)))
 					)
 				}
+
+				context("when completion result has no safe search annotation") {
+
+					beforeEach {
+						mockClient.lastCompletion(
+							PicguardResult<AnnotationResponse>.Value(
+								AnnotationResponse.init(
+									faceAnnotations: nil,
+									labelAnnotations: nil,
+									landmarkAnnotations: nil,
+									logoAnnotations: nil,
+									textAnnotations: nil,
+									safeSearchAnnotation: nil,
+									imagePropertiesAnnotation: nil
+								)
+							)
+						)
+					}
+
+					it("should return result with unknown likelihood"){
+						guard case .Value(let likelihood) = capturedResult! else {
+							fail("failed to get value")
+							return
+						}
+						expect(likelihood).to(equal(try! Likelihood(string: "UNKNOWN")))
+					}
+
+				}
+
+				context("when completion result has safe search annotation") {
+
+					beforeEach {
+						mockClient.lastCompletion(
+							PicguardResult<AnnotationResponse>.Value(
+								AnnotationResponse.init(
+									faceAnnotations: nil,
+									labelAnnotations: nil,
+									landmarkAnnotations: nil,
+									logoAnnotations: nil,
+									textAnnotations: nil,
+									safeSearchAnnotation: SafeSearchAnnotation(
+										adultContentLikelihood: .Likely,
+										spoofContentLikelihood: .Likely,
+										medicalContentLikelihood: .Likely,
+										violentContentLikelihood: .Likely
+									),
+									imagePropertiesAnnotation: nil
+								)
+							)
+						)
+					}
+
+					it("should return result with proper likelihood"){
+						guard case .Value(let likelihood) = capturedResult! else {
+							fail("failed to get value")
+							return
+						}
+						expect(likelihood).to(equal(Likelihood.Likely))
+					}
+
+				}
+
+				context("when completion result has an error") {
+
+					beforeEach {
+						mockClient.lastCompletion(PicguardResult<AnnotationResponse>.Error(APIClient.Error.NoResponse))
+					}
+
+					it("should return result with proper error"){
+						guard
+							case .Error(let error) = capturedResult!,
+							case .NoResponse = error as! APIClient.Error
+						else {
+							fail("failed to get error")
+							return
+						}
+					}
+					
+				}
 				
 			}
 

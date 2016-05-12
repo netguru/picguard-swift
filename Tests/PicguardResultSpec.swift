@@ -1,5 +1,5 @@
 //
-// AnnotationResultSpec.swift
+// PicguardResultSpec.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -9,11 +9,11 @@ import Nimble
 import Quick
 import Picguard
 
-final class AnnotationResultSpec: QuickSpec {
+final class PicguardResultSpec: QuickSpec {
 
 	override func spec() {
 
-		describe("AnnotationResult") {
+		describe("PicguardResult") {
 
 			describe("init with api representation") {
 
