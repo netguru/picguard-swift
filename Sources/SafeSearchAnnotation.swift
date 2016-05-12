@@ -39,6 +39,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 		else {
 			return .Unknown
 		}
+		// Since other likelihoods are not unknown, we will never get score out of range here.
 		return try! Likelihood(
 			score: (
 				max(adultContentLikelihood.score, violentContentLikelihood.score) * 8 +
