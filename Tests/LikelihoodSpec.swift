@@ -66,29 +66,31 @@ final class LikelihoodSpec: QuickSpec {
 			describe("init with score") {
 
 				it("should properly initialize very unlikely likelihood") {
-					expect(Likelihood(score: 0.1)).to(equal(Likelihood.VeryUnlikely))
+					expect(try! Likelihood(score: 0.1)).to(equal(Likelihood.VeryUnlikely))
 				}
 
 				it("should properly initialize unlikely likelihood") {
-					expect(Likelihood(score: 0.3)).to(equal(Likelihood.Unlikely))
+					expect(try! Likelihood(score: 0.3)).to(equal(Likelihood.Unlikely))
 				}
 
 				it("should properly initialize possible likelihood") {
-					expect(Likelihood(score: 0.5)).to(equal(Likelihood.Possible))
+					expect(try! Likelihood(score: 0.5)).to(equal(Likelihood.Possible))
 				}
 
 				it("should properly initialize likely likelihood") {
-					expect(Likelihood(score: 0.7)).to(equal(Likelihood.Likely))
+					expect(try! Likelihood(score: 0.7)).to(equal(Likelihood.Likely))
 				}
 
 				it("should properly initialize very likely likelihood") {
-					expect(Likelihood(score: 0.9)).to(equal(Likelihood.VeryLikely))
+					expect(try! Likelihood(score: 0.9)).to(equal(Likelihood.VeryLikely))
 				}
 
 				context("when score is out of range 0...1") {
 
-					it("should initialize unknown likelihood") {
-						expect(Likelihood(score: 1.1)).to(equal(Likelihood.Unknown))
+					it("should throw InvalidScoreValue error") {
+						expect{
+							try Likelihood(score: 1.1)
+						}.to(throwError(Likelihood.Error.InvalidScoreValue))
 					}
 
 				}

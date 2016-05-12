@@ -21,7 +21,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing violent content.
 	let violentContentLikelihood: Likelihood
 
-	public var unsafeContentLikelihood: Likelihood {
+	public func unsafeContentLikelihood() throws -> Likelihood {
 		guard
 			adultContentLikelihood != .Unknown &&
 			violentContentLikelihood != .Unknown &&
@@ -30,7 +30,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 		else {
 			return .Unknown
 		}
-		return Likelihood(
+		return try Likelihood(
 			score: (
 				adultContentLikelihood.score * 4 +
 				violentContentLikelihood.score * 3 +

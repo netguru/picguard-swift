@@ -72,7 +72,7 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 					}
 
 					it("should return unknown likelihood") {
-						expect(sut.unsafeContentLikelihood).to(equal(Likelihood.Unknown))
+						expect(try! sut.unsafeContentLikelihood()).to(equal(Likelihood.Unknown))
 					}
 
 				}
@@ -91,7 +91,7 @@ final class SafeSearchAnnotationSpec: QuickSpec {
 					}
 
 					it("should properly calculate likelihood") {
-						expect(sut.unsafeContentLikelihood).to(equal(Likelihood.Likely))
+						expect(try! sut.unsafeContentLikelihood()).to(equal(Likelihood.Likely))
 					}
 					
 				}
