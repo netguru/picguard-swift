@@ -8,10 +8,10 @@
 import Foundation
 
 /// Result returned by Google Cloud Vision API.
-public enum AnnotationResult: APIRepresentationConvertible {
+public enum PicguardResult<T where T: APIRepresentationConvertible>: APIRepresentationConvertible {
 
 	/// Case when Google Cloud Vision API response is successful.
-	case Success(AnnotationResponse)
+	case Value(T)
 
 	/// Case when Google Cloud Vision API response is erroneous.
 	case Error(ErrorType)
@@ -24,7 +24,7 @@ public enum AnnotationResult: APIRepresentationConvertible {
 			if let error = try value.get("status") as AnnotationError? {
 				self = .Error(error)
 			} else {
-				self = .Success(try AnnotationResponse(APIRepresentationValue: value))
+				self = .Value(try T(APIRepresentationValue: value))
 			}
 		} catch let error {
 			self = .Error(error)

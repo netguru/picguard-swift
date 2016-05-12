@@ -11,10 +11,6 @@ public struct Picguard {
 
 	public let client: APIClientType
 
-	public enum Error: ErrorType {
-		case AnnotationsNotFound
-	}
-
 	public init(APIKey: String) {
 		client = APIClient(APIKey: APIKey, encoder: Base64ImageEncoder())
 	}
@@ -23,7 +19,7 @@ public struct Picguard {
 		client = APIClient
 	}
 
-	public func detectUnsafeContent(image image: UIImage, completion: (result: Result<Likelihood>) -> Void) {
+	public func detectUnsafeContent(image image: UIImage, completion: (result: PicguardResult<Likelihood>) -> Void) {
 		do {
 			try client.perform(
 				request: AnnotationRequest(
@@ -32,9 +28,9 @@ public struct Picguard {
 				),
 				completion: { annotationResult in
 					switch annotationResult {
-						case .Success(let response):
+						case .Value(let response):
 							guard let safeSearchAnnotation = response.safeSearchAnnotation else {
-								completion(result: .Error(Error.AnnotationsNotFound))
+								completion(result: .Value(Likelihood.Unknown))
 								return
 							}
 							completion(result: .Value(safeSearchAnnotation.violentContentLikelihood))

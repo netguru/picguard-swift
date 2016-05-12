@@ -20,7 +20,7 @@ final class AnnotationResultSpec: QuickSpec {
 				context("with erroneous dictionary") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: [
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [
 								"status": [
 									"code": 1,
 									"message": "foobar",
@@ -40,10 +40,10 @@ final class AnnotationResultSpec: QuickSpec {
 				context("with successful dictionary") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
 						}.to(NonNilMatcherFunc { expression, _ in
 							if let actual = try expression.evaluate() {
-								if case .Success(let response) = actual {
+								if case .Value(let response) = actual {
 									return response == AnnotationResponse(
 										faceAnnotations: nil,
 										labelAnnotations: nil,
@@ -63,7 +63,7 @@ final class AnnotationResultSpec: QuickSpec {
 				context("with invalid representation value type") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
 						}.to(NonNilMatcherFunc { expression, _ in
 							if let actual = try expression.evaluate() {
 								if case .Error(let error as APIRepresentationError) = actual {

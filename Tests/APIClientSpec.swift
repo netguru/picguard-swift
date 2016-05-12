@@ -27,7 +27,7 @@ final class APIClientSpec: QuickSpec {
 
 		describe("perform request") {
 
-			var annotationResult: AnnotationResult!
+			var annotationResult: PicguardResult<AnnotationResponse>!
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
@@ -209,7 +209,7 @@ final class APIClientSpec: QuickSpec {
 								safeSearchAnnotation: nil,
 								imagePropertiesAnnotation: nil
 							)
-							guard case .Success(let returnedResponse) = annotationResult! else {
+							guard case .Value(let returnedResponse) = annotationResult! else {
 								fail("failed to get response")
 								return
 							}

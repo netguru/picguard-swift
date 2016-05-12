@@ -42,7 +42,7 @@ final class PicguardSpec: QuickSpec {
 
 			describe("detect unsafe content") {
 
-				var capturedResult: Result<Likelihood>!
+				var capturedResult: PicguardResult<Likelihood>!
 				var image: UIImage!
 
 				beforeEach {
@@ -68,9 +68,9 @@ final class PicguardSpec: QuickSpec {
 private final class MockAPIClient: APIClientType {
 
 	var lastRequest: AnnotationRequest!
-	var lastCompletion: ((AnnotationResult) -> Void)!
+	var lastCompletion: ((PicguardResult<AnnotationResponse>) -> Void)!
 
-	func perform(request request: AnnotationRequest, completion: (AnnotationResult) -> Void) {
+	func perform(request request: AnnotationRequest, completion: (PicguardResult<AnnotationResponse>) -> Void) {
 		lastRequest = request
 		lastCompletion = completion
 	}
