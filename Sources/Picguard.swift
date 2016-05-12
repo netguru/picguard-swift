@@ -7,18 +7,33 @@
 
 import UIKit
 
+/// Provides image analysis using Google Cloud Vision API.
 public struct Picguard {
 
 	public let client: APIClientType
 
+	// MARK: Initializers
+
+	/// Initialize the receiver with API key.
+	///
+	/// - Parameter APIKey: Google Cloud Vision API key.
 	public init(APIKey: String) {
 		client = APIClient(APIKey: APIKey, encoder: Base64ImageEncoder())
 	}
 
+	/// Initialize the receiver with API client.
+	///
+	/// - Parameter APIClientType: API client conforming to `APIClientType`.
 	public init(APIClient: APIClientType) {
 		client = APIClient
 	}
 
+	/// Detects unsafe content in the image.
+	///
+	/// - Parameters:
+	///     - image: Image used for unsafe content detection.
+	///     - completion: The closure with `PicguardResult<Likelihood>`, called when
+	///       response comes from Google Cloud Vision API.
 	public func detectUnsafeContent(image image: UIImage, completion: (result: PicguardResult<Likelihood>) -> Void) {
 		do {
 			try client.perform(
