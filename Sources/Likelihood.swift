@@ -43,9 +43,10 @@ public enum Likelihood: APIRepresentationConvertible {
 	public enum Error: ErrorType {
 
 		/// Thrown if representation string is invalid.
-		case InvalidStringValue
+		case InvalidString
 
-		case InvalidScoreValue
+		/// Thrown if representation score is invalid.
+		case InvalidScore
 	}
 
 	// MARK: Initializers
@@ -54,7 +55,7 @@ public enum Likelihood: APIRepresentationConvertible {
 	///
 	/// - Parameter string: The string representation of the receiver.
 	///
-	/// - Throws: `Error.InvalidStringValue` if the string is invalid.
+	/// - Throws: `Error.InvalidString` if the string is invalid.
 	public init(string: String) throws {
 		switch string {
 			case "UNKNOWN": self = .Unknown
@@ -63,10 +64,15 @@ public enum Likelihood: APIRepresentationConvertible {
 			case "POSSIBLE": self = .Possible
 			case "LIKELY": self = .Likely
 			case "VERY_LIKELY": self = .VeryLikely
-			default: throw Error.InvalidStringValue
+			default: throw Error.InvalidString
 		}
 	}
 
+	/// Initializes the receiver with a score.
+	///
+	/// - Parameter score: The number representation of the receiver.
+	///
+	/// - Throws: `InvalidScore` if the score is not in range `0...1`.
 	public init(score: Double) throws {
 		switch score {
 			case 0...0.2: self = .VeryUnlikely
@@ -74,7 +80,7 @@ public enum Likelihood: APIRepresentationConvertible {
 			case 0.4...0.6: self = .Possible
 			case 0.6...0.8: self = .Likely
 			case 0.8...1: self = .VeryLikely
-			default: throw Error.InvalidScoreValue
+			default: throw Error.InvalidScore
 		}
 	}
 
