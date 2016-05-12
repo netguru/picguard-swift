@@ -43,7 +43,7 @@ public enum Likelihood: APIRepresentationConvertible {
 	public enum Error: ErrorType {
 
 		/// Thrown if representation string is invalid.
-		case InvalidString
+		case InvalidStringValue
 
 		/// Thrown if representation score is invalid.
 		case InvalidScore
@@ -64,7 +64,7 @@ public enum Likelihood: APIRepresentationConvertible {
 			case "POSSIBLE": self = .Possible
 			case "LIKELY": self = .Likely
 			case "VERY_LIKELY": self = .VeryLikely
-			default: throw Error.InvalidString
+			default: throw Error.InvalidStringValue
 		}
 	}
 

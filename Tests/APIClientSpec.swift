@@ -209,7 +209,7 @@ final class APIClientSpec: QuickSpec {
 								safeSearchAnnotation: nil,
 								imagePropertiesAnnotation: nil
 							)
-							guard case .Value(let returnedResponse) = capturedResult! else {
+							guard case .Success(let returnedResponse) = capturedResult! else {
 								fail("failed to get response")
 								return
 							}

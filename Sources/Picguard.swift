@@ -18,7 +18,7 @@ public struct Picguard {
 	///
 	/// - Parameter APIKey: Google Cloud Vision API key.
 	public init(APIKey: String) {
-		client = APIClient(APIKey: APIKey, encoder: Base64ImageEncoder())
+		self.init(APIClient: APIClient(APIKey: APIKey, encoder: Base64ImageEncoder()))
 	}
 
 	/// Initialize the receiver with API client.
@@ -43,12 +43,12 @@ public struct Picguard {
 				),
 				completion: { result in
 					switch result {
-						case .Value(let response):
+						case .Success(let response):
 							guard let safeSearchAnnotation = response.safeSearchAnnotation else {
-								completion(result: .Value(Likelihood.Unknown))
+								completion(result: .Success(Likelihood.Unknown))
 								return
 							}
-							completion(result: .Value(safeSearchAnnotation.violentContentLikelihood))
+							completion(result: .Success(safeSearchAnnotation.violentContentLikelihood))
 						case .Error(let error):
 							completion(result: .Error(error))
 					}

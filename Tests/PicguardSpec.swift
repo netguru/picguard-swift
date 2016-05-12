@@ -61,7 +61,7 @@ final class PicguardSpec: QuickSpec {
 
 					beforeEach {
 						mockClient.lastCompletion(
-							PicguardResult<AnnotationResponse>.Value(
+							PicguardResult<AnnotationResponse>.Success(
 								AnnotationResponse.init(
 									faceAnnotations: nil,
 									labelAnnotations: nil,
@@ -76,7 +76,7 @@ final class PicguardSpec: QuickSpec {
 					}
 
 					it("should return result with unknown likelihood"){
-						guard case .Value(let likelihood) = capturedResult! else {
+						guard case .Success(let likelihood) = capturedResult! else {
 							fail("failed to get value")
 							return
 						}
@@ -89,7 +89,7 @@ final class PicguardSpec: QuickSpec {
 
 					beforeEach {
 						mockClient.lastCompletion(
-							PicguardResult<AnnotationResponse>.Value(
+							PicguardResult<AnnotationResponse>.Success(
 								AnnotationResponse.init(
 									faceAnnotations: nil,
 									labelAnnotations: nil,
@@ -109,7 +109,7 @@ final class PicguardSpec: QuickSpec {
 					}
 
 					it("should return result with proper likelihood"){
-						guard case .Value(let likelihood) = capturedResult! else {
+						guard case .Success(let likelihood) = capturedResult! else {
 							fail("failed to get value")
 							return
 						}

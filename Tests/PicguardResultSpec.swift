@@ -43,7 +43,7 @@ final class PicguardResultSpec: QuickSpec {
 							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
 						}.to(NonNilMatcherFunc { expression, _ in
 							if let actual = try expression.evaluate() {
-								if case .Value(let response) = actual {
+								if case .Success(let response) = actual {
 									return response == AnnotationResponse(
 										faceAnnotations: nil,
 										labelAnnotations: nil,

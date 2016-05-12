@@ -27,7 +27,7 @@ final class LikelihoodSpec: QuickSpec {
 				it("should fail to initialize") {
 					expect {
 						try Likelihood(string: string)
-					}.to(throwError(Likelihood.Error.InvalidString))
+					}.to(throwError(Likelihood.Error.InvalidStringValue))
 				}
 			}
 
@@ -104,7 +104,7 @@ final class LikelihoodSpec: QuickSpec {
 				}
 
 				context("with invalid string") {
-					initWithAPIRepresentationShouldFail(value: "BAR", type: Likelihood.self, error: Likelihood.Error.InvalidString)
+					initWithAPIRepresentationShouldFail(value: "BAR", type: Likelihood.self, error: Likelihood.Error.InvalidStringValue)
 				}
 
 				context("with invalid representation value type") {
