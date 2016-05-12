@@ -37,22 +37,20 @@ public struct Picguard {
 	public func detectUnsafeContent(image image: UIImage, completion: (result: PicguardResult<Likelihood>) -> Void) {
 		do {
 			try client.perform(
-				request: AnnotationRequest(
-					features: Set([.SafeSearch(maxResults: 1)]),
-					image: .Image(image)
-				),
-				completion: { result in
-					switch result {
-						case .Success(let response):
-							guard let safeSearchAnnotation = response.safeSearchAnnotation else {
-								completion(result: .Success(Likelihood.Unknown))
-								return
-							}
-							completion(result: .Success(safeSearchAnnotation.violentContentLikelihood))
-						case .Error(let error):
-							completion(result: .Error(error))
+				request: AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]),
+				image: .Image(image))
+			) { result in
+				switch result {
+				case .Success(let response):
+					guard let safeSearchAnnotation = response.safeSearchAnnotation else {
+						completion(result: .Success(Likelihood.Unknown))
+						return
 					}
-			})
+					completion(result: .Success(safeSearchAnnotation.unsafeContentLikelihood))
+				case .Error(let error):
+					completion(result: .Error(error))
+				}
+			}
 		} catch let error {
 			dispatch_async(dispatch_get_main_queue()) {
 				completion(result: .Error(error))
