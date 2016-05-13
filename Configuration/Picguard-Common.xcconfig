@@ -22,7 +22,7 @@ PICGUARD_DEPLOYMENT_TARGET[sdk=iphone*] = 9.0
 PICGUARD_DEPLOYMENT_TARGET[sdk=macosx*] = 10.10
 
 PICGUARD_CODE_SIGN_IDENTITY[sdk=iphone*] = iPhone Developer
-PICGUARD_CODE_SIGN_IDENTITY[sdk=macosx*] = Mac Developer
+PICGUARD_CODE_SIGN_IDENTITY[sdk=macosx*] =
 
 // Linker settings
 
