@@ -47,9 +47,9 @@ final class PicguardSpec: QuickSpec {
 
 				beforeEach {
 					image = UIImage()
-					sut.detectUnsafeContent(image: UIImage(), completion: { result in
+					sut.detectUnsafeContent(image: UIImage()) { result in
 						capturedResult = result
-					})
+					}
 				}
 
 				it("perform proper request") {

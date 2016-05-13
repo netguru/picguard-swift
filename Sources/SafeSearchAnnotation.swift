@@ -21,6 +21,8 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// Likelihood of image containing violent content.
 	let violentContentLikelihood: Likelihood
 
+	// swiftlint:disable force_try
+
 	/// Likelihood of unsafe content, calculated using adult, spoof, medical and violent
 	/// contents likelihoods.
 	///
@@ -28,7 +30,7 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 	/// unsafe content `Likelihood` using calculated score.
 	///
 	/// - Returns: Likelihood of unsafe content.
-	public func unsafeContentLikelihood() throws -> Likelihood {
+	public var unsafeContentLikelihood: Likelihood {
 		guard
 			adultContentLikelihood != .Unknown &&
 			violentContentLikelihood != .Unknown &&
@@ -37,15 +39,17 @@ public struct SafeSearchAnnotation: APIRepresentationConvertible {
 		else {
 			return .Unknown
 		}
-		return try Likelihood(
+		// Since other likelihoods are not unknown, we will never get score out of range here.
+		return try! Likelihood(
 			score: (
-				adultContentLikelihood.score * 4 +
-				violentContentLikelihood.score * 3 +
-				medicalContentLikelihood.score * 2 +
+				max(adultContentLikelihood.score, violentContentLikelihood.score) * 8 +
+				medicalContentLikelihood.score  +
 				spoofContentLikelihood.score
-			) / 9
+			) / 10
 		)
 	}
+
+	// swiftlint:enable force_try
 
 	// MARK: Initializers
 
