@@ -5,7 +5,6 @@
 // Licensed under the MIT License.
 //
 
-#include "Carthage/Checkouts/xcconfigs/iOS/iOS-Framework.xcconfig"
 #include "Picguard-Common.xcconfig"
 
 PICGUARD_PRODUCT_NAME = Picguard
