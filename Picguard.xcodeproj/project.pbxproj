@@ -44,6 +44,7 @@
 		3ADA94291CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA94281CDCF35F00AB5736 /* LandmarkAnnotationSpec.swift */; };
 		5C0513601CE07BD90013B5A6 /* LogoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C05135F1CE07BD90013B5A6 /* LogoAnnotation.swift */; };
 		5C0513631CE080F00013B5A6 /* LogoAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0513621CE080F00013B5A6 /* LogoAnnotationSpec.swift */; };
+		5C1BD72F1CE613AA00CB6364 /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1BD7251CE613A900CB6364 /* Picguard.framework */; };
 		5C70EEDB1CDC9EC400D22125 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70EEDA1CDC9EC400D22125 /* Array.swift */; };
 		5C89721E1CC7BF4900843EB8 /* Picguard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89721D1CC7BF4900843EB8 /* Picguard.swift */; };
 		5C8972391CC7CD0200843EB8 /* PicguardSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */; };
@@ -74,6 +75,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3A0CB7631CC55A8500A32F4E;
 			remoteInfo = "Picguard (iOS)";
+		};
+		5C1BD7301CE613AA00CB6364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A0CB75B1CC55A8500A32F4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C1BD7241CE613A900CB6364;
+			remoteInfo = "Picguard (OS X)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -129,6 +137,12 @@
 		5C1BD7171CE6087100CB6364 /* Framework-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Release-iOS.xcconfig"; sourceTree = "<group>"; };
 		5C1BD71A1CE60CD600CB6364 /* Tests-Debug-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug-iOS.xcconfig"; sourceTree = "<group>"; };
 		5C1BD71B1CE60CE100CB6364 /* Tests-Release-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release-iOS.xcconfig"; sourceTree = "<group>"; };
+		5C1BD71C1CE6120900CB6364 /* Framework-Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Debug-OSX.xcconfig"; sourceTree = "<group>"; };
+		5C1BD71D1CE6121700CB6364 /* Framework-Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Release-OSX.xcconfig"; sourceTree = "<group>"; };
+		5C1BD71E1CE6123600CB6364 /* Tests-Debug-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug-OSX.xcconfig"; sourceTree = "<group>"; };
+		5C1BD71F1CE6123F00CB6364 /* Tests-Release-OSX.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release-OSX.xcconfig"; sourceTree = "<group>"; };
+		5C1BD7251CE613A900CB6364 /* Picguard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Picguard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C1BD72E1CE613AA00CB6364 /* Picguard Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picguard Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70EEDA1CDC9EC400D22125 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5C89721D1CC7BF4900843EB8 /* Picguard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picguard.swift; sourceTree = "<group>"; };
 		5C8972381CC7CD0200843EB8 /* PicguardSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardSpec.swift; sourceTree = "<group>"; };
@@ -166,6 +180,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1BD7211CE613A900CB6364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1BD72B1CE613AA00CB6364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C1BD72F1CE613AA00CB6364 /* Picguard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +290,8 @@
 			children = (
 				3A0CB7641CC55A8500A32F4E /* Picguard.framework */,
 				3A0CB7801CC65E9000A32F4E /* Picguard Tests.xctest */,
+				5C1BD7251CE613A900CB6364 /* Picguard.framework */,
+				5C1BD72E1CE613AA00CB6364 /* Picguard Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,13 +333,17 @@
 				3A0CB7951CC68BBA00A32F4E /* Framework-Common.xcconfig */,
 				3A0CB78D1CC6795E00A32F4E /* Framework-Debug.xcconfig */,
 				5C1BD7161CE6080000CB6364 /* Framework-Debug-iOS.xcconfig */,
+				5C1BD71C1CE6120900CB6364 /* Framework-Debug-OSX.xcconfig */,
 				3A0CB78E1CC6796A00A32F4E /* Framework-Release.xcconfig */,
 				5C1BD7171CE6087100CB6364 /* Framework-Release-iOS.xcconfig */,
+				5C1BD71D1CE6121700CB6364 /* Framework-Release-OSX.xcconfig */,
 				3A0CB78F1CC67B4400A32F4E /* Tests-Common.xcconfig */,
 				3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */,
 				5C1BD71A1CE60CD600CB6364 /* Tests-Debug-iOS.xcconfig */,
+				5C1BD71E1CE6123600CB6364 /* Tests-Debug-OSX.xcconfig */,
 				3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */,
 				5C1BD71B1CE60CE100CB6364 /* Tests-Release-iOS.xcconfig */,
+				5C1BD71F1CE6123F00CB6364 /* Tests-Release-OSX.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -426,6 +461,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C1BD7221CE613A900CB6364 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -467,6 +509,42 @@
 			productReference = 3A0CB7801CC65E9000A32F4E /* Picguard Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5C1BD7241CE613A900CB6364 /* Picguard (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C1BD7361CE613AA00CB6364 /* Build configuration list for PBXNativeTarget "Picguard (OSX)" */;
+			buildPhases = (
+				5C1BD7201CE613A900CB6364 /* Sources */,
+				5C1BD7211CE613A900CB6364 /* Frameworks */,
+				5C1BD7221CE613A900CB6364 /* Headers */,
+				5C1BD7231CE613A900CB6364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Picguard (OSX)";
+			productName = "Picguard (OS X)";
+			productReference = 5C1BD7251CE613A900CB6364 /* Picguard.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5C1BD72D1CE613AA00CB6364 /* Picguard Tests (OSX) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C1BD7391CE613AA00CB6364 /* Build configuration list for PBXNativeTarget "Picguard Tests (OSX)" */;
+			buildPhases = (
+				5C1BD72A1CE613AA00CB6364 /* Sources */,
+				5C1BD72B1CE613AA00CB6364 /* Frameworks */,
+				5C1BD72C1CE613AA00CB6364 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C1BD7311CE613AA00CB6364 /* PBXTargetDependency */,
+			);
+			name = "Picguard Tests (OSX)";
+			productName = "Picguard (OS X)Tests";
+			productReference = 5C1BD72E1CE613AA00CB6364 /* Picguard Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -481,6 +559,12 @@
 						CreatedOnToolsVersion = 7.3;
 					};
 					3A0CB77F1CC65E9000A32F4E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					5C1BD7241CE613A900CB6364 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					5C1BD72D1CE613AA00CB6364 = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
@@ -499,6 +583,8 @@
 			targets = (
 				3A0CB7631CC55A8500A32F4E /* Picguard (iOS) */,
 				3A0CB77F1CC65E9000A32F4E /* Picguard Tests (iOS) */,
+				5C1BD7241CE613A900CB6364 /* Picguard (OSX) */,
+				5C1BD72D1CE613AA00CB6364 /* Picguard Tests (OSX) */,
 			);
 		};
 /* End PBXProject section */
@@ -512,6 +598,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3A0CB77E1CC65E9000A32F4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1BD7231CE613A900CB6364 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1BD72C1CE613AA00CB6364 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -624,6 +724,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C1BD7201CE613A900CB6364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C1BD72A1CE613AA00CB6364 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -631,6 +745,11 @@
 			isa = PBXTargetDependency;
 			target = 3A0CB7631CC55A8500A32F4E /* Picguard (iOS) */;
 			targetProxy = 3A0CB7861CC65E9000A32F4E /* PBXContainerItemProxy */;
+		};
+		5C1BD7311CE613AA00CB6364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C1BD7241CE613A900CB6364 /* Picguard (OSX) */;
+			targetProxy = 5C1BD7301CE613AA00CB6364 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -675,6 +794,59 @@
 			};
 			name = Release;
 		};
+		5C1BD7371CE613AA00CB6364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C1BD71C1CE6120900CB6364 /* Framework-Debug-OSX.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5C1BD7381CE613AA00CB6364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C1BD71D1CE6121700CB6364 /* Framework-Release-OSX.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+			};
+			name = Release;
+		};
+		5C1BD73A1CE613AA00CB6364 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C1BD71E1CE6123600CB6364 /* Tests-Debug-OSX.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+			};
+			name = Debug;
+		};
+		5C1BD73B1CE613AA00CB6364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C1BD71F1CE6123F00CB6364 /* Tests-Release-OSX.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -701,6 +873,24 @@
 			buildConfigurations = (
 				3A0CB7891CC65E9000A32F4E /* Debug */,
 				3A0CB78A1CC65E9000A32F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C1BD7361CE613AA00CB6364 /* Build configuration list for PBXNativeTarget "Picguard (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1BD7371CE613AA00CB6364 /* Debug */,
+				5C1BD7381CE613AA00CB6364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C1BD7391CE613AA00CB6364 /* Build configuration list for PBXNativeTarget "Picguard Tests (OSX)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C1BD73A1CE613AA00CB6364 /* Debug */,
+				5C1BD73B1CE613AA00CB6364 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
