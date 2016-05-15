@@ -1,5 +1,5 @@
 //
-// AnnotationResultSpec.swift
+// PicguardResultSpec.swift
 //
 // Copyright (c) 2016 Netguru Sp. z o.o. All rights reserved.
 // Licensed under the MIT License.
@@ -9,18 +9,18 @@ import Nimble
 import Quick
 import Picguard
 
-final class AnnotationResultSpec: QuickSpec {
+final class PicguardResultSpec: QuickSpec {
 
 	override func spec() {
 
-		describe("AnnotationResult") {
+		describe("PicguardResult") {
 
 			describe("init with api representation") {
 
 				context("with erroneous dictionary") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: [
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [
 								"status": [
 									"code": 1,
 									"message": "foobar",
@@ -40,7 +40,7 @@ final class AnnotationResultSpec: QuickSpec {
 				context("with successful dictionary") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
 						}.to(NonNilMatcherFunc { expression, _ in
 							if let actual = try expression.evaluate() {
 								if case .Success(let response) = actual {
@@ -63,7 +63,7 @@ final class AnnotationResultSpec: QuickSpec {
 				context("with invalid representation value type") {
 					it("should succeed to initialize") {
 						expect {
-							AnnotationResult(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
+							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
 						}.to(NonNilMatcherFunc { expression, _ in
 							if let actual = try expression.evaluate() {
 								if case .Error(let error as APIRepresentationError) = actual {

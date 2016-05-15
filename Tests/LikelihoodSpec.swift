@@ -63,6 +63,40 @@ final class LikelihoodSpec: QuickSpec {
 
 			}
 
+			describe("init with score") {
+
+				it("should properly initialize very unlikely likelihood") {
+					expect(try! Likelihood(score: 0.1)).to(equal(Likelihood.VeryUnlikely))
+				}
+
+				it("should properly initialize unlikely likelihood") {
+					expect(try! Likelihood(score: 0.3)).to(equal(Likelihood.Unlikely))
+				}
+
+				it("should properly initialize possible likelihood") {
+					expect(try! Likelihood(score: 0.5)).to(equal(Likelihood.Possible))
+				}
+
+				it("should properly initialize likely likelihood") {
+					expect(try! Likelihood(score: 0.7)).to(equal(Likelihood.Likely))
+				}
+
+				it("should properly initialize very likely likelihood") {
+					expect(try! Likelihood(score: 0.9)).to(equal(Likelihood.VeryLikely))
+				}
+
+				context("when score is out of range 0...1") {
+
+					it("should throw InvalidScoreValue error") {
+						expect{
+							try Likelihood(score: 1.1)
+						}.to(throwError(Likelihood.Error.InvalidScore))
+					}
+
+				}
+
+			}
+
 			describe("init with api representation") {
 
 				context("with valid string") {
@@ -75,6 +109,58 @@ final class LikelihoodSpec: QuickSpec {
 
 				context("with invalid representation value type") {
 					initWithAPIRepresentationShouldFail(value: true, type: Likelihood.self, error: APIRepresentationError.UnexpectedValueType)
+				}
+
+			}
+
+			describe("score") {
+
+				context("when likelihood is unknown") {
+
+					it("should return score -1") {
+						expect(Likelihood.Unknown.score).to(equal(-1))
+					}
+
+				}
+
+				context("when likelihood is very unlikely") {
+
+					it("should return score 0") {
+						expect(Likelihood.VeryUnlikely.score).to(equal(0))
+					}
+
+				}
+
+				context("when likelihood is unlikely") {
+
+					it("should return score 0.3") {
+						expect(Likelihood.Unlikely.score).to(equal(0.3))
+					}
+
+				}
+
+				context("when likelihood is possible") {
+
+					it("should return score 0.5") {
+						expect(Likelihood.Possible.score).to(equal(0.5))
+					}
+
+				}
+
+				context("when likelihood is likely") {
+
+					it("should return score 0.7") {
+						expect(Likelihood.Likely.score).to(equal(0.7))
+					}
+
+				}
+
+				context("when likelihood is very likely") {
+
+					it("should return score 1") {
+						expect(Likelihood.VeryLikely.score).to(equal(1))
+					}
+
 				}
 
 			}

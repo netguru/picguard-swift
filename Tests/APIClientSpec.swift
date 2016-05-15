@@ -27,14 +27,14 @@ final class APIClientSpec: QuickSpec {
 
 		describe("perform request") {
 
-			var annotationResult: AnnotationResult!
+			var capturedResult: PicguardResult<AnnotationResponse>!
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
 				let image = AnnotationRequest.Image.Image(UIImage())
 				let request = try! AnnotationRequest.init(features: features, image: image)
 				sut.perform(request: request) { result in
-					annotationResult = result
+					capturedResult = result
 				}
 			}
 
@@ -90,7 +90,7 @@ final class APIClientSpec: QuickSpec {
 
 					it("should return result with error NoResponse") {
 						guard
-							case .Error(let error) = annotationResult!,
+							case .Error(let error) = capturedResult!,
 							case .NoResponse = error as! APIClient.Error
 						else {
 							fail("failed to get error")
@@ -111,7 +111,7 @@ final class APIClientSpec: QuickSpec {
 
 					it("should return result with error UnsupportedResponseType") {
 						guard
-							case .Error(let error) = annotationResult!,
+							case .Error(let error) = capturedResult!,
 							case .UnsupportedResponseType(let returnedResponse) = error as! APIClient.Error
 						else {
 							fail("failed to get response")
@@ -133,7 +133,7 @@ final class APIClientSpec: QuickSpec {
 
 					it("should return result with error BadResponse") {
 						guard
-							case .Error(let error) = annotationResult!,
+							case .Error(let error) = capturedResult!,
 							case .BadResponse(let returnedResponse) = error as! APIClient.Error
 						else {
 							fail("failed to get response")
@@ -155,7 +155,7 @@ final class APIClientSpec: QuickSpec {
 					}
 
 					it("should return result with given response error") {
-						guard case .Error(let returnedError) = annotationResult! else {
+						guard case .Error(let returnedError) = capturedResult! else {
 							fail("failed to error")
 							return
 						}
@@ -181,7 +181,7 @@ final class APIClientSpec: QuickSpec {
 						}
 
 						it("should return result containing thrown error") {
-							guard case .Error(let returnedError) = annotationResult! else {
+							guard case .Error(let returnedError) = capturedResult! else {
 								fail("failed to get error")
 								return
 							}
@@ -209,7 +209,7 @@ final class APIClientSpec: QuickSpec {
 								safeSearchAnnotation: nil,
 								imagePropertiesAnnotation: nil
 							)
-							guard case .Success(let returnedResponse) = annotationResult! else {
+							guard case .Success(let returnedResponse) = capturedResult! else {
 								fail("failed to get response")
 								return
 							}
