@@ -47,7 +47,7 @@ final class PicguardSpec: QuickSpec {
 
 				beforeEach {
 					image = UIImage()
-					sut.detectUnsafeContent(image: UIImage()) { result in
+					sut.detectUnsafeContentLikelihood(image: UIImage()) { result in
 						capturedResult = result
 					}
 				}
