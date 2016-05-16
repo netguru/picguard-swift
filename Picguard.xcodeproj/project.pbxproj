@@ -186,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				5CB004FD1CD108F300481A51 /* AnnotationRequest.swift */,
-				5CB005021CD1098700481A51 /* PicguardResult.swift */,
 				5CB005041CD1099A00481A51 /* AnnotationResponse.swift */,
 				3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */,
 				3A22BA9B1CCF65800033E807 /* Annotation Models */,
@@ -263,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
+				5CB005021CD1098700481A51 /* PicguardResult.swift */,
 				5C70EED71CDC9CE300D22125 /* API Client */,
 				3AD8FE2E1CD1544A008557F3 /* API Representation */,
 				3A0C82AF1CE2369B00FFEE12 /* Data Models */,
