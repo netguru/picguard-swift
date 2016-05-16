@@ -47,7 +47,7 @@ final class PicguardSpec: QuickSpec {
 
 				beforeEach {
 					image = UIImage()
-					sut.detectUnsafeContentLikelihood(image: UIImage()) { result in
+					sut.detectUnsafeContentLikelihood(image: .Image(UIImage())) { result in
 						capturedResult = result
 					}
 				}
@@ -161,8 +161,8 @@ final class PicguardSpec: QuickSpec {
 				}
 
 				it("should send a correct request") {
-					picguard.detectFacePresenceLikelihood(image: UIImage(), completion: { _ in })
-					let expectedRequest = try! AnnotationRequest(features: [.Face(maxResults: 1)], image: .Image(UIImage()))
+					picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { _ in })
+					let expectedRequest = try! AnnotationRequest(features: [.Face(maxResults: 1)], image: .Data(NSData()))
 					expect(caughtRequest).toEventually(equal(expectedRequest))
 				}
 
@@ -200,7 +200,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should calculate a correct positive likelihood") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: UIImage(), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beSuccessful(try! Likelihood(score: 0.75)))
 					}
 
@@ -222,7 +222,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should calculate unknown likelihood") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: UIImage(), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beSuccessful(Likelihood.Unknown))
 					}
 
@@ -236,7 +236,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should forward an erroneus response") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: UIImage(), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beErroneus())
 					}
 
