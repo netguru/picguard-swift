@@ -5,10 +5,8 @@
 // Licensed under the MIT License.
 //
 
-import Foundation
-
 /// Result returned by Google Cloud Vision API.
-public enum PicguardResult<T where T: APIRepresentationConvertible>: APIRepresentationConvertible {
+public enum PicguardResult<T: APIRepresentationConvertible>: APIRepresentationConvertible {
 
 	/// Case when Google Cloud Vision API response is successful.
 	case Success(T)
