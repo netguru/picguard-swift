@@ -78,7 +78,7 @@ If you feel the need to play with Picguard before using it in your app, we prepa
 
 ### Requirements
 
-Picguard is written in **Swift 2.2** and requires **Xcode 7.3** or higher to be compiled. Minimum supported deployment target is **iOS 9**.
+Picguard is written in **Swift 2.2** and requires **Xcode 7.3** or higher to be compiled. Minimum deployment target is **iOS 9**.
 
 ### Carthage
 
