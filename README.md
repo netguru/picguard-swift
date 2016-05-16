@@ -135,6 +135,8 @@ This project is made with <3 by [Netguru](https://netguru.co/opensource) and mai
 - Adrian Kashivskyy ([github](https://github.com/akashivskyy), [twitter](https://twitter.com/akashivskyy))
 - Łukasz Wolańczyk ([github](https://github.com/lukwol))
 
+Also, don't forget to check out [the original Picguard](https://github.com/netguru/picguard), our ruby gem for validating uploaded images!
+
 ### License
 
 This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for more info.
