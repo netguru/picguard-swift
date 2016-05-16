@@ -5,6 +5,7 @@
 // Licensed under the MIT License.
 //
 
+/// Represents a API-side annotation error.
 public struct AnnotationError: ErrorType, APIRepresentationConvertible {
 
 	/// The code of the error.
