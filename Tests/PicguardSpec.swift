@@ -268,11 +268,11 @@ private final class MockAPIClient: APIClientType {
 
 private final class MockAPIClient2: APIClientType {
 
-	typealias PerformRequestClosureType = (AnnotationRequest, (PicguardResult<AnnotationResponse>) -> Void) -> Void
+	private typealias PerformRequestClosureType = (AnnotationRequest, (PicguardResult<AnnotationResponse>) -> Void) -> Void
 
-	let performRequestClosure: PerformRequestClosureType
+	private let performRequestClosure: PerformRequestClosureType
 
-	init(_ performRequestClosure: PerformRequestClosureType) {
+	private init(_ performRequestClosure: PerformRequestClosureType) {
 		self.performRequestClosure = performRequestClosure
 	}
 
