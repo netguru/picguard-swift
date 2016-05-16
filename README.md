@@ -1,4 +1,4 @@
-![](Images/Logo.png)
+![](Images/Header.png)
 
 ![](https://www.bitrise.io/app/0ee59475f60743f7.svg?token=yOJZx9kJX6J2MRDNsHRnxQ&branch=develop)
 ![](https://img.shields.io/github/release/netguru/picguard-swift.svg)
