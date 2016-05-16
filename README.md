@@ -47,12 +47,12 @@ picguard.detectFacePresenceLikelihood(image: anImage) { result in
 }
 ```
 
-### Raw analysis
+### Raw annotation
 
 As Picguard is a **fully featured Google Cloud Vision API client**, you may compose your own requests that are not covered by above helpers and interpret the results your way:
 
 ```swift
-picguard.analyze(image: anImage, features: [
+picguard.annotate(image: anImage, features: [
     .Face(maxResults: 2),
     .Label(maxResults: 5)
     .Landmark(maxResults: 3),
