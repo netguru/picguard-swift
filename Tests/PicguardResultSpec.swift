@@ -41,22 +41,15 @@ final class PicguardResultSpec: QuickSpec {
 					it("should succeed to initialize") {
 						expect {
 							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Success(let response) = actual {
-									return response == AnnotationResponse(
-										faceAnnotations: nil,
-										labelAnnotations: nil,
-										landmarkAnnotations: nil,
-										logoAnnotations: nil,
-										textAnnotations: nil,
-										safeSearchAnnotation: nil,
-										imagePropertiesAnnotation: nil
-									)
-								}
-							}
-							return false
-						})
+						}.to(beSuccessful(AnnotationResponse(
+							faceAnnotations: nil,
+							labelAnnotations: nil,
+							landmarkAnnotations: nil,
+							logoAnnotations: nil,
+							textAnnotations: nil,
+							safeSearchAnnotation: nil,
+							imagePropertiesAnnotation: nil
+						)))
 					}
 				}
 
@@ -64,16 +57,7 @@ final class PicguardResultSpec: QuickSpec {
 					it("should succeed to initialize") {
 						expect {
 							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Error(let error as APIRepresentationError) = actual {
-									if case .UnexpectedValueType = error {
-										return true
-									}
-								}
-							}
-							return false
-						})
+						}.to(beErroneus(APIRepresentationError.UnexpectedValueType))
 					}
 				}
 				
@@ -88,14 +72,7 @@ final class PicguardResultSpec: QuickSpec {
 					it("should apply map transform") {
 						expect { _ -> PicguardResult<String> in
 							subject.map { _ in "foo" }
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Success(let string) = actual {
-									return string == "foo"
-								}
-							}
-							return false
-						})
+						}.to(beSuccessful("foo"))
 					}
 
 				}
@@ -109,16 +86,7 @@ final class PicguardResultSpec: QuickSpec {
 					it("should not apply map transform") {
 						expect { _ -> PicguardResult<String> in
 							subject.map { _ in "foo" }
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Error(let error as MockError) = actual {
-									if case .Boom = error {
-										return true
-									}
-								}
-							}
-							return false
-						})
+						}.to(beErroneus(MockError.Boom))
 					}
 
 				}
