@@ -78,6 +78,52 @@ final class PicguardResultSpec: QuickSpec {
 				}
 				
 			}
+
+			describe("map") {
+
+				context("when subject is successful") {
+
+					let subject = PicguardResult<Int>.Success(3)
+
+					it("should apply map transform") {
+						expect { _ -> PicguardResult<String> in
+							subject.map { _ in "foo" }
+						}.to(NonNilMatcherFunc { expression, _ in
+							if let actual = try expression.evaluate() {
+								if case .Success(let string) = actual {
+									return string == "foo"
+								}
+							}
+							return false
+						})
+					}
+
+				}
+
+				context("when subject is erroneus") {
+
+					enum MockError: ErrorType { case Boom }
+
+					let subject = PicguardResult<Int>.Error(MockError.Boom)
+
+					it("should not apply map transform") {
+						expect { _ -> PicguardResult<String> in
+							subject.map { _ in "foo" }
+						}.to(NonNilMatcherFunc { expression, _ in
+							if let actual = try expression.evaluate() {
+								if case .Error(let error as MockError) = actual {
+									if case .Boom = error {
+										return true
+									}
+								}
+							}
+							return false
+						})
+					}
+
+				}
+
+			}
 			
 		}
 		
