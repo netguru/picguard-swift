@@ -36,15 +36,20 @@ public enum PicguardResult<T: APIRepresentationConvertible>: APIRepresentationCo
 	/// If `self` is `.Success`, returns a result of mapping `transform` over
 	/// the stored value. If `self` is `.Error`, returns just `self`.
 	///
-	/// - Parameter transform: The transformation block.
-	///
-	/// - Throws: Rethrows whatever is thrown by `transform`.
+	/// - Parameter transform: The transformation block. Errors thrown inside
+	///   are caught and returned as wrapped in `.Error` case.
 	///
 	/// - Returns: A result of a map transform over the successful value.
-	public func map<U: APIRepresentationConvertible>(@noescape transform: (T) throws -> U) rethrows -> PicguardResult<U> {
+	public func map<U: APIRepresentationConvertible>(@noescape transform: (T) throws -> U) -> PicguardResult<U> {
 		switch self {
-			case .Success(let value): return .Success(try transform(value))
-			case .Error(let error): return .Error(error)
+			case .Success(let value):
+				do {
+					return .Success(try transform(value))
+				} catch let error {
+					return .Error(error)
+				}
+			case .Error(let error):
+				return .Error(error)
 		}
 	}
 
