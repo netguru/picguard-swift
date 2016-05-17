@@ -41,22 +41,15 @@ final class PicguardResultSpec: QuickSpec {
 					it("should succeed to initialize") {
 						expect {
 							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: [String: AnyObject]()))
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Success(let response) = actual {
-									return response == AnnotationResponse(
-										faceAnnotations: nil,
-										labelAnnotations: nil,
-										landmarkAnnotations: nil,
-										logoAnnotations: nil,
-										textAnnotations: nil,
-										safeSearchAnnotation: nil,
-										imagePropertiesAnnotation: nil
-									)
-								}
-							}
-							return false
-						})
+						}.to(beSuccessful(AnnotationResponse(
+							faceAnnotations: nil,
+							labelAnnotations: nil,
+							landmarkAnnotations: nil,
+							logoAnnotations: nil,
+							textAnnotations: nil,
+							safeSearchAnnotation: nil,
+							imagePropertiesAnnotation: nil
+						)))
 					}
 				}
 
@@ -64,19 +57,40 @@ final class PicguardResultSpec: QuickSpec {
 					it("should succeed to initialize") {
 						expect {
 							PicguardResult<AnnotationResponse>(APIRepresentationValue: try APIRepresentationValue(value: "foobar"))
-						}.to(NonNilMatcherFunc { expression, _ in
-							if let actual = try expression.evaluate() {
-								if case .Error(let error as APIRepresentationError) = actual {
-									if case .UnexpectedValueType = error {
-										return true
-									}
-								}
-							}
-							return false
-						})
+						}.to(beErroneus(APIRepresentationError.UnexpectedValueType))
 					}
 				}
 				
+			}
+
+			describe("map") {
+
+				context("when subject is successful") {
+
+					let subject = PicguardResult<Int>.Success(3)
+
+					it("should apply map transform") {
+						expect { _ -> PicguardResult<String> in
+							subject.map { _ in "foo" }
+						}.to(beSuccessful("foo"))
+					}
+
+				}
+
+				context("when subject is erroneus") {
+
+					enum MockError: ErrorType { case Boom }
+
+					let subject = PicguardResult<Int>.Error(MockError.Boom)
+
+					it("should not apply map transform") {
+						expect { _ -> PicguardResult<String> in
+							subject.map { _ in "foo" }
+						}.to(beErroneus(MockError.Boom))
+					}
+
+				}
+
 			}
 			
 		}

@@ -28,32 +28,63 @@ public struct Picguard {
 		client = APIClient
 	}
 
-	/// Detects unsafe content in the image.
+	/// Detects likelihood of unsafe content in the image.
 	///
 	/// - Parameters:
 	///     - image: Image used for unsafe content detection.
 	///     - completion: The closure with `PicguardResult<Likelihood>`, called when
 	///       response comes from Google Cloud Vision API.
-	public func detectUnsafeContent(image image: UIImage, completion: (result: PicguardResult<Likelihood>) -> Void) {
+	public func detectUnsafeContentLikelihood(image image: UIImage, completion: (PicguardResult<Likelihood>) -> Void) {
 		do {
 			try client.perform(
-				request: AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]),
-				image: .Image(image))
+				request: AnnotationRequest(
+					features: [.SafeSearch(maxResults: 1)],
+					image: .Image(image)
+				)
 			) { result in
-				switch result {
-				case .Success(let response):
+				completion(result.map { response in
 					guard let safeSearchAnnotation = response.safeSearchAnnotation else {
-						completion(result: .Success(Likelihood.Unknown))
-						return
+						return Likelihood.Unknown
 					}
-					completion(result: .Success(safeSearchAnnotation.unsafeContentLikelihood))
-				case .Error(let error):
-					completion(result: .Error(error))
+					return safeSearchAnnotation.unsafeContentLikelihood
+				})
+			}
+		} catch let error {
+			dispatch_async(dispatch_get_main_queue()) {
+				completion(.Error(error))
+			}
+		}
+	}
+
+	/// Detects likelihood of any face presence in the image.
+	///
+	/// - Parameters:
+	///     - image: Image to be analyzed.
+	///     - completion: The closure taking `PicguardResult<Likelihood>`.
+	public func detectFacePresenceLikelihood(image image: UIImage, completion: (PicguardResult<Likelihood>) -> Void) {
+		do {
+			try client.perform(
+				request: AnnotationRequest(
+					features: [.Face(maxResults: 1)],
+					image: .Image(image)
+				)
+			) { result in
+				do {
+					completion(try result.map { response in
+						guard let faceAnnotations = response.faceAnnotations where faceAnnotations.count > 0 else {
+							return Likelihood.Unknown
+						}
+						return try Likelihood(score: faceAnnotations[0].detectionConfidence)
+					})
+				} catch let error {
+					dispatch_async(dispatch_get_main_queue()) {
+						completion(.Error(error))
+					}
 				}
 			}
 		} catch let error {
 			dispatch_async(dispatch_get_main_queue()) {
-				completion(result: .Error(error))
+				completion(.Error(error))
 			}
 		}
 	}
