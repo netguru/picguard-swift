@@ -36,7 +36,7 @@ public struct Picguard {
 	/// - Parameters:
 	///     - image: Image to be annotated.
 	///     - feature: Annotations feature set.
-	///     - completion: The completion closure execured when request finishes.
+	///     - completion: The completion closure executed when request finishes.
 	public func annotate(image image: AnnotationRequest.Image, features: Set<AnnotationRequest.Feature>, completion: (PicguardResult<AnnotationResponse>) -> Void) {
 		do {
 			client.perform(
@@ -54,7 +54,7 @@ public struct Picguard {
 	///
 	/// - Parameters:
 	///     - image: Image to be analyzed.
-	///     - completion: The completion closure execured when request finishes.
+	///     - completion: The completion closure executed when request finishes.
 	public func detectUnsafeContentLikelihood(image image: AnnotationRequest.Image, completion: (PicguardResult<Likelihood>) -> Void) {
 		annotate(image: image, features: [.SafeSearch(maxResults: 1)]) { result in
 			completion(result.map { response in
@@ -70,7 +70,7 @@ public struct Picguard {
 	///
 	/// - Parameters:
 	///     - image: Image to be analyzed.
-	///     - completion: The completion closure execured when request finishes.
+	///     - completion: The completion closure executed when request finishes.
 	public func detectFacePresenceLikelihood(image image: AnnotationRequest.Image, completion: (PicguardResult<Likelihood>) -> Void) {
 		annotate(image: image, features: [.Face(maxResults: 1)]) { result in
 			completion(result.map { response in
