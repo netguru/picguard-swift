@@ -15,137 +15,121 @@ final class PicguardSpec: QuickSpec {
 
 		describe("Picguard") {
 
-			var mockClient: MockAPIClient!
-			var sut: Picguard!
+			var caughtRequest: AnnotationRequest? = nil
+			var mockedResult: PicguardResult<AnnotationResponse>! = nil
 
-			beforeEach {
-				mockClient = MockAPIClient()
-				sut = Picguard(APIClient: mockClient)
-			}
+			let picguard = Picguard(APIClient: MockAPIClient { request, completion in
+				caughtRequest = request
+				completion(mockedResult)
+			})
 
 			afterEach {
-				sut = nil
+				mockedResult = nil
 			}
 
-			context("when initialized with API key") {
+			context("when initialized with an API key") {
 
-				var sut: Picguard!
+				let picguard = Picguard(APIKey: "foobar")
 
-				beforeEach {
-					sut = Picguard(APIKey: "foo")
+				it("should have a default API client") {
+					expect(picguard.client.dynamicType == APIClient.self).to(beTruthy())
 				}
 
-				it("should have proper API client") {
-					expect(sut.client.dynamicType == APIClient.self).to(beTruthy())
+				it("should forward API key to API client") {
+					let client = picguard.client as? APIClient
+					expect(client?.APIKey).to(equal("foobar"))
 				}
+
 			}
 
-			describe("detect unsafe content") {
-
-				var capturedResult: PicguardResult<Likelihood>!
-				var image: UIImage!
+			describe("unsafe content likelihood detection") {
 
 				beforeEach {
-					image = UIImage()
-					sut.detectUnsafeContentLikelihood(image: .Image(UIImage())) { result in
-						capturedResult = result
-					}
+					mockedResult = .Success(AnnotationResponse(
+						faceAnnotations: nil,
+						labelAnnotations: nil,
+						landmarkAnnotations: nil,
+						logoAnnotations: nil,
+						textAnnotations: nil,
+						safeSearchAnnotation: nil,
+						imagePropertiesAnnotation: nil
+					))
 				}
 
-				it("perform proper request") {
-					expect(mockClient.lastRequest).to(equal(try! AnnotationRequest(features: Set([.SafeSearch(maxResults: 1)]), image: .Image(image))))
+				it("should send a correct request") {
+					picguard.detectUnsafeContentLikelihood(image: .URL(""), completion: { _ in })
+					let expectedRequest = try! AnnotationRequest(features: [.SafeSearch(maxResults: 1)], image: .URL(""))
+					expect(caughtRequest).toEventually(equal(expectedRequest))
 				}
 
-				context("when completion result has no safe search annotation") {
+				context("given a response containing safe search annotation") {
+
+					let annotation = SafeSearchAnnotation(
+						adultContentLikelihood: .Possible,
+						spoofContentLikelihood: .Likely,
+						medicalContentLikelihood: .VeryUnlikely,
+						violentContentLikelihood: .Likely
+					)
 
 					beforeEach {
-						mockClient.lastCompletion(
-							PicguardResult<AnnotationResponse>.Success(
-								AnnotationResponse.init(
-									faceAnnotations: nil,
-									labelAnnotations: nil,
-									landmarkAnnotations: nil,
-									logoAnnotations: nil,
-									textAnnotations: nil,
-									safeSearchAnnotation: nil,
-									imagePropertiesAnnotation: nil
-								)
-							)
-						)
+						mockedResult = .Success(AnnotationResponse(
+							faceAnnotations: nil,
+							labelAnnotations: nil,
+							landmarkAnnotations: nil,
+							logoAnnotations: nil,
+							textAnnotations: nil,
+							safeSearchAnnotation: annotation,
+							imagePropertiesAnnotation: nil
+						))
 					}
 
-					it("should return result with unknown likelihood"){
-						guard case .Success(let likelihood) = capturedResult! else {
-							fail("failed to get value")
-							return
-						}
-						expect(likelihood).to(equal(try! Likelihood(string: "UNKNOWN")))
+					it("should calculate a correct positive likelihood") {
+						var caughtResult: PicguardResult<Likelihood>! = nil
+						picguard.detectUnsafeContentLikelihood(image: .URL(""), completion: { caughtResult = $0 })
+						expect(caughtResult).toEventually(beSuccessful(annotation.unsafeContentLikelihood))
 					}
 
 				}
 
-				context("when completion result has safe search annotation") {
+				context("given a response containing no safe search annotations") {
 
 					beforeEach {
-						mockClient.lastCompletion(
-							PicguardResult<AnnotationResponse>.Success(
-								AnnotationResponse.init(
-									faceAnnotations: nil,
-									labelAnnotations: nil,
-									landmarkAnnotations: nil,
-									logoAnnotations: nil,
-									textAnnotations: nil,
-									safeSearchAnnotation: SafeSearchAnnotation(
-										adultContentLikelihood: .Likely,
-										spoofContentLikelihood: .Likely,
-										medicalContentLikelihood: .Likely,
-										violentContentLikelihood: .Likely
-									),
-									imagePropertiesAnnotation: nil
-								)
-							)
-						)
+						mockedResult = .Success(AnnotationResponse(
+							faceAnnotations: nil,
+							labelAnnotations: nil,
+							landmarkAnnotations: nil,
+							logoAnnotations: nil,
+							textAnnotations: nil,
+							safeSearchAnnotation: nil,
+							imagePropertiesAnnotation: nil
+						))
 					}
 
-					it("should return result with proper likelihood"){
-						guard case .Success(let likelihood) = capturedResult! else {
-							fail("failed to get value")
-							return
-						}
-						expect(likelihood).to(equal(Likelihood.Likely))
+					it("should calculate unknown likelihood") {
+						var caughtResult: PicguardResult<Likelihood>! = nil
+						picguard.detectUnsafeContentLikelihood(image: .URL(""), completion: { caughtResult = $0 })
+						expect(caughtResult).toEventually(beSuccessful(Likelihood.Unknown))
 					}
 
 				}
 
-				context("when completion result has an error") {
+				context("given an erroneus response") {
 
 					beforeEach {
-						mockClient.lastCompletion(PicguardResult<AnnotationResponse>.Error(APIClient.Error.NoResponse))
+						mockedResult = .Error(AnnotationError(code: 0, message: ""))
 					}
 
-					it("should return result with proper error"){
-						guard
-							case .Error(let error) = capturedResult!,
-							case .NoResponse = error as! APIClient.Error
-						else {
-							fail("failed to get error")
-							return
-						}
+					it("should forward an erroneus response") {
+						var caughtResult: PicguardResult<Likelihood>! = nil
+						picguard.detectUnsafeContentLikelihood(image: .URL(""), completion: { caughtResult = $0 })
+						expect(caughtResult).toEventually(beErroneus())
 					}
-					
+
 				}
-				
+
 			}
 
 			describe("face presence likelihood detection") {
-
-				var caughtRequest: AnnotationRequest? = nil
-				var mockedResult: PicguardResult<AnnotationResponse>! = nil
-
-				let picguard = Picguard(APIClient: MockAPIClient2 { request, completion in
-					caughtRequest = request
-					completion(mockedResult)
-				})
 
 				beforeEach {
 					mockedResult = .Success(AnnotationResponse(
@@ -167,27 +151,27 @@ final class PicguardSpec: QuickSpec {
 
 				context("given a response containing face annotation") {
 
+					let annotation = try! FaceAnnotation(
+						boundingPolygon: BoundingPolygon(vertices: []),
+						skinBoundingPolygon: BoundingPolygon(vertices: []),
+						landmarks: [],
+						rollAngle: 0,
+						panAngle: 0,
+						tiltAngle: 0,
+						detectionConfidence: 0.75,
+						landmarkingConfidence: 0.5,
+						joyLikelihood: .Unknown,
+						sorrowLikelihood: .Unknown,
+						angerLikelihood: .Unknown,
+						surpriseLikelihood: .Unknown,
+						underExposedLikelihood: .Unknown,
+						blurredLikelihood: .Unknown,
+						headwearLikelihood: .Unknown
+					)
+
 					beforeEach {
 						mockedResult = .Success(AnnotationResponse(
-							faceAnnotations: [
-								try! FaceAnnotation(
-									boundingPolygon: BoundingPolygon(vertices: []),
-									skinBoundingPolygon: BoundingPolygon(vertices: []),
-									landmarks: [],
-									rollAngle: 0,
-									panAngle: 0,
-									tiltAngle: 0,
-									detectionConfidence: 0.75,
-									landmarkingConfidence: 0.5,
-									joyLikelihood: .Unknown,
-									sorrowLikelihood: .Unknown,
-									angerLikelihood: .Unknown,
-									surpriseLikelihood: .Unknown,
-									underExposedLikelihood: .Unknown,
-									blurredLikelihood: .Unknown,
-									headwearLikelihood: .Unknown
-								)
-							],
+							faceAnnotations: [annotation],
 							labelAnnotations: nil,
 							landmarkAnnotations: nil,
 							logoAnnotations: nil,
@@ -200,7 +184,7 @@ final class PicguardSpec: QuickSpec {
 					it("should calculate a correct positive likelihood") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
 						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
-						expect(caughtResult).toEventually(beSuccessful(try! Likelihood(score: 0.75)))
+						expect(caughtResult).toEventually(beSuccessful(try! Likelihood(score: annotation.detectionConfidence)))
 					}
 
 				}
@@ -245,14 +229,6 @@ final class PicguardSpec: QuickSpec {
 
 			describe("raw annotation") {
 
-				var caughtRequest: AnnotationRequest? = nil
-				var mockedResult: PicguardResult<AnnotationResponse>! = nil
-
-				let picguard = Picguard(APIClient: MockAPIClient2 { request, completion in
-					caughtRequest = request
-					completion(mockedResult)
-				})
-
 				beforeEach {
 					mockedResult = .Success(AnnotationResponse(
 						faceAnnotations: nil,
@@ -273,30 +249,24 @@ final class PicguardSpec: QuickSpec {
 
 				context("given a successful response") {
 
+					let response = AnnotationResponse(
+						faceAnnotations: nil,
+						labelAnnotations: nil,
+						landmarkAnnotations: nil,
+						logoAnnotations: nil,
+						textAnnotations: nil,
+						safeSearchAnnotation: nil,
+						imagePropertiesAnnotation: nil
+					)
+
 					beforeEach {
-						mockedResult = .Success(AnnotationResponse(
-							faceAnnotations: nil,
-							labelAnnotations: nil,
-							landmarkAnnotations: nil,
-							logoAnnotations: nil,
-							textAnnotations: nil,
-							safeSearchAnnotation: nil,
-							imagePropertiesAnnotation: nil
-						))
+						mockedResult = .Success(response)
 					}
 
 					it("should calculate a correct positive likelihood") {
 						var caughtResult: PicguardResult<AnnotationResponse>! = nil
 						picguard.annotate(image: .Data(NSData()), features: [.Landmark(maxResults: 1)], completion: { caughtResult = $0 })
-						expect(caughtResult).toEventually(beSuccessful(AnnotationResponse(
-							faceAnnotations: nil,
-							labelAnnotations: nil,
-							landmarkAnnotations: nil,
-							logoAnnotations: nil,
-							textAnnotations: nil,
-							safeSearchAnnotation: nil,
-							imagePropertiesAnnotation: nil
-						)))
+						expect(caughtResult).toEventually(beSuccessful(response))
 					}
 
 				}
@@ -326,20 +296,6 @@ final class PicguardSpec: QuickSpec {
 // MARK: -
 
 private final class MockAPIClient: APIClientType {
-
-	var lastRequest: AnnotationRequest!
-	var lastCompletion: ((PicguardResult<AnnotationResponse>) -> Void)!
-
-	func perform(request request: AnnotationRequest, completion: (PicguardResult<AnnotationResponse>) -> Void) {
-		lastRequest = request
-		lastCompletion = completion
-	}
-
-}
-
-// MARK: -
-
-private final class MockAPIClient2: APIClientType {
 
 	private typealias PerformRequestClosureType = (AnnotationRequest, (PicguardResult<AnnotationResponse>) -> Void) -> Void
 
