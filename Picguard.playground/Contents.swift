@@ -7,8 +7,10 @@ XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 // Enter your Google Cloud Vision API key
 let picguard = Picguard(APIKey: "foobar")
 
+// Example image.
 let anImage = AnnotationRequest.Image.Image(UIImage(named: "portrait")!)
 
+// Detecting unsafe content.
 picguard.detectUnsafeContentLikelihood(image: anImage) { result in
 	switch result {
 	case .Success(let likelihood):
@@ -18,6 +20,7 @@ picguard.detectUnsafeContentLikelihood(image: anImage) { result in
 	}
 }
 
+// Detecting face presence.
 picguard.detectFacePresenceLikelihood(image: anImage) { result in
 	switch result {
 	case .Success(let likelihood):
@@ -27,6 +30,7 @@ picguard.detectFacePresenceLikelihood(image: anImage) { result in
 	}
 }
 
+// Custom request for image analysis.
 picguard.annotate(image: anImage, features: [
 	.Face(maxResults: 2),
 	.Label(maxResults: 5),
@@ -41,3 +45,5 @@ picguard.annotate(image: anImage, features: [
 		print("Error analyzing image: \(error)")
 	}
 }
+
+// Now it's your turn to use Picguard :)
