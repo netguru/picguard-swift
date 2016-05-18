@@ -54,7 +54,7 @@ As Picguard is a **fully featured Google Cloud Vision API client**, you may comp
 ```swift
 picguard.annotate(image: anImage, features: [
     .Face(maxResults: 2),
-    .Label(maxResults: 5)
+    .Label(maxResults: 5),
     .Landmark(maxResults: 3),
 ]) { result in
     switch result {

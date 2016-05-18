@@ -4,22 +4,39 @@ import XCPlayground
 
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
-let APIKey = "" // Enter your Google Cloud Vision API key
-let picguard = Picguard(APIKey: APIKey)
+// Enter your Google Cloud Vision API key
+let picguard = Picguard(APIKey: "foobar")
 
-picguard.detectUnsafeContent(image: UIImage(named: "dog")!) { result in
-
+let anImage = AnnotationRequest.Image.Image(UIImage(named: "portrait")!)
+picguard.detectUnsafeContentLikelihood(image: anImage) { result in
 	switch result {
-		case .Success(let unsafeContentLikelihood):
-			switch unsafeContentLikelihood {
-				case .VeryUnlikely: print("It is very unlikely that this image has unsafe content.")
-				case .Unlikely: print("It is unlikely that this image has unsafe content.")
-				case .Possible: print("It is possible that this image has unsafe content.")
-				case .Likely: print("It is likely that this image has unsafe content.")
-				case .VeryLikely: print("It is very likely that this image has unsafe content.")
-				case .Unknown: print("Don't know whether that this image has unsafe content.")
-			}
-		case .Error(let error): print("Something went wrong: \(error)")
+	case .Success(let likelihood):
+		print("Likelihood of NSFW content: \(likelihood)")
+	case .Error(let error):
+		print("Error detecting NSFW content: \(error)")
 	}
-	XCPlaygroundPage.currentPage.finishExecution()
+}
+
+picguard.detectFacePresenceLikelihood(image: anImage) { result in
+	switch result {
+	case .Success(let likelihood):
+		print("Likelihood of face presence: \(likelihood)")
+	case .Error(let error):
+		print("Error detecting face presence: \(error)")
+	}
+}
+
+picguard.annotate(image: anImage, features: [
+	.Face(maxResults: 2),
+	.Label(maxResults: 5),
+	.Landmark(maxResults: 3)
+]) { result in
+	switch result {
+	case .Success(let response):
+		print("Face annotations: \(response.faceAnnotations)")
+		print("Label annotations: \(response.labelAnnotations)")
+		print("Landmark annotations: \(response.landmarkAnnotations)")
+	case .Error(let error):
+		print("Error analyzing image: \(error)")
+	}
 }
