@@ -152,7 +152,7 @@ final class AnnotationRequestSpec: QuickSpec {
 			context("when features don't repeat") {
 
 				beforeEach {
-					let features = Set([AnnotationRequest.Feature.SafeSearch(maxResults: 5),
+					let features = Set([AnnotationRequest.Feature.SafeSearch,
 						AnnotationRequest.Feature.ImageProperties(maxResults: 2),
 						AnnotationRequest.Feature.Logo(maxResults: 3),
 						AnnotationRequest.Feature.Text])
@@ -184,11 +184,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should be SafeSearch type") {
 							expect(firstFeatureJSON["type"] as? String).to(equal("SAFE_SEARCH_DETECTION"))
 						}
-
-						it("should have max results 5") {
-							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(5))
-						}
-
+						
 					}
 
 					describe("second feature") {

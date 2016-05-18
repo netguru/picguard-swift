@@ -58,7 +58,7 @@ final class PicguardSpec: QuickSpec {
 
 				it("should send a correct request") {
 					picguard.detectUnsafeContentLikelihood(image: .URL(""), completion: { _ in })
-					let expectedRequest = try! AnnotationRequest(features: [.SafeSearch(maxResults: 1)], image: .URL(""))
+					let expectedRequest = try! AnnotationRequest(features: [.SafeSearch], image: .URL(""))
 					expect(caughtRequest).toEventually(equal(expectedRequest))
 				}
 

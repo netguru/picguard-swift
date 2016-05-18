@@ -54,7 +54,7 @@ public struct AnnotationRequest {
 		case Logo(maxResults: Int?)
 
 		/// Determine image safe search properties on the image.
-		case SafeSearch(maxResults: Int)
+		case SafeSearch
 
 		/// Compute a set of properties about the image.
 		case ImageProperties(maxResults: Int)
@@ -84,8 +84,8 @@ public struct AnnotationRequest {
 						return ["type": "LOGO_DETECTION"]
 					}
 					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
-				case .SafeSearch(let maxResults):
-					return ["type": "SAFE_SEARCH_DETECTION", "maxResults": maxResults]
+				case .SafeSearch:
+					return ["type": "SAFE_SEARCH_DETECTION"]
 				case .ImageProperties(let maxResults):
 					return ["type": "IMAGE_PROPERTIES", "maxResults": maxResults]
 			}
