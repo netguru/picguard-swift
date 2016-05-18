@@ -24,6 +24,13 @@ final class BoundingPolygonSpec: QuickSpec {
 					)
 				}
 
+				context("with invalid vertices") {
+					initWithAPIRepresentationShouldSucceed(
+						value: ["vertices": [["x": 1], ["y": 2], [:], ["x": 3, "y": 4]]],
+						expected: BoundingPolygon(vertices: [Vertex(x: 3, y: 4)])
+					)
+				}
+
 				context("with empty dictionary") {
 					initWithAPIRepresentationShouldFail(
 						value: [String: [String: Int]](),
