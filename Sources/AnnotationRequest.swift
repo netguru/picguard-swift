@@ -36,7 +36,10 @@ public struct AnnotationRequest {
 		case Text
 
 		/// Detect faces within the image.
-		case Face(maxResults: Int)
+		///
+		/// - Parameter maxResults: Optionally constraint the maximum number of results
+		/// to return for this feature type. When passed nil all results will be returned.
+		case Face(maxResults: Int?)
 
 		/// Detect geographic landmarks within the image.
 		case Landmark(maxResults: Int)
@@ -61,6 +64,9 @@ public struct AnnotationRequest {
 				case .Text:
 					return ["type": "TEXT_DETECTION"]
 				case .Face(let maxResults):
+					guard let maxResults = maxResults else {
+						return ["type": "FACE_DETECTION"]
+					}
 					return ["type": "FACE_DETECTION", "maxResults": maxResults]
 				case .Landmark(let maxResults):
 					return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
