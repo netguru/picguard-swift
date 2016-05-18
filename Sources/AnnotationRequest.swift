@@ -19,39 +19,43 @@ public struct AnnotationRequest {
 		case EmptyFeaturesSet
 	}
 
-	// MARK: Initializers
+	// MARK: Nested Enums
 
 	/// Detection operations which are run against image.
 	///
 	/// - Note: The API can return fewer results.
 	public enum Feature {
 
-		/// Execute Image Content Analysis on the entire image and return.
-		///
-		/// - Parameter maxResults: Optionally constraint the maximum number of results
-		/// to return for this feature type. When passed nil all results will be returned.
-		case Label(maxResults: Int?)
-
-		/// Perform Optical Character Recognition (OCR) on text within the image.
-		case Text
-
 		/// Detect faces within the image.
 		///
-		/// - Parameter maxResults: Optionally constraint the maximum number of results
-		/// to return for this feature type. When passed nil all results will be returned.
+		/// - Parameter maxResults: Optionally constraints the maximum number of
+		///   results to return for this feature type. When `nil`, all results
+		///   will be returned.
 		case Face(maxResults: Int?)
+
+		/// Execute Image Content Analysis on the entire image and return.
+		///
+		/// - Parameter maxResults: Optionally constraints the maximum number of
+		///   results to return for this feature type. When `nil`, all results
+		///   will be returned.
+		case Label(maxResults: Int?)
 
 		/// Detect geographic landmarks within the image.
 		///
-		/// - Parameter maxResults: Optionally constraint the maximum number of results
-		/// to return for this feature type. When passed nil all results will be returned.
+		/// - Parameter maxResults: Optionally constraints the maximum number of
+		///   results to return for this feature type. When `nil`, all results
+		///   will be returned.
 		case Landmark(maxResults: Int?)
 
 		/// Detect company logos within the image.
 		///
-		/// - Parameter maxResults: Optionally constraint the maximum number of results
-		/// to return for this feature type. When passed nil all results will be returned.
+		/// - Parameter maxResults: Optionally constraints the maximum number of
+		///   results to return for this feature type. When `nil`, all results
+		///   will be returned.
 		case Logo(maxResults: Int?)
+
+		/// Perform Optical Character Recognition (OCR) on text within the image.
+		case Text
 
 		/// Determine image safe search properties on the image.
 		case SafeSearch
@@ -63,33 +67,22 @@ public struct AnnotationRequest {
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
 				case .Label(let maxResults):
-					guard let maxResults = maxResults else {
-						return ["type": "LABEL_DETECTION"]
-					}
-					return ["type": "LABEL_DETECTION", "maxResults": maxResults]
+					return compact(["type": "LABEL_DETECTION", "maxResults": maxResults])
+				case .Face(let maxResults):
+					return compact(["type": "FACE_DETECTION", "maxResults": maxResults])
+				case .Landmark(let maxResults):
+					return compact(["type": "LANDMARK_DETECTION", "maxResults": maxResults])
+				case .Logo(let maxResults):
+					return compact(["type": "LOGO_DETECTION", "maxResults": maxResults])
 				case .Text:
 					return ["type": "TEXT_DETECTION"]
-				case .Face(let maxResults):
-					guard let maxResults = maxResults else {
-						return ["type": "FACE_DETECTION"]
-					}
-					return ["type": "FACE_DETECTION", "maxResults": maxResults]
-				case .Landmark(let maxResults):
-					guard let maxResults = maxResults else {
-						return ["type": "LANDMARK_DETECTION"]
-					}
-					return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
-				case .Logo(let maxResults):
-					guard let maxResults = maxResults else {
-						return ["type": "LOGO_DETECTION"]
-					}
-					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
 				case .SafeSearch:
 					return ["type": "SAFE_SEARCH_DETECTION"]
 				case .ImageProperties:
 					return ["type": "IMAGE_PROPERTIES"]
 			}
 		}
+
 	}
 
 	/// Image representation which is used for detection operations.
@@ -115,9 +108,9 @@ public struct AnnotationRequest {
 				case .URL(let URL):
 					return ["source": ["gcs_image_uri": URL]]
 				case .Image(let image):
-					return try ["content": encoder.encode(image: image)]
+					return ["content": try encoder.encode(image: image)]
 				case .Data(let data):
-					return try ["content": encoder.encode(imageData: data)]
+					return ["content": try encoder.encode(imageData: data)]
 			}
 		}
 	}
@@ -127,6 +120,8 @@ public struct AnnotationRequest {
 
 	/// Image on detection operations are performed.
 	public let image: Image
+
+	// MARK: Initializers
 
 	/// Initializes the AnnotationRequest with image and a set of features
 	///
@@ -142,6 +137,8 @@ public struct AnnotationRequest {
 		self.features = features
 		self.image = image
 	}
+
+	// MARK: JSON Representation
 
 	/// JSON dictionary representation of `AnnotationRequest`.
 	///
