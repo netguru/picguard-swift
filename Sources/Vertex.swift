@@ -10,10 +10,10 @@
 public struct Vertex: APIRepresentationConvertible {
 
 	/// X coordinate.
-	public let x: Double?
+	public let x: Double
 
 	/// Y coordinate.
-	public let y: Double?
+	public let y: Double
 
 	// MARK: Initializers
 
@@ -22,7 +22,7 @@ public struct Vertex: APIRepresentationConvertible {
 	/// - Parameters:
 	///     - x: X coordinate.
 	///     - y: Y coordinate.
-	public init(x: Double?, y: Double?) {
+	public init(x: Double, y: Double) {
 		self.x = x
 		self.y = y
 	}
