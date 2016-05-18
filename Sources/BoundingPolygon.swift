@@ -22,7 +22,8 @@ public struct BoundingPolygon: APIRepresentationConvertible {
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		try self.init(vertices: value.get("vertices"))
+		let vertices: [Vertex?] = try value.get("vertices")
+		self.init(vertices: vertices.flatMap { $0 })
 	}
 
 }

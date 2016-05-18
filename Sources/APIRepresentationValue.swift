@@ -169,6 +169,13 @@ public extension APIRepresentationValue {
 		return try array.map(T.init(APIRepresentationValue:))
 	}
 
+	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T?] {
+		guard case .Array(let array) = try get(key) else {
+			throw APIRepresentationError.UnexpectedValueType
+		}
+		return array.map { try? T.init(APIRepresentationValue: $0) }
+	}
+
 	/// Unwraps an array under the given key from the representation.
 	///
 	/// - Parameter key: The key of the array.
