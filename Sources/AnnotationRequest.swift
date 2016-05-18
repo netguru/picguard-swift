@@ -42,10 +42,16 @@ public struct AnnotationRequest {
 		case Face(maxResults: Int?)
 
 		/// Detect geographic landmarks within the image.
-		case Landmark(maxResults: Int)
+		///
+		/// - Parameter maxResults: Optionally constraint the maximum number of results
+		/// to return for this feature type. When passed nil all results will be returned.
+		case Landmark(maxResults: Int?)
 
 		/// Detect company logos within the image.
-		case Logo(maxResults: Int)
+		///
+		/// - Parameter maxResults: Optionally constraint the maximum number of results
+		/// to return for this feature type. When passed nil all results will be returned.
+		case Logo(maxResults: Int?)
 
 		/// Determine image safe search properties on the image.
 		case SafeSearch(maxResults: Int)
@@ -69,8 +75,14 @@ public struct AnnotationRequest {
 					}
 					return ["type": "FACE_DETECTION", "maxResults": maxResults]
 				case .Landmark(let maxResults):
+					guard let maxResults = maxResults else {
+						return ["type": "LANDMARK_DETECTION"]
+					}
 					return ["type": "LANDMARK_DETECTION", "maxResults": maxResults]
 				case .Logo(let maxResults):
+					guard let maxResults = maxResults else {
+						return ["type": "LOGO_DETECTION"]
+					}
 					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
 				case .SafeSearch(let maxResults):
 					return ["type": "SAFE_SEARCH_DETECTION", "maxResults": maxResults]
