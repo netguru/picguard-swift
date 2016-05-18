@@ -279,7 +279,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should forward an erroneus response") {
 						var caughtResult: PicguardResult<AnnotationResponse>! = nil
-						picguard.annotate(image: .Data(NSData()), features: [.Text(maxResults: 1)], completion: { caughtResult = $0 })
+						picguard.annotate(image: .Data(NSData()), features: [.Text], completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beErroneus())
 					}
 

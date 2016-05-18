@@ -23,17 +23,17 @@ public struct AnnotationRequest {
 
 	/// Detection operations which are run against image.
 	///
-	/// - Parameter maxResults: Indicates the maximum number of results
-	///   to return for this feature type.
-	///
 	/// - Note: The API can return fewer results.
 	public enum Feature {
 
 		/// Execute Image Content Analysis on the entire image and return.
-		case Label(maxResults: Int)
+		///
+		/// - Parameter maxResults: Optionally constraint the maximum number of results
+		/// to return for this feature type. When passed nil all results will be returned.
+		case Label(maxResults: Int?)
 
 		/// Perform Optical Character Recognition (OCR) on text within the image.
-		case Text(maxResults: Int)
+		case Text
 
 		/// Detect faces within the image.
 		case Face(maxResults: Int)
@@ -54,9 +54,12 @@ public struct AnnotationRequest {
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
 				case .Label(let maxResults):
+					guard let maxResults = maxResults else {
+						return ["type": "LABEL_DETECTION"]
+					}
 					return ["type": "LABEL_DETECTION", "maxResults": maxResults]
-				case .Text(let maxResults):
-					return ["type": "TEXT_DETECTION", "maxResults": maxResults]
+				case .Text:
+					return ["type": "TEXT_DETECTION"]
 				case .Face(let maxResults):
 					return ["type": "FACE_DETECTION", "maxResults": maxResults]
 				case .Landmark(let maxResults):

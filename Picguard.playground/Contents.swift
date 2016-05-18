@@ -8,6 +8,7 @@ XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 let picguard = Picguard(APIKey: "foobar")
 
 let anImage = AnnotationRequest.Image.Image(UIImage(named: "portrait")!)
+
 picguard.detectUnsafeContentLikelihood(image: anImage) { result in
 	switch result {
 	case .Success(let likelihood):
