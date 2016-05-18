@@ -57,7 +57,7 @@ public struct AnnotationRequest {
 		case SafeSearch
 
 		/// Compute a set of properties about the image.
-		case ImageProperties(maxResults: Int)
+		case ImageProperties
 
 		/// JSON dictionary representation of `Feature`.
 		var JSONDictionaryRepresentation: [String: AnyObject] {
@@ -86,8 +86,8 @@ public struct AnnotationRequest {
 					return ["type": "LOGO_DETECTION", "maxResults": maxResults]
 				case .SafeSearch:
 					return ["type": "SAFE_SEARCH_DETECTION"]
-				case .ImageProperties(let maxResults):
-					return ["type": "IMAGE_PROPERTIES", "maxResults": maxResults]
+				case .ImageProperties:
+					return ["type": "IMAGE_PROPERTIES"]
 			}
 		}
 	}

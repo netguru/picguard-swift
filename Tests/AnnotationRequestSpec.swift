@@ -153,7 +153,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 				beforeEach {
 					let features = Set([AnnotationRequest.Feature.SafeSearch,
-						AnnotationRequest.Feature.ImageProperties(maxResults: 2),
+						AnnotationRequest.Feature.ImageProperties,
 						AnnotationRequest.Feature.Logo(maxResults: 3),
 						AnnotationRequest.Feature.Text])
 					let image = AnnotationRequest.Image.Image(UIImage())
@@ -197,10 +197,6 @@ final class AnnotationRequestSpec: QuickSpec {
 
 						it("should be ImageProperties type") {
 							expect(firstFeatureJSON["type"] as? String).to(equal("IMAGE_PROPERTIES"))
-						}
-
-						it("should have max results 2") {
-							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(2))
 						}
 
 					}
