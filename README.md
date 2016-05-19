@@ -93,6 +93,7 @@ github "netguru/picguard-swift"
 Using Picguard with CocoaPods is as easy as adding the following dependency to your `Podfile`:
 
 ```none
+use_frameworks!
 pod 'Picguard'
 ```
 
