@@ -13,6 +13,7 @@
 	import AppKit
 #endif
 
+/// Describes a type that is capable of converting an image to PNG data representation.
 public struct PNGImageConverter: ImageConverting {
 
 	// MARK: Initializers

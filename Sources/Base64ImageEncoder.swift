@@ -10,6 +10,9 @@ import Foundation
 /// A default base64 encoder to be used with Google Cloud Vision API.
 public struct Base64ImageEncoder: ImageEncoding {
 
+	/// Image converter which converts image to data.
+	let imageConverter: ImageConverting
+
 	// MARK: Errors
 
 	/// Describes errors which may occur during encoding.
@@ -21,11 +24,6 @@ public struct Base64ImageEncoder: ImageEncoding {
 		/// Thrown if data cannot be converted to image.
 		case InvalidImageData
 	}
-
-	// MARK: Initializers
-
-	/// Image converter which converts image to data.
-	let imageConverter: ImageConverting
 
 	// MARK: Initializers
 
