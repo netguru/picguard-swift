@@ -22,8 +22,13 @@ public struct BoundingPolygon: APIRepresentationConvertible {
 
 	/// - SeeAlso: APIRepresentationConvertible.init(APIRepresentationValue:)
 	public init(APIRepresentationValue value: APIRepresentationValue) throws {
-		let vertices: [Vertex?] = try value.get("vertices")
-		self.init(vertices: vertices.flatMap { $0 })
+		self.init(vertices: try value.get("vertices") { value in
+			do {
+				return try Vertex(APIRepresentationValue: value)
+			} catch APIRepresentationError.MissingDictionaryKey {
+				return nil
+			}
+		})
 	}
 
 }

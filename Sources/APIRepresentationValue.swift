@@ -171,20 +171,24 @@ public extension APIRepresentationValue {
 
 	/// Unwraps an array under the given key from the representation.
 	///
-	/// - Parameter key: The key of the array.
+	/// - Parameters:
+	///     - key: The key of the array.
+	///     - mapOrReject: A closure that either successfully maps an element of
+	///       the array, or returns `nil` if an element must be filtered out.
 	///
 	/// - Throws: The following errors:
 	///     - `APIRepresentationError.UnexpectedValueType` if the receiver
 	///       is not a dictionary or value is not an array,
 	///     - `APIRepresentationError.MissingDictionaryKey` if the key doesn't
 	///       exist,
+	///     - Any other error thrown by `mapOrReject`.
 	///
-	/// - Returns: An unwrapped represented array of optional values.
-	func get<T: APIRepresentationConvertible>(key: Swift.String) throws -> [T?] {
+	/// - Returns: An unwrapped represented array, mapped and filtered.
+	func get<T: APIRepresentationConvertible>(key: Swift.String, _ mapOrReject: (APIRepresentationValue) throws -> T?) throws -> [T] {
 		guard case .Array(let array) = try get(key) else {
 			throw APIRepresentationError.UnexpectedValueType
 		}
-		return array.map { try? T.init(APIRepresentationValue: $0) }
+		return try array.map(mapOrReject).flatMap { $0 }
 	}
 
 	/// Unwraps an array under the given key from the representation.
