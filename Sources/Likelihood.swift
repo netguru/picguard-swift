@@ -26,17 +26,6 @@ public enum Likelihood: APIRepresentationConvertible {
 	/// The image very likely belongs to the vertical specified.
 	case VeryLikely
 
-	public var score: Double {
-		switch self {
-			case .Unknown: return -1
-			case .VeryUnlikely: return 0
-			case .Unlikely: return 0.3
-			case .Possible: return 0.5
-			case .Likely: return 0.7
-			case .VeryLikely: return 1
-		}
-	}
-
 	// MARK: Errors
 
 	/// Describes errors which can be thrown inside this type.
@@ -47,6 +36,21 @@ public enum Likelihood: APIRepresentationConvertible {
 
 		/// Thrown if representation score is invalid.
 		case InvalidScore
+	}
+
+	/// Calculated score of the likelihood.
+	///
+	/// - Warning: Calculating score from an `.Unknown` likelihood will cause a
+ 	///   runtime crash.
+	public var score: Double {
+		switch self {
+			case .Unknown: fatalError("Cannot produce score value from unknown likelihood")
+			case .VeryUnlikely: return 0.1
+			case .Unlikely: return 0.3
+			case .Possible: return 0.5
+			case .Likely: return 0.7
+			case .VeryLikely: return 0.9
+		}
 	}
 
 	// MARK: Initializers

@@ -51,12 +51,14 @@ public enum APIRepresentationValue {
 
 public extension APIRepresentationValue {
 
+	// MARK: Initializers
+
 	/// Initializes the representation value with a value.
+	///
+	/// - Parameter value: The value to initialize the representation with.
 	///
 	/// - Throws: `UnsupportedInitType` if the value given is of an unsupported
 	///   type.
-	///
-	/// - Parameter value: The value to initialize the representation with.
 	init(value: AnyObject) throws {
 		switch value {
 			case is NSNull:
@@ -80,10 +82,10 @@ public extension APIRepresentationValue {
 
 	/// Initializes the representation with JSON data.
 	///
+	/// - Parameter data: The serialized JSON data.
+	///
 	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` and
 	///   `self.init(value:)`.
-	///
-	/// - Parameter data: The serialized JSON data.
 	init(data: NSData) throws {
 		let value = try NSJSONSerialization.JSONObjectWithData(data, options: [])
 		try self.init(value: value)
@@ -94,6 +96,8 @@ public extension APIRepresentationValue {
 // MARK: -
 
 public extension APIRepresentationValue {
+
+	// MARK: Getters
 
 	/// Returns a value under the given key from the representation.
 	///

@@ -281,7 +281,7 @@ final class AnnotationRequestSpec: QuickSpec {
 			it("should thorw EmptyFeaturesSet error") {
 				expect {
 					try AnnotationRequest.init(features: Set(), image: .URL("fixture url"))
-				}.to(throwError(AnnotationRequest.Error.EmptyFeaturesSet))
+				}.to(throwError(AnnotationRequest.Error.EmptyFeatureSet))
 			}
 
 		}

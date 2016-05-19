@@ -42,10 +42,10 @@ let image1: AnnotationRequest.Image = .Image([#Image(imageLiteral: "Gun.png")#])
 
 picguard.detectUnsafeContentLikelihood(image: image1) { result in
 	switch result {
-	case .Success(let likelihood):
-		"Likelihood of NSFW content: \(likelihood)"
-	case .Error(let error):
-		"Annotation failed with error: \(error)"
+		case .Success(let likelihood):
+			"Likelihood of NSFW content: \(likelihood)"
+		case .Error(let error):
+			"Annotation failed with error: \(error)"
 	}
 }
 
@@ -59,10 +59,10 @@ let image2: AnnotationRequest.Image = .Image([#Image(imageLiteral: "Steve.png")#
 
 picguard.detectFacePresenceLikelihood(image: image2) { result in
 	switch result {
-	case .Success(let likelihood):
-		"Likelihood of face presence: \(likelihood)"
-	case .Error(let error):
-		"Annotation failed with error: \(error)"
+		case .Success(let likelihood):
+			"Likelihood of face presence: \(likelihood)"
+		case .Error(let error):
+			"Annotation failed with error: \(error)"
 	}
 }
 

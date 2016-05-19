@@ -81,8 +81,7 @@ private extension APIClient {
 
 	/// Creates URL request using annotation request and APIKey.
 	///
-	/// - Parameters:
-	///     - annotationRequest: The source annotation request.
+	/// - Parameter annotationRequest: The source annotation request.
 	///
 	/// - Throws: Rethrows any errors thrown by `NSJSONSerialization` while
 	///   creating request body.

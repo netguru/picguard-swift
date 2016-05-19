@@ -15,8 +15,8 @@ public struct AnnotationRequest {
 	/// Describes errors which may occur while composing request.
 	public enum Error: ErrorType {
 
-		/// Thrown if the features set is empty.
-		case EmptyFeaturesSet
+		/// Thrown if the feature set is empty.
+		case EmptyFeatureSet
 	}
 
 	// MARK: Nested Enums
@@ -63,13 +63,15 @@ public struct AnnotationRequest {
 		/// Compute a set of properties about the image.
 		case ImageProperties
 
+		// MARK: JSON Representation
+
 		/// JSON dictionary representation of `Feature`.
 		var JSONDictionaryRepresentation: [String: AnyObject] {
 			switch self {
-				case .Label(let maxResults):
-					return compact(["type": "LABEL_DETECTION", "maxResults": maxResults])
 				case .Face(let maxResults):
 					return compact(["type": "FACE_DETECTION", "maxResults": maxResults])
+				case .Label(let maxResults):
+					return compact(["type": "LABEL_DETECTION", "maxResults": maxResults])
 				case .Landmark(let maxResults):
 					return compact(["type": "LANDMARK_DETECTION", "maxResults": maxResults])
 				case .Logo(let maxResults):
@@ -96,6 +98,8 @@ public struct AnnotationRequest {
 
 		/// Data representation of image.
 		case Data(NSData)
+
+		// MARK: JSON Representation
 
 		/// JSON dictionary representation of `Image`.
 		///
@@ -125,14 +129,14 @@ public struct AnnotationRequest {
 
 	/// Initializes the AnnotationRequest with image and a set of features
 	///
-	/// - Throws: `EmptyFeaturesSet` error if provided features set is empty.
+	/// - Throws: `EmptyFeatureSet` error if provided features set is empty.
 	///
 	/// - Parameter features: Set of features to initialize the request with.
 	///
 	/// - Parameter image: Image to initialize the request with.
 	public init(features: Set<Feature>, image: Image) throws {
 		guard !features.isEmpty else {
-			throw Error.EmptyFeaturesSet
+			throw Error.EmptyFeatureSet
 		}
 		self.features = features
 		self.image = image

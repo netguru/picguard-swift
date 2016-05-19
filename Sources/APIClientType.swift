@@ -14,7 +14,7 @@ public protocol APIClientType {
 	/// - Parameters:
 	///     - request: An `AnnotationRequest` describing image type and
 	///       detection features.
-	///     - completion: The closure with `PicguardResult<AnnotationResponse>`, called when
-	///       response comes from Google Cloud Vision API.
+	///     - completion: A closure with `PicguardResult<AnnotationResponse>`,
+	///       called when response comes from Google Cloud Vision API.
 	func perform(request request: AnnotationRequest, completion: (PicguardResult<AnnotationResponse>) -> Void)
 }
