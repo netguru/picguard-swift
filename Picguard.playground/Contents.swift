@@ -27,7 +27,7 @@ let picguard = Picguard(APIKey: "<#Your API Key#>")
 
 let _: AnnotationRequest.Image = .Image([#Image(imageLiteral: "Desert.png")#])
 let _: AnnotationRequest.Image = .Data(NSData())
-let _: AnnotationRequest.Image = .URL("http://netguru.co/")
+let _: AnnotationRequest.Image = .URL("https://storage.googleapis.com/bucket/object")
 
 //: ### Detecting unsafe content
 //:
