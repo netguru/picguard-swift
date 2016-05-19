@@ -10,9 +10,9 @@
 		3A0C82AB1CE22B5500FFEE12 /* AnnotationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AA1CE22B5500FFEE12 /* AnnotationError.swift */; };
 		3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C82AC1CE22F2300FFEE12 /* APIClientType.swift */; };
 		3A0CB7851CC65E9000A32F4E /* Picguard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0CB7641CC55A8500A32F4E /* Picguard.framework */; };
-		3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0CB7921CC683D300A32F4E /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A22BA9D1CCF65990033E807 /* LabelAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */; };
 		3A22BAA21CCFA6A90033E807 /* LabelAnnotationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */; };
+		3A2D3C0E1CEDBA51000FD189 /* Picguard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A2D3C0D1CEDBA51000FD189 /* Picguard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A2E7C2F1CC8F52F00277114 /* Base64ImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */; };
 		3A35B78E1CE9BE8500C39158 /* PicguardResultMatchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A35B78C1CE9BE8200C39158 /* PicguardResultMatchers.swift */; };
 		3A38B67D1CE252F5006975AC /* PicguardResultSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38B67B1CE252D1006975AC /* PicguardResultSpec.swift */; };
@@ -87,13 +87,13 @@
 		3A0CB78E1CC6796A00A32F4E /* Framework-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB78F1CC67B4400A32F4E /* Tests-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Common.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7911CC683D300A32F4E /* Picguard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Info.plist"; sourceTree = "<group>"; };
-		3A0CB7921CC683D300A32F4E /* Picguard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Picguard.h; sourceTree = "<group>"; };
 		3A0CB7951CC68BBA00A32F4E /* Framework-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Common.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7981CC68DB400A32F4E /* Picguard-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Tests-Info.plist"; sourceTree = "<group>"; };
 		3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotation.swift; sourceTree = "<group>"; };
 		3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationSpec.swift; sourceTree = "<group>"; };
+		3A2D3C0D1CEDBA51000FD189 /* Picguard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picguard.h; sourceTree = "<group>"; };
 		3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoder.swift; sourceTree = "<group>"; };
 		3A35B78C1CE9BE8200C39158 /* PicguardResultMatchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardResultMatchers.swift; sourceTree = "<group>"; };
 		3A38B67B1CE252D1006975AC /* PicguardResultSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicguardResultSpec.swift; sourceTree = "<group>"; };
@@ -264,6 +264,7 @@
 		3A0CB7661CC55A8500A32F4E /* Picguard */ = {
 			isa = PBXGroup;
 			children = (
+				3A2D3C0D1CEDBA51000FD189 /* Picguard.h */,
 				5C89721D1CC7BF4900843EB8 /* Picguard.swift */,
 				5C70EED71CDC9CE300D22125 /* API Client */,
 				3AD8FE2E1CD1544A008557F3 /* API Representation */,
@@ -307,7 +308,6 @@
 		3A0CB7901CC683C300A32F4E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A0CB7921CC683D300A32F4E /* Picguard.h */,
 				3A0CB7911CC683D300A32F4E /* Picguard-Info.plist */,
 				3A0CB7981CC68DB400A32F4E /* Picguard-Tests-Info.plist */,
 			);
@@ -414,7 +414,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A0CB7931CC6843D00A32F4E /* Picguard.h in Headers */,
+				3A2D3C0E1CEDBA51000FD189 /* Picguard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,11 +425,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A0CB76C1CC55A8500A32F4E /* Build configuration list for PBXNativeTarget "Picguard (iOS)" */;
 			buildPhases = (
+				5C8972431CC7D49100843EB8 /* Run SwiftLint */,
 				3A0CB75F1CC55A8500A32F4E /* Sources */,
 				3A0CB7601CC55A8500A32F4E /* Frameworks */,
 				3A0CB7611CC55A8500A32F4E /* Headers */,
 				3A0CB7621CC55A8500A32F4E /* Resources */,
-				5C8972431CC7D49100843EB8 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -529,19 +529,19 @@
 			shellPath = /bin/sh;
 			shellScript = "carthage copy-frameworks";
 		};
-		5C8972431CC7D49100843EB8 /* SwiftLint */ = {
+		5C8972431CC7D49100843EB8 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = SwiftLint;
+			name = "Run SwiftLint";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n\tswiftlint\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
