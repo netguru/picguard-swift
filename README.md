@@ -4,6 +4,7 @@
 ![](https://img.shields.io/github/release/netguru/picguard-swift.svg)
 ![](https://img.shields.io/badge/swift-2.2-orange.svg)
 ![](https://img.shields.io/badge/carthage-compatible-green.svg)
+![](https://img.shields.io/badge/cocoapods-compatible-green.svg)
 
 Use [Google Cloud Vision API](https://cloud.google.com/vision/) to analyze pictures uploaded in your application and guard against inappropriate content.
 
@@ -93,6 +94,7 @@ github "netguru/picguard-swift"
 Using Picguard with CocoaPods is as easy as adding the following dependency to your `Podfile`:
 
 ```none
+use_frameworks!
 pod 'Picguard'
 ```
 
