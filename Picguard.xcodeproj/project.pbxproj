@@ -513,6 +513,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C1BD7361CE613AA00CB6364 /* Build configuration list for PBXNativeTarget "Picguard (OSX)" */;
 			buildPhases = (
+				5CD734791CEDEEF600D513AE /* Run SwiftLint */,
 				5C1BD7201CE613A900CB6364 /* Sources */,
 				5C1BD7211CE613A900CB6364 /* Frameworks */,
 				5C1BD7221CE613A900CB6364 /* Headers */,
@@ -534,6 +535,7 @@
 				5C1BD72A1CE613AA00CB6364 /* Sources */,
 				5C1BD72B1CE613AA00CB6364 /* Frameworks */,
 				5C1BD72C1CE613AA00CB6364 /* Resources */,
+				5CD734781CEDEED200D513AE /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -650,6 +652,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n\tswiftlint\nfi";
+		};
+		5CD734781CEDEED200D513AE /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Nimble.framework",
+			);
+			name = "Copy Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "carthage copy-frameworks";
+		};
+		5CD734791CEDEEF600D513AE /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
