@@ -152,10 +152,10 @@ final class AnnotationRequestSpec: QuickSpec {
 			context("when features don't repeat") {
 
 				beforeEach {
-					let features = Set([AnnotationRequest.Feature.SafeSearch(maxResults: 5),
-						AnnotationRequest.Feature.ImageProperties(maxResults: 2),
+					let features = Set([AnnotationRequest.Feature.SafeSearch,
+						AnnotationRequest.Feature.ImageProperties,
 						AnnotationRequest.Feature.Logo(maxResults: 3),
-						AnnotationRequest.Feature.Text(maxResults: 2)])
+						AnnotationRequest.Feature.Text])
 					let image = AnnotationRequest.Image.Image(UIImage())
 					sut = try! AnnotationRequest.init(features: features, image: image)
 				}
@@ -184,11 +184,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						it("should be SafeSearch type") {
 							expect(firstFeatureJSON["type"] as? String).to(equal("SAFE_SEARCH_DETECTION"))
 						}
-
-						it("should have max results 5") {
-							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(5))
-						}
-
+						
 					}
 
 					describe("second feature") {
@@ -201,10 +197,6 @@ final class AnnotationRequestSpec: QuickSpec {
 
 						it("should be ImageProperties type") {
 							expect(firstFeatureJSON["type"] as? String).to(equal("IMAGE_PROPERTIES"))
-						}
-
-						it("should have max results 2") {
-							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(2))
 						}
 
 					}
@@ -237,10 +229,6 @@ final class AnnotationRequestSpec: QuickSpec {
 
 						it("should be Text type") {
 							expect(firstFeatureJSON["type"] as? String).to(equal("TEXT_DETECTION"))
-						}
-
-						it("should have max results 2") {
-							expect(firstFeatureJSON["maxResults"] as? Int).to(equal(2))
 						}
 
 					}

@@ -56,7 +56,7 @@ public struct Picguard {
 	///     - image: Image to be analyzed.
 	///     - completion: The completion closure executed when request finishes.
 	public func detectUnsafeContentLikelihood(image image: AnnotationRequest.Image, completion: (PicguardResult<Likelihood>) -> Void) {
-		annotate(image: image, features: [.SafeSearch(maxResults: 1)]) { result in
+		annotate(image: image, features: [.SafeSearch]) { result in
 			completion(result.map { response in
 				guard let safeSearchAnnotation = response.safeSearchAnnotation else {
 					return Likelihood.Unknown

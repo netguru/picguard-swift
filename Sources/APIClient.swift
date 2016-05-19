@@ -24,6 +24,10 @@ public final class APIClient: APIClientType {
 	/// Describes an API client error.
 	public enum Error: ErrorType {
 
+		/// Thrown if the API key is corrupted and cannot be percent encoded to
+		/// be used in Google Cloud Vision API request.
+		case CorruptedAPIKey
+
 		/// Returned if Google Cloud Vision API reponse status code is not OK.
 		case BadResponse(NSHTTPURLResponse)
 
@@ -85,7 +89,13 @@ private extension APIClient {
 	///
 	/// - Returns: A composed `NSURLRequest` instance.
 	func composeURLRequest(annotationRequest annotationRequest: AnnotationRequest) throws -> NSURLRequest {
-		let request = NSMutableURLRequest(URL: NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)")!)
+		guard let APIKey = (APIKey as NSString).stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet()) else {
+			throw Error.CorruptedAPIKey
+		}
+		guard let URL = NSURL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(APIKey)") else {
+			throw Error.CorruptedAPIKey
+		}
+		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try NSJSONSerialization.dataWithJSONObject([
 			"requests": [
