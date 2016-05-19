@@ -23,7 +23,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Image(UIImage())
+				let image = AnnotationRequest.Image.Image(ImageType())
 				sut = try! AnnotationRequest.init(features: features, image: image)
 			}
 
@@ -108,7 +108,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Image(UIImage())
+				let image = AnnotationRequest.Image.Image(ImageType())
 				sut = try! AnnotationRequest.init(features: features, image: image)
 			}
 
@@ -156,7 +156,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						AnnotationRequest.Feature.ImageProperties,
 						AnnotationRequest.Feature.Logo(maxResults: 3),
 						AnnotationRequest.Feature.Text])
-					let image = AnnotationRequest.Image.Image(UIImage())
+					let image = AnnotationRequest.Image.Image(ImageType())
 					sut = try! AnnotationRequest.init(features: features, image: image)
 				}
 
@@ -244,7 +244,7 @@ final class AnnotationRequestSpec: QuickSpec {
 				beforeEach {
 					let features = Set([AnnotationRequest.Feature.Face(maxResults: 4),
 						AnnotationRequest.Feature.Face(maxResults: 3)])
-					let image = AnnotationRequest.Image.Image(UIImage())
+					let image = AnnotationRequest.Image.Image(ImageType())
 					sut = try! AnnotationRequest.init(features: features, image: image)
 					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
 					featuresJSON = JSON["features"] as! [[String: AnyObject]]

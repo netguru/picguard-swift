@@ -5,12 +5,12 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 import Picguard
 
 struct MockImageEncoder: ImageEncoding {
 
-	func encode(image image: UIImage) throws -> String {
+	func encode(image image: ImageType) throws -> String {
 		return "fixture encoded image"
 	}
 

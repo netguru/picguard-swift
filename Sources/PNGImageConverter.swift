@@ -25,7 +25,7 @@ public struct PNGImageConverter: ImageConverting {
 	/// - Parameter image: An image to be converted to PNG data.
 	///
 	/// - Returns: An optional PNG data representation of the given image.
-	public func convert(image image: UIImage) -> NSData? {
+	public func convert(image image: ImageType) -> NSData? {
 		#if os(iOS)
 			return UIImagePNGRepresentation(image)
 		#endif

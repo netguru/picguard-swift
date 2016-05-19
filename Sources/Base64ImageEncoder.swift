@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 
 /// A default base64 encoder to be used with Google Cloud Vision API.
 public struct Base64ImageEncoder: ImageEncoding {
@@ -48,7 +48,7 @@ public struct Base64ImageEncoder: ImageEncoding {
 	///
 	/// - Returns: A string which contains encoded representation of the given
 	///   image.
-	public func encode(image image: UIImage) throws -> String {
+	public func encode(image image: ImageType) throws -> String {
 		guard let data = imageConverter.convert(image: image) else {
 			throw Error.UnsupportedBitmapData
 		}
@@ -65,7 +65,7 @@ public struct Base64ImageEncoder: ImageEncoding {
 	/// - Returns: A string which contains encoded representation of the given
 	///   image data.
 	public func encode(imageData imageData: NSData) throws -> String {
-		guard let _ = UIImage(data: imageData) else {
+		guard let _ = ImageType(data: imageData) else {
 			throw Error.InvalidImageData
 		}
 		return imageData.base64EncodedStringWithOptions([])

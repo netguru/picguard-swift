@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 import Picguard
 import XCPlayground
 

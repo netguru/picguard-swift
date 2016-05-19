@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 
 /// Describes a type that is capable of endoding an image or image data to be used with
 /// Google Cloud Vision API.
@@ -19,7 +19,7 @@ public protocol ImageEncoding {
 	///
 	/// - Returns: A string which contains encoded representation of the given
 	/// image.
-	func encode(image image: UIImage) throws -> String
+	func encode(image image: ImageType) throws -> String
 
 	/// Encodes an image data.
 	///

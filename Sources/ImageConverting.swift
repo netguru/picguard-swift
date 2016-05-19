@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 
 /// Describes a type that is capable of converting an image to data.
 public protocol ImageConverting {
@@ -15,5 +15,5 @@ public protocol ImageConverting {
 	/// - Parameter image: An image to be converted.
 	///
 	/// - Returns: An optional data representation of the given image.
-	func convert(image image: UIImage) -> NSData?
+	func convert(image image: ImageType) -> NSData?
 }

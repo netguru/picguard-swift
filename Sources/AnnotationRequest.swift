@@ -5,7 +5,7 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
+import Foundation
 
 /// Describes type which creates Google Cloud Vision API request body in JSON.
 public struct AnnotationRequest {
@@ -93,8 +93,8 @@ public struct AnnotationRequest {
 		/// The Google Cloud Storage URI to the image.
 		case URL(String)
 
-		/// UIImage representation of image.
-		case Image(UIImage)
+		/// Platform specyfic ImageType representation of image.
+		case Image(ImageType)
 
 		/// Data representation of image.
 		case Data(NSData)
@@ -213,7 +213,8 @@ public func == (lhs: AnnotationRequest.Image, rhs: AnnotationRequest.Image) -> B
 		case let (.URL(lhsURL), .URL(rhsURL)):
 			return lhsURL == rhsURL
 		case let (.Image(lhsImage), .Image(rhsImage)):
-			return UIImagePNGRepresentation(lhsImage) == UIImagePNGRepresentation(rhsImage)
+			let imageConverter = PNGImageConverter()
+			return imageConverter.convert(image: lhsImage) == imageConverter.convert(image: rhsImage)
 		case let (.Data(lhsData), .Data(rhsData)):
 			return lhsData == rhsData
 		default: return false
