@@ -24,8 +24,18 @@ public struct Base64ImageEncoder: ImageEncoding {
 
 	// MARK: Initializers
 
-	/// Initializes the instance.
-	public init() {}
+	/// Image converter which converts image to data.
+	let imageConverter: ImageConverting
+
+	// MARK: Initializers
+
+	/// Initialize the image converter.
+	///
+	/// - Parameter imageConverter: Image converter which converts image to data.
+	/// By default uses `PNGImageConverter` instance.
+	public init(imageConverter: ImageConverting = PNGImageConverter()) {
+		self.imageConverter = imageConverter
+	}
 
 	// MARK: Encoding
 
@@ -39,7 +49,7 @@ public struct Base64ImageEncoder: ImageEncoding {
 	/// - Returns: A string which contains encoded representation of the given
 	///   image.
 	public func encode(image image: UIImage) throws -> String {
-		guard let data = UIImagePNGRepresentation(image) else {
+		guard let data = imageConverter.convert(image: image) else {
 			throw Error.UnsupportedBitmapData
 		}
 		return data.base64EncodedStringWithOptions([])

@@ -59,6 +59,8 @@
 		5CB005051CD1099A00481A51 /* AnnotationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB005041CD1099A00481A51 /* AnnotationResponse.swift */; };
 		5CC2FBBF1CD26005004534B0 /* AnnotationRequestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */; };
 		5CC2FBC21CD26766004534B0 /* MockImageEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */; };
+		5CD7347C1CEDF46500D513AE /* ImageConverting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7347B1CEDF46500D513AE /* ImageConverting.swift */; };
+		5CD7347E1CEDF55600D513AE /* PNGImageConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7347D1CEDF55600D513AE /* PNGImageConverter.swift */; };
 		5CDB918D1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */; };
 		5CE8B2941CE0CE5E00BD65EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2931CE0CE5E00BD65EA /* Color.swift */; };
 		5CE8B2961CE0D0AA00BD65EA /* ColorInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */; };
@@ -158,6 +160,8 @@
 		5CB005041CD1099A00481A51 /* AnnotationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationResponse.swift; sourceTree = "<group>"; };
 		5CC2FBBD1CD25FD5004534B0 /* AnnotationRequestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationRequestSpec.swift; sourceTree = "<group>"; };
 		5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockImageEncoder.swift; sourceTree = "<group>"; };
+		5CD7347B1CEDF46500D513AE /* ImageConverting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageConverting.swift; sourceTree = "<group>"; };
+		5CD7347D1CEDF55600D513AE /* PNGImageConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGImageConverter.swift; sourceTree = "<group>"; };
 		5CDB918C1CCE2959000F52D8 /* Base64ImageEncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base64ImageEncoderSpec.swift; sourceTree = "<group>"; };
 		5CE8B2931CE0CE5E00BD65EA /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5CE8B2951CE0D0AA00BD65EA /* ColorInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorInformation.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 		3A2E7C301CC8F54400277114 /* Image Encoding */ = {
 			isa = PBXGroup;
 			children = (
+				5CD7347A1CEDF45400D513AE /* Image Converting */,
 				5C89723E1CC7CF0D00843EB8 /* ImageEncoding.swift */,
 				3A2E7C2E1CC8F52F00277114 /* Base64ImageEncoder.swift */,
 			);
@@ -448,6 +453,15 @@
 				5CC2FBC11CD26766004534B0 /* MockImageEncoder.swift */,
 			);
 			name = Mocks;
+			sourceTree = "<group>";
+		};
+		5CD7347A1CEDF45400D513AE /* Image Converting */ = {
+			isa = PBXGroup;
+			children = (
+				5CD7347B1CEDF46500D513AE /* ImageConverting.swift */,
+				5CD7347D1CEDF55600D513AE /* PNGImageConverter.swift */,
+			);
+			name = "Image Converting";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -692,6 +706,7 @@
 			files = (
 				3ADA94271CDCF1E200AB5736 /* LandmarkAnnotation.swift in Sources */,
 				5CB005011CD1095400481A51 /* APIClient.swift in Sources */,
+				5CD7347C1CEDF46500D513AE /* ImageConverting.swift in Sources */,
 				5CB004FE1CD108F300481A51 /* AnnotationRequest.swift in Sources */,
 				3A0C82AD1CE22F2300FFEE12 /* APIClientType.swift in Sources */,
 				5CB005031CD1098700481A51 /* PicguardResult.swift in Sources */,
@@ -704,6 +719,7 @@
 				3AC0BB9C1CDA769900EDCC61 /* BoundingPolygon.swift in Sources */,
 				3AD8FE2C1CD14FB4008557F3 /* Dictionary.swift in Sources */,
 				5C0513601CE07BD90013B5A6 /* LogoAnnotation.swift in Sources */,
+				5CD7347E1CEDF55600D513AE /* PNGImageConverter.swift in Sources */,
 				3AD8FE331CD172C5008557F3 /* Position.swift in Sources */,
 				3AC0BB9D1CDA769B00EDCC61 /* Vertex.swift in Sources */,
 				3ADA94211CDCE8D800AB5736 /* Location.swift in Sources */,

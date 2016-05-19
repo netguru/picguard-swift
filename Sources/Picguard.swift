@@ -5,7 +5,14 @@
 // Licensed under the MIT License.
 //
 
-import Dispatch
+#if os(iOS)
+	import UIKit
+	public typealias ImageType = UIImage
+#endif
+#if os(OSX)
+	import AppKit
+	public typealias ImageType = NSImage
+#endif
 
 /// Provides image analysis using Google Cloud Vision API.
 public struct Picguard {
