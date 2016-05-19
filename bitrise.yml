@@ -91,6 +91,7 @@ workflows:
             - output_tool: xcpretty
 
   # Runs OS X tests
+  
   test-osx:
     envs:
       - BITRISE_SCHEME: $BITRISE_SCHEME_OSX
