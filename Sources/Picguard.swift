@@ -15,14 +15,6 @@ public struct Picguard {
 
 	// MARK: Initializers
 
-	/// Initializes the Picguard instance using default donfiguration and the
-	/// given Google Clous Vision API key.
-	///
-	/// - Parameter APIKey: Google Cloud Vision API key.
-	public init(APIKey: String) {
-		self.init(APIClient: APIClient(APIKey: APIKey, encoder: Base64ImageEncoder()))
-	}
-
 	/// Initializes the receiver with API client.
 	///
 	/// - Parameter APIClient: API client for performing requests against Google
@@ -31,11 +23,21 @@ public struct Picguard {
 		client = APIClient
 	}
 
+	/// Initializes the Picguard instance using default donfiguration and the
+	/// given Google Clous Vision API key.
+	///
+	/// - Parameter APIKey: Google Cloud Vision API key.
+	public init(APIKey: String) {
+		self.init(APIClient: APIClient(APIKey: APIKey, encoder: Base64ImageEncoder()))
+	}
+
+	// MARK: Annotations
+
 	/// Annotates the given image with given feature set.
 	///
 	/// - Parameters:
 	///     - image: Image to be annotated.
-	///     - feature: Annotations feature set.
+	///     - features: Annotations feature set.
 	///     - completion: The completion closure executed when request finishes.
 	public func annotate(image image: AnnotationRequest.Image, features: Set<AnnotationRequest.Feature>, completion: (PicguardResult<AnnotationResponse>) -> Void) {
 		do {

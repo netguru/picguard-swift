@@ -39,7 +39,8 @@ public struct Color: APIRepresentationConvertible {
 	///     - blue: Blue color component.
 	///     - alpha: Color transparency.
 	///
-	/// - Throws: `InvalidColorComponent` if the color component value is out of range.
+	/// - Throws: `InvalidColorComponent` if the color component value is out of
+	///   range.
 	public init(red: Double, green: Double, blue: Double, alpha: Double?) throws {
 		guard 0...1 ~= red else {
 			throw Error.InvalidColorComponent

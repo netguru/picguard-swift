@@ -85,7 +85,7 @@ final class LikelihoodSpec: QuickSpec {
 					expect(try! Likelihood(score: 0.9)).to(equal(Likelihood.VeryLikely))
 				}
 
-				context("when score is out of range 0...1") {
+				context("when score is out of range") {
 
 					it("should throw InvalidScoreValue error") {
 						expect{
@@ -115,25 +115,17 @@ final class LikelihoodSpec: QuickSpec {
 
 			describe("score") {
 
-				context("when likelihood is unknown") {
-
-					it("should return score -1") {
-						expect(Likelihood.Unknown.score).to(equal(-1))
-					}
-
-				}
-
 				context("when likelihood is very unlikely") {
 
-					it("should return score 0") {
-						expect(Likelihood.VeryUnlikely.score).to(equal(0))
+					it("should calculate expected score") {
+						expect(Likelihood.VeryUnlikely.score).to(equal(0.1))
 					}
 
 				}
 
 				context("when likelihood is unlikely") {
 
-					it("should return score 0.3") {
+					it("should calculate expected score") {
 						expect(Likelihood.Unlikely.score).to(equal(0.3))
 					}
 
@@ -141,7 +133,7 @@ final class LikelihoodSpec: QuickSpec {
 
 				context("when likelihood is possible") {
 
-					it("should return score 0.5") {
+					it("should calculate expected score") {
 						expect(Likelihood.Possible.score).to(equal(0.5))
 					}
 
@@ -149,7 +141,7 @@ final class LikelihoodSpec: QuickSpec {
 
 				context("when likelihood is likely") {
 
-					it("should return score 0.7") {
+					it("should calculate expected score") {
 						expect(Likelihood.Likely.score).to(equal(0.7))
 					}
 
@@ -157,8 +149,8 @@ final class LikelihoodSpec: QuickSpec {
 
 				context("when likelihood is very likely") {
 
-					it("should return score 1") {
-						expect(Likelihood.VeryLikely.score).to(equal(1))
+					it("should calculate expected score") {
+						expect(Likelihood.VeryLikely.score).to(equal(0.9))
 					}
 
 				}

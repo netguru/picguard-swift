@@ -10,8 +10,7 @@ import UIKit
 /// A default base64 encoder to be used with Google Cloud Vision API.
 public struct Base64ImageEncoder: ImageEncoding {
 
-	/// Initializes the instance.
-	public init() {}
+	// MARK: Errors
 
 	/// Describes errors which may occur during encoding.
 	public enum Error: ErrorType {
@@ -23,15 +22,22 @@ public struct Base64ImageEncoder: ImageEncoding {
 		case InvalidImageData
 	}
 
+	// MARK: Initializers
+
+	/// Initializes the instance.
+	public init() {}
+
+	// MARK: Encoding
+
 	/// Encodes the image into base64 representation.
 	///
-	/// - Throws: `UnsupportedBitmapData` error if the given image contains no bitmap
-	/// data or contains data in unsupported bitmap format.
+	/// - Throws: `UnsupportedBitmapData` error if the given image contains no
+	///   bitmap data or contains data in unsupported bitmap format.
 	///
 	/// - Parameter image: An image to be encoded.
 	///
 	/// - Returns: A string which contains encoded representation of the given
-	/// image.
+	///   image.
 	public func encode(image image: UIImage) throws -> String {
 		guard let data = UIImagePNGRepresentation(image) else {
 			throw Error.UnsupportedBitmapData
@@ -42,12 +48,12 @@ public struct Base64ImageEncoder: ImageEncoding {
 	/// Encodes the image data into base64 representation.
 	///
 	/// - Throws: `InvalidImageData` if the given image data cannot be converted
-	/// to Image.
+	///   to an image.
 	///
-	/// - Parameter image data: An image data to be encoded.
+	/// - Parameter data: An image data to be encoded.
 	///
 	/// - Returns: A string which contains encoded representation of the given
-	/// image data.
+	///   image data.
 	public func encode(imageData imageData: NSData) throws -> String {
 		guard let _ = UIImage(data: imageData) else {
 			throw Error.InvalidImageData
