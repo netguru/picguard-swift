@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   # Description
 
   spec.name = 'Picguard'
-  spec.version = '0.2'
+  spec.version = '0.3'
   spec.summary = 'Image analysis framework for Swift'
   spec.homepage = 'https://github.com/netguru/picguard-swift'
 
@@ -35,8 +35,8 @@ Pod::Spec.new do |spec|
 
   spec.source_files = 'Sources'
 
-  spec.ios.exclude_files = 'NSImage.swift'
-  spec.osx.exclude_files = 'UIImage.swift'
+  spec.ios.exclude_files = 'Sources/NSImage.swift'
+  spec.osx.exclude_files = 'Sources/UIImage.swift'
 
   # Settings
 
