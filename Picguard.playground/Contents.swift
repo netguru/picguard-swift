@@ -5,9 +5,9 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
 import Picguard
 import XCPlayground
+import UIKit
 
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
@@ -22,11 +22,11 @@ let picguard = Picguard(APIKey: "<#Your API Key#>")
 //: There are three possible ways to privide an image for `Picguard`:
 //:
 //: 1. `.Image` – if you have loaded an image in memory,
-//: 2. `.Data` – if you have loaded image data in memory,
+//: 2. `.Base64String` – if you have loaded image base64 data string in memory,
 //: 3. `.URL` – to Google Cloud Storage, ifyou already uploaded an image
 
 let _: AnnotationRequest.Image = .Image([#Image(imageLiteral: "Desert.png")#])
-let _: AnnotationRequest.Image = .Data(NSData())
+let _: AnnotationRequest.Image = .Base64String("")
 let _: AnnotationRequest.Image = .URL("https://storage.googleapis.com/bucket/object")
 
 //: ### Detecting unsafe content

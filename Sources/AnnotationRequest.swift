@@ -5,8 +5,6 @@
 // Licensed under the MIT License.
 //
 
-import UIKit
-
 /// Describes type which creates Google Cloud Vision API request body in JSON.
 public struct AnnotationRequest {
 
@@ -93,28 +91,28 @@ public struct AnnotationRequest {
 		/// The Google Cloud Storage URI to the image.
 		case URL(String)
 
-		/// UIImage representation of image.
-		case Image(UIImage)
+		/// Platform-specific representation of image.
+		case Image(Base64EncodableImage)
 
-		/// Data representation of image.
-		case Data(NSData)
+		/// Base64 encoded string representation of image data.
+		case Base64String(String)
 
 		// MARK: JSON Representation
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Rethrows any errors thrown by `ImageEncoding` when encoder
-		///   fails to encode image to data.
+		/// - Throws: Errors from `Base64EncodableImageError` domain,
+		///   when base64 string representation cannot be produced.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
-		func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
+		func JSONDictionaryRepresentation() throws -> [String: AnyObject] {
 			switch self {
 				case .URL(let URL):
 					return ["source": ["gcs_image_uri": URL]]
 				case .Image(let image):
-					return ["content": try encoder.encode(image: image)]
-				case .Data(let data):
-					return ["content": try encoder.encode(imageData: data)]
+					return ["content": try image.base64EncodedStringRepresentation()]
+				case .Base64String(let string):
+					return ["content": string]
 			}
 		}
 	}
@@ -150,9 +148,9 @@ public struct AnnotationRequest {
 	///   when encoder fails to encode image to data.
 	///
 	/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
-	public func JSONDictionaryRepresentation(encoder: ImageEncoding) throws -> [String: AnyObject] {
+	public func JSONDictionaryRepresentation() throws -> [String: AnyObject] {
 		return [
-			"image": try image.JSONDictionaryRepresentation(encoder),
+			"image": try image.JSONDictionaryRepresentation(),
 			"features": features.map { $0.JSONDictionaryRepresentation }
 		]
 	}
@@ -213,9 +211,13 @@ public func == (lhs: AnnotationRequest.Image, rhs: AnnotationRequest.Image) -> B
 		case let (.URL(lhsURL), .URL(rhsURL)):
 			return lhsURL == rhsURL
 		case let (.Image(lhsImage), .Image(rhsImage)):
-			return UIImagePNGRepresentation(lhsImage) == UIImagePNGRepresentation(rhsImage)
-		case let (.Data(lhsData), .Data(rhsData)):
-			return lhsData == rhsData
+			do {
+				return try lhsImage.base64EncodedStringRepresentation() == rhsImage.base64EncodedStringRepresentation()
+			} catch {
+				return false
+			}
+		case let (.Base64String(lhsString), .Base64String(rhsString)):
+			return lhsString == rhsString
 		default: return false
 	}
 }
