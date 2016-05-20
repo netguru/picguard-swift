@@ -91,18 +91,18 @@ public struct AnnotationRequest {
 		/// The Google Cloud Storage URI to the image.
 		case URL(String)
 
-		/// Platform specyfic ImageType representation of image.
+		/// Platform-specific representation of image.
 		case Image(Base64EncodableImage)
 
-		/// Base 64 encoded string representation of image data.
+		/// Base64 encoded string representation of image data.
 		case Base64String(String)
 
 		// MARK: JSON Representation
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: `Base64EncodableImageError.UnsupportedBitmapData` error,
-		///   when fails to get base64 encoded string representation of image data.
+		/// - Throws: Errors from `Base64EncodableImageError` domain,
+		///   when base64 string representation cannot be produced.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		func JSONDictionaryRepresentation() throws -> [String: AnyObject] {
@@ -215,7 +215,7 @@ public func == (lhs: AnnotationRequest.Image, rhs: AnnotationRequest.Image) -> B
 				return try lhsImage.base64EncodedStringRepresentation() == rhsImage.base64EncodedStringRepresentation()
 			} catch {
 				return false
-		}
+			}
 		case let (.Base64String(lhsString), .Base64String(rhsString)):
 			return lhsString == rhsString
 		default: return false

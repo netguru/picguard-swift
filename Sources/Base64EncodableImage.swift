@@ -12,15 +12,14 @@ public enum Base64EncodableImageError: ErrorType {
 	case UnsupportedBitmapData
 }
 
-
 /// Describes image with base64 encoded string representation
 /// to be used with Google Cloud Vision API.
 public protocol Base64EncodableImage {
 
 	/// Encodes the image into base64 string representation.
 	///
-	/// - Throws: Errors from `Base64EncodableImageError.UnsupportedBitmapData` error,
-	///   when fails to encode image.
+	/// - Throws: Errors from `Base64EncodableImageError` domain,
+	///   when base64 string representation cannot be produced.
 	///
 	/// - Returns: Base64 encoded string of image data.
 	func base64EncodedStringRepresentation() throws -> String

@@ -41,7 +41,6 @@ public final class APIClient: APIClientType {
 	///
 	/// - Parameters:
 	///     - APIKey: Google Cloud Vision API key.
-	///     - encoder: Image encoder which converts image to data.
 	///     - session: URL session used to create data task. By default creates
 	///       a session with default configuration.
 	public init(
