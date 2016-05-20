@@ -28,7 +28,7 @@ public struct Picguard {
 	///
 	/// - Parameter APIKey: Google Cloud Vision API key.
 	public init(APIKey: String) {
-		self.init(APIClient: APIClient(APIKey: APIKey, encoder: Base64ImageEncoder()))
+		self.init(APIClient: APIClient(APIKey: APIKey))
 	}
 
 	// MARK: Annotations

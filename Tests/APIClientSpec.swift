@@ -18,7 +18,7 @@ final class APIClientSpec: QuickSpec {
 
 		beforeEach {
 			mockSession = MockURLSession()
-			sut = APIClient(APIKey: "fixtureAPIKey", encoder: MockImageEncoder(), session: mockSession)
+			sut = APIClient(APIKey: "fixtureAPIKey", session: mockSession)
 		}
 
 		afterEach {
@@ -31,7 +31,7 @@ final class APIClientSpec: QuickSpec {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Image(UIImage())
+				let image = AnnotationRequest.Image.Image(MockBase64EncodableImage())
 				let request = try! AnnotationRequest.init(features: features, image: image)
 				sut.perform(request: request) { result in
 					capturedResult = result
