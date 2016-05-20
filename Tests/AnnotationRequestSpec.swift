@@ -23,7 +23,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Image(ImageType())
+				let image = AnnotationRequest.Image.Image(MockBase64EncodableImage())
 				sut = try! AnnotationRequest.init(features: features, image: image)
 			}
 
@@ -32,7 +32,7 @@ final class AnnotationRequestSpec: QuickSpec {
 				var imageJSON: [String: AnyObject]!
 
 				beforeEach {
-					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+					let JSON = try! sut.JSONDictionaryRepresentation()
 					imageJSON = JSON["image"] as! [String: AnyObject]
 				}
 
@@ -44,11 +44,11 @@ final class AnnotationRequestSpec: QuickSpec {
 
 		}
 
-		context("when initialized with Data image type") {
+		context("when initialized with base 64 data strng image type") {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Data(NSData())
+				let image = AnnotationRequest.Image.Base64String("fixture encoded image")
 				sut = try! AnnotationRequest.init(features: features, image: image)
 			}
 
@@ -57,12 +57,12 @@ final class AnnotationRequestSpec: QuickSpec {
 				var imageJSON: [String: AnyObject]!
 
 				beforeEach {
-					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+					let JSON = try! sut.JSONDictionaryRepresentation()
 					imageJSON = JSON["image"] as! [String: AnyObject]
 				}
 
 				it("should have proper content") {
-					expect(imageJSON["content"] as? String).to(equal("fixture encoded image data"))
+					expect(imageJSON["content"] as? String).to(equal("fixture encoded image"))
 				}
 
 			}
@@ -82,7 +82,7 @@ final class AnnotationRequestSpec: QuickSpec {
 				var imageJSON: [String: AnyObject]!
 
 				beforeEach {
-					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+					let JSON = try! sut.JSONDictionaryRepresentation()
 					imageJSON = JSON["image"] as! [String: AnyObject]
 				}
 
@@ -108,7 +108,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])
-				let image = AnnotationRequest.Image.Image(ImageType())
+				let image = AnnotationRequest.Image.Image(MockBase64EncodableImage())
 				sut = try! AnnotationRequest.init(features: features, image: image)
 			}
 
@@ -117,7 +117,7 @@ final class AnnotationRequestSpec: QuickSpec {
 				var featuresJSON: [[String: AnyObject]]!
 
 				beforeEach {
-					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+					let JSON = try! sut.JSONDictionaryRepresentation()
 					featuresJSON = JSON["features"] as! [[String: AnyObject]]
 				}
 
@@ -156,7 +156,7 @@ final class AnnotationRequestSpec: QuickSpec {
 						AnnotationRequest.Feature.ImageProperties,
 						AnnotationRequest.Feature.Logo(maxResults: 3),
 						AnnotationRequest.Feature.Text])
-					let image = AnnotationRequest.Image.Image(ImageType())
+					let image = AnnotationRequest.Image.Image(MockBase64EncodableImage())
 					sut = try! AnnotationRequest.init(features: features, image: image)
 				}
 
@@ -165,7 +165,7 @@ final class AnnotationRequestSpec: QuickSpec {
 					var featuresJSON: [[String: AnyObject]]!
 
 					beforeEach {
-						let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+						let JSON = try! sut.JSONDictionaryRepresentation()
 						featuresJSON = JSON["features"] as! [[String: AnyObject]]
 					}
 
@@ -244,9 +244,9 @@ final class AnnotationRequestSpec: QuickSpec {
 				beforeEach {
 					let features = Set([AnnotationRequest.Feature.Face(maxResults: 4),
 						AnnotationRequest.Feature.Face(maxResults: 3)])
-					let image = AnnotationRequest.Image.Image(ImageType())
+					let image = AnnotationRequest.Image.Image(MockBase64EncodableImage())
 					sut = try! AnnotationRequest.init(features: features, image: image)
-					let JSON = try! sut.JSONDictionaryRepresentation(MockImageEncoder())
+					let JSON = try! sut.JSONDictionaryRepresentation()
 					featuresJSON = JSON["features"] as! [[String: AnyObject]]
 				}
 

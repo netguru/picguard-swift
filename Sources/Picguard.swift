@@ -5,14 +5,7 @@
 // Licensed under the MIT License.
 //
 
-#if os(iOS)
-	import UIKit
-	public typealias ImageType = UIImage
-#endif
-#if os(OSX)
-	import AppKit
-	public typealias ImageType = NSImage
-#endif
+import Dispatch
 
 /// Provides image analysis using Google Cloud Vision API.
 public struct Picguard {
@@ -35,7 +28,7 @@ public struct Picguard {
 	///
 	/// - Parameter APIKey: Google Cloud Vision API key.
 	public init(APIKey: String) {
-		self.init(APIClient: APIClient(APIKey: APIKey, encoder: Base64ImageEncoder()))
+		self.init(APIClient: APIClient(APIKey: APIKey))
 	}
 
 	// MARK: Annotations

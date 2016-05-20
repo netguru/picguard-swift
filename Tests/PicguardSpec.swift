@@ -144,8 +144,8 @@ final class PicguardSpec: QuickSpec {
 				}
 
 				it("should send a correct request") {
-					picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { _ in })
-					let expectedRequest = try! AnnotationRequest(features: [.Face(maxResults: 1)], image: .Data(NSData()))
+					picguard.detectFacePresenceLikelihood(image: .Base64String(""), completion: { _ in })
+					let expectedRequest = try! AnnotationRequest(features: [.Face(maxResults: 1)], image: .Base64String(""))
 					expect(caughtRequest).toEventually(equal(expectedRequest))
 				}
 
@@ -183,7 +183,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should calculate a correct positive likelihood") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Base64String(""), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beSuccessful(try! Likelihood(score: annotation.detectionConfidence)))
 					}
 
@@ -205,7 +205,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should calculate unknown likelihood") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Base64String(""), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beSuccessful(Likelihood.Unknown))
 					}
 
@@ -219,7 +219,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should forward an erroneus response") {
 						var caughtResult: PicguardResult<Likelihood>! = nil
-						picguard.detectFacePresenceLikelihood(image: .Data(NSData()), completion: { caughtResult = $0 })
+						picguard.detectFacePresenceLikelihood(image: .Base64String(""), completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beErroneus())
 					}
 
@@ -242,8 +242,8 @@ final class PicguardSpec: QuickSpec {
 				}
 
 				it("should send a correct request") {
-					picguard.annotate(image: .Data(NSData()), features: [.Label(maxResults: 1)], completion: { _ in })
-					let expectedRequest = try! AnnotationRequest(features: [.Label(maxResults: 1)], image: .Data(NSData()))
+					picguard.annotate(image: .Base64String(""), features: [.Label(maxResults: 1)], completion: { _ in })
+					let expectedRequest = try! AnnotationRequest(features: [.Label(maxResults: 1)], image: .Base64String(""))
 					expect(caughtRequest).toEventually(equal(expectedRequest))
 				}
 
@@ -265,7 +265,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should calculate a correct positive likelihood") {
 						var caughtResult: PicguardResult<AnnotationResponse>! = nil
-						picguard.annotate(image: .Data(NSData()), features: [.Landmark(maxResults: 1)], completion: { caughtResult = $0 })
+						picguard.annotate(image: .Base64String(""), features: [.Landmark(maxResults: 1)], completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beSuccessful(response))
 					}
 
@@ -279,7 +279,7 @@ final class PicguardSpec: QuickSpec {
 
 					it("should forward an erroneus response") {
 						var caughtResult: PicguardResult<AnnotationResponse>! = nil
-						picguard.annotate(image: .Data(NSData()), features: [.Text], completion: { caughtResult = $0 })
+						picguard.annotate(image: .Base64String(""), features: [.Text], completion: { caughtResult = $0 })
 						expect(caughtResult).toEventually(beErroneus())
 					}
 

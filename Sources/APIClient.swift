@@ -13,9 +13,6 @@ public final class APIClient: APIClientType {
 	/// The key to Google Cloud Vision API.
 	public let APIKey: String
 
-	/// Image encoder which converts image to data.
-	public let encoder: ImageEncoding
-
 	/// An URL session used to create data task.
 	private let session: NSURLSession
 
@@ -49,11 +46,9 @@ public final class APIClient: APIClientType {
 	///       a session with default configuration.
 	public init(
 		APIKey: String,
-		encoder: ImageEncoding,
 		session: NSURLSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	) {
 		self.APIKey = APIKey
-		self.encoder = encoder
 		self.session = session
 	}
 
@@ -97,9 +92,7 @@ private extension APIClient {
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try NSJSONSerialization.dataWithJSONObject([
-			"requests": [
-				try annotationRequest.JSONDictionaryRepresentation(encoder)
-			]
+			"requests": [try annotationRequest.JSONDictionaryRepresentation()]
 		], options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		return request.copy() as! NSURLRequest
