@@ -146,13 +146,9 @@
 		3A0CB7641CC55A8500A32F4E /* Picguard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Picguard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB7801CC65E9000A32F4E /* Picguard Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Picguard Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0CB78C1CC6748200A32F4E /* Picguard-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Picguard-Common.xcconfig"; sourceTree = "<group>"; };
-		3A0CB78D1CC6795E00A32F4E /* Framework-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Debug.xcconfig"; sourceTree = "<group>"; };
-		3A0CB78E1CC6796A00A32F4E /* Framework-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB78F1CC67B4400A32F4E /* Tests-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Common.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7911CC683D300A32F4E /* Picguard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Info.plist"; sourceTree = "<group>"; };
 		3A0CB7951CC68BBA00A32F4E /* Framework-Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Framework-Common.xcconfig"; sourceTree = "<group>"; };
-		3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug.xcconfig"; sourceTree = "<group>"; };
-		3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release.xcconfig"; sourceTree = "<group>"; };
 		3A0CB7981CC68DB400A32F4E /* Picguard-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Picguard-Tests-Info.plist"; sourceTree = "<group>"; };
 		3A22BA9C1CCF65990033E807 /* LabelAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotation.swift; sourceTree = "<group>"; };
 		3A22BA9E1CCFA6560033E807 /* LabelAnnotationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelAnnotationSpec.swift; sourceTree = "<group>"; };
@@ -385,18 +381,14 @@
 			children = (
 				3A0CB78C1CC6748200A32F4E /* Picguard-Common.xcconfig */,
 				3A0CB7951CC68BBA00A32F4E /* Framework-Common.xcconfig */,
-				3A0CB78D1CC6795E00A32F4E /* Framework-Debug.xcconfig */,
 				5C1BD7161CE6080000CB6364 /* Framework-iOS-Debug.xcconfig */,
-				5C1BD71C1CE6120900CB6364 /* Framework-OSX-Debug.xcconfig */,
-				3A0CB78E1CC6796A00A32F4E /* Framework-Release.xcconfig */,
 				5C1BD7171CE6087100CB6364 /* Framework-iOS-Release.xcconfig */,
+				5C1BD71C1CE6120900CB6364 /* Framework-OSX-Debug.xcconfig */,
 				5C1BD71D1CE6121700CB6364 /* Framework-OSX-Release.xcconfig */,
 				3A0CB78F1CC67B4400A32F4E /* Tests-Common.xcconfig */,
-				3A0CB7961CC68CAC00A32F4E /* Tests-Debug.xcconfig */,
 				5C1BD71A1CE60CD600CB6364 /* Tests-iOS-Debug.xcconfig */,
-				5C1BD71E1CE6123600CB6364 /* Tests-OSX-Debug.xcconfig */,
-				3A0CB7971CC68CC900A32F4E /* Tests-Release.xcconfig */,
 				5C1BD71B1CE60CE100CB6364 /* Tests-iOS-Release.xcconfig */,
+				5C1BD71E1CE6123600CB6364 /* Tests-OSX-Debug.xcconfig */,
 				5C1BD71F1CE6123F00CB6364 /* Tests-OSX-Release.xcconfig */,
 			);
 			path = Configuration;
@@ -429,8 +421,6 @@
 		3A2E7C301CC8F54400277114 /* Image Encoding */ = {
 			isa = PBXGroup;
 			children = (
-				5CECAE5B1CEF06FC007E8904 /* UIImage.swift */,
-				5CECAE5D1CEF0711007E8904 /* NSImage.swift */,
 				5CECAE621CEF09A3007E8904 /* Base64EncodableImage.swift */,
 			);
 			name = "Image Encoding";
@@ -448,8 +438,10 @@
 		3AD8FE2D1CD15246008557F3 /* Type Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3AD8FE2B1CD14FB4008557F3 /* Dictionary.swift */,
 				5C70EEDA1CDC9EC400D22125 /* Array.swift */,
+				3AD8FE2B1CD14FB4008557F3 /* Dictionary.swift */,
+				5CECAE5D1CEF0711007E8904 /* NSImage.swift */,
+				5CECAE5B1CEF06FC007E8904 /* UIImage.swift */,
 			);
 			name = "Type Extensions";
 			sourceTree = "<group>";
@@ -932,7 +924,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C1BD71C1CE6120900CB6364 /* Framework-OSX-Debug.xcconfig */;
 			buildSettings = {
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -947,17 +938,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C1BD71E1CE6123600CB6364 /* Tests-OSX-Debug.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "-";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 			};
 			name = Debug;
 		};
@@ -965,17 +945,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C1BD71F1CE6123F00CB6364 /* Tests-OSX-Release.xcconfig */;
 			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "-";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 			};
 			name = Release;
 		};
