@@ -35,8 +35,8 @@ Pod::Spec.new do |spec|
 
   spec.source_files = 'Sources'
 
-  spec.ios.exclude_files = 'NSImage.swift'
-  spec.osx.exclude_files = 'UIImage.swift'
+  spec.ios.exclude_files = 'Sources/NSImage.swift'
+  spec.osx.exclude_files = 'Sources/UIImage.swift'
 
   # Settings
 
