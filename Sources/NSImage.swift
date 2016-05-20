@@ -10,7 +10,7 @@ import AppKit
 extension NSImage: Base64EncodableImage {
 
 	/// - SeeAlso: Base64EncodableImage.base64EncodedStringRepresentation()
-	public func base64EncodedStringRepresentation() throws -> String {
+	@nonobjc public func base64EncodedStringRepresentation() throws -> String {
 		guard
 			let cgImage = self.CGImageForProposedRect(nil, context: nil, hints: nil),
 			data = NSBitmapImageRep(CGImage: cgImage).representationUsingType(.NSPNGFileType, properties: [:])

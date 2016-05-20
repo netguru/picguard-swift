@@ -10,7 +10,7 @@ import UIKit
 extension UIImage: Base64EncodableImage {
 
 	/// - SeeAlso: Base64EncodableImage.base64EncodedStringRepresentation()
-	public func base64EncodedStringRepresentation() throws -> String {
+	@nonobjc public func base64EncodedStringRepresentation() throws -> String {
 		guard let data = UIImagePNGRepresentation(self) else {
 			throw Base64EncodableImageError.UnsupportedBitmapData
 		}
