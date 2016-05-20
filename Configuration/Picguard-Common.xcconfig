@@ -7,7 +7,7 @@
 
 // Version settings
 
-PICGUARD_VERSION = 0.2
+PICGUARD_VERSION = 0.3
 PICGUARD_BUILD = 0
 
 // Product settings

@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   # Description
 
   spec.name = 'Picguard'
-  spec.version = '0.2'
+  spec.version = '0.3'
   spec.summary = 'Image analysis framework for Swift'
   spec.homepage = 'https://github.com/netguru/picguard-swift'
 
