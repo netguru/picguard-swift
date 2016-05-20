@@ -44,7 +44,7 @@ final class AnnotationRequestSpec: QuickSpec {
 
 		}
 
-		context("when initialized with base 64 data strng image type") {
+		context("when initialized with base 64 encoded string image type") {
 
 			beforeEach {
 				let features = Set([AnnotationRequest.Feature.Label(maxResults: 1)])

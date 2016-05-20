@@ -7,6 +7,7 @@
 
 import Picguard
 import XCPlayground
+import UIKit
 
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 

@@ -94,15 +94,15 @@ public struct AnnotationRequest {
 		/// Platform specyfic ImageType representation of image.
 		case Image(Base64EncodableImage)
 
-		/// Base 64 string representation of image data.
+		/// Base 64 encoded string representation of image data.
 		case Base64String(String)
 
 		// MARK: JSON Representation
 
 		/// JSON dictionary representation of `Image`.
 		///
-		/// - Throws: Rethrows any errors thrown by `ImageEncoding` when encoder
-		///   fails to encode image to data.
+		/// - Throws: `Base64EncodableImageError.UnsupportedBitmapData` error,
+		///   when fails to get base64 encoded string representation of image data.
 		///
 		/// - Returns: A Dictionary with `String` keys and `AnyObject` values.
 		func JSONDictionaryRepresentation() throws -> [String: AnyObject] {
