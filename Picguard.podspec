@@ -35,6 +35,9 @@ Pod::Spec.new do |spec|
 
   spec.source_files = 'Sources'
 
+  spec.ios.exclude_files = 'NSImage.swift'
+  spec.osx.exclude_files = 'UIImage.swift'
+
   # Settings
 
   spec.requires_arc = true
@@ -44,7 +47,9 @@ Pod::Spec.new do |spec|
 
   # Linking
 
-  spec.ios.frameworks = 'Foundation', 'UIKit'
-  spec.osx.frameworks = 'Foundation', 'AppKit'
+  spec.frameworks = 'Foundation'
+
+  spec.ios.frameworks = 'UIKit'
+  spec.osx.frameworks = 'AppKit'
 
 end
